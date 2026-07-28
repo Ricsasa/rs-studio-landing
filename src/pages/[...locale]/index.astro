@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { buildStaticPaths } from "astro-react-i18next/utils";
+
+import i18n from "i18next";
+
+export function getStaticPaths() {
+	return buildStaticPaths();
+}
+
+
+---
+
+<Layout>
+	<div class="flex justify-center">
+		<h1 class="text-5xl">{i18n.t('welcome-label')}</h1>
+	</div>
+</Layout>
