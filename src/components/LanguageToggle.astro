@@ -1,0 +1,35 @@
+---
+import i18n from "i18next";
+import { getLocalizedPathname } from "astro-react-i18next/utils";
+import { getLocaleOptions } from "@/i18n/locales";
+
+const locales = getLocaleOptions();
+const current = i18n.language;
+const pathname = Astro.url.pathname;
+---
+
+<div class="label flex items-center" aria-label={i18n.t("language.label")}>
+  {
+    locales.map((locale, index) => (
+      <>
+        {index > 0 && (
+          <span aria-hidden="true" class="px-1 text-rule-strong">
+            /
+          </span>
+        )}
+        <a
+          href={getLocalizedPathname(pathname, locale.code)}
+          hreflang={locale.code}
+          aria-current={locale.code === current ? "true" : undefined}
+          title={i18n.t("language.switchTo", { language: locale.label })}
+          class:list={[
+            "transition-colors duration-200",
+            locale.code === current ? "font-bold text-moss" : "text-mute hover:text-ink",
+          ]}
+        >
+          {locale.short}
+        </a>
+      </>
+    ))
+  }
+</div>

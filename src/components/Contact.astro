@@ -1,0 +1,87 @@
+---
+import i18n from "i18next";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { whatsappHref } from "@/lib/whatsapp";
+
+const email = i18n.t("contact.email");
+---
+
+{/*
+  The single solid ink plate in the document. It closes the sheet the way a
+  printed back cover does — same three colours, full coverage.
+*/}
+<section id="contact" class="bg-ink px-gutter py-section-lg text-reverse">
+  <div class="mx-auto w-full max-w-content">
+    {/* `sage` rather than `moss`: the accent needs more coverage to stay legible on ink. */}
+    <div class="flex items-center gap-3 border-b-2 border-reverse pb-4 text-sage">
+      <span class="label text-reverse-mute">{i18n.t("nav.contact")}</span>
+      <span aria-hidden="true" class="accent-stripes h-2.5 flex-1"></span>
+    </div>
+
+    <h2 class="mt-heading max-w-[16ch] text-headline display-face">
+      {i18n.t("contact.title")}
+    </h2>
+
+    <p class="mt-7 max-w-[46ch] text-lead text-pretty text-reverse-mute">
+      {i18n.t("contact.intro")}
+    </p>
+
+    <div class="mt-cta-lg flex flex-wrap gap-2.5">
+      <a
+        href={`mailto:${email}`}
+        class="group inline-flex min-h-13 items-center gap-2.5 bg-paper px-6 py-4 text-ink transition-colors duration-200 hover:bg-sage"
+      >
+        <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">[</span>
+        <span class="label font-bold">{email}</span>
+        <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">]</span>
+      </a>
+      <a
+        href={whatsappHref()}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex min-h-13 items-center gap-2.5 bg-moss px-6 py-4 text-paper transition-colors duration-200 hover:bg-sage hover:text-ink"
+      >
+        <WhatsAppIcon class="h-4.5 w-4.5" />
+        <span class="label font-bold">{i18n.t("whatsapp.cta")}</span>
+        <span
+          aria-hidden="true"
+          class="label-micro opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+          >&gt;&gt;&gt;</span
+        >
+      </a>
+    </div>
+
+    <footer class="mt-footer border-t border-reverse-rule pt-7">
+      <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-6">
+        <img
+          src="/logo.svg"
+          alt={i18n.t("nav.logoAlt")}
+          width="1261"
+          height="209"
+          class="h-5 w-auto invert"
+        />
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href="https://www.facebook.com/rsstudiodev/"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="label text-reverse-mute transition-colors duration-200 hover:text-sage"
+          >
+            {i18n.t("contact.facebook")}
+          </a>
+          <a
+            href={`mailto:${email}`}
+            class="label text-reverse-mute transition-colors duration-200 hover:text-sage"
+          >
+            {i18n.t("contact.emailLabel")}
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-7 border-t border-reverse-rule pt-5">
+        <span class="label text-reverse-mute">{i18n.t("contact.copyright")}</span>
+      </div>
+    </footer>
+  </div>
+</section>

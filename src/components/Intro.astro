@@ -1,0 +1,129 @@
+---
+// Full-screen intro overlay: the monogram printed on a blank sheet with its
+// registration marks and an accent progress rule, ~1.5s, then wipes away to
+// reveal the hero.
+---
+
+<div id="intro-overlay" data-intro-overlay aria-hidden="true">
+  <div id="intro-plate">
+    <img
+      id="intro-monogram"
+      src="/monogram.png"
+      alt=""
+      width="320"
+      height="320"
+      decoding="sync"
+      fetchpriority="high"
+    />
+    <span id="intro-halftone" class="halftone"></span>
+
+    <span class="intro-mark" data-corner="tl"></span>
+    <span class="intro-mark" data-corner="tr"></span>
+    <span class="intro-mark" data-corner="bl"></span>
+    <span class="intro-mark" data-corner="br"></span>
+  </div>
+
+  <div id="intro-bar"><span id="intro-bar-fill"></span></div>
+</div>
+
+<style is:global>
+  #intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-intro);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background: var(--color-paper);
+    border-radius: 0;
+    will-change: transform;
+  }
+
+  #intro-plate {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: clamp(18px, 4vw, 32px);
+  }
+
+  #intro-monogram {
+    width: clamp(140px, 22vw, 260px);
+    height: auto;
+    border-radius: 0;
+  }
+
+  /* The dot matrix sits only over the monogram, not the whole sheet. */
+  #intro-halftone {
+    position: absolute;
+    width: clamp(140px, 22vw, 260px);
+    aspect-ratio: 1;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .intro-mark {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    color: var(--color-rule-strong);
+    background:
+      linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+      linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
+  }
+
+  .intro-mark[data-corner="tl"] {
+    top: clamp(18px, 4vw, 32px);
+    left: clamp(18px, 4vw, 32px);
+  }
+  .intro-mark[data-corner="tr"] {
+    top: clamp(18px, 4vw, 32px);
+    right: clamp(18px, 4vw, 32px);
+  }
+  .intro-mark[data-corner="bl"] {
+    bottom: clamp(18px, 4vw, 32px);
+    left: clamp(18px, 4vw, 32px);
+  }
+  .intro-mark[data-corner="br"] {
+    bottom: clamp(18px, 4vw, 32px);
+    right: clamp(18px, 4vw, 32px);
+  }
+
+  /* Progress rule. The one accent on an otherwise blank sheet. */
+  #intro-bar {
+    height: 6px;
+    margin: 0 var(--spacing-gutter) clamp(18px, 4vw, 30px);
+    background: var(--color-rule);
+  }
+
+  #intro-bar-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--color-moss);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  html.intro-active,
+  html.intro-active body {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #intro-overlay {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Lock scroll before paint so the intro never scrolls with the page.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("intro-active");
+  }
+</script>
+
+<script>
+  import { initIntro } from "@/scripts/intro";
+
+  initIntro();
+</script>

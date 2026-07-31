@@ -1,0 +1,37 @@
+---
+import i18n from "i18next";
+import { projectPath } from "@/i18n/routing";
+import type { Project } from "@/content/projects";
+
+interface Props {
+  next: Project;
+  nextSlug: string;
+}
+
+const { next, nextSlug } = Astro.props;
+---
+
+<section class="border-b-2 border-ink bg-paper px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <a
+      href={projectPath(nextSlug)}
+      class="group relative flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-t-2 border-ink pt-7 transition-colors duration-200 hover:bg-substrate"
+    >
+      <span
+        aria-hidden="true"
+        class="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-moss transition-transform duration-200 group-hover:scale-x-100"
+      ></span>
+
+      <div>
+        <span class="label text-mute">{i18n.t("projectPage.nextLabel")}</span>
+        <div class="mt-3 text-service display-face">{next.title}</div>
+      </div>
+
+      <span
+        aria-hidden="true"
+        class="label text-moss transition-transform duration-200 group-hover:translate-x-1"
+        >&gt;&gt;&gt;</span
+      >
+    </a>
+  </div>
+</section>

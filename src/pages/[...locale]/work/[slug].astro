@@ -1,0 +1,55 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Contact from "@/components/Contact.astro";
+import ProjectHeader from "@/components/work/ProjectHeader.astro";
+import ProjectOverview from "@/components/work/ProjectOverview.astro";
+import ProjectGallery from "@/components/work/ProjectGallery.astro";
+import ProjectNext from "@/components/work/ProjectNext.astro";
+import { buildStaticPaths } from "astro-react-i18next/utils";
+import {
+  projectSlugs,
+  caseStudySlugs,
+  projectScreenshots,
+  type Project,
+} from "@/content/projects";
+import { tList } from "@/i18n/t";
+import i18n from "i18next";
+
+/** Every locale crossed with the projects that have a write-up. */
+export function getStaticPaths() {
+  return buildStaticPaths().flatMap(({ params }) =>
+    caseStudySlugs.map((slug) => ({ params: { ...params, slug } })),
+  );
+}
+
+const { slug } = Astro.params;
+const projects = tList<Project>("projects", "projects");
+
+// Slugs come from en-US, so position — not the translated title — is the key.
+const index = projectSlugs.indexOf(slug ?? "");
+
+if (index === -1 || !projects[index]) {
+  throw new Error(`No project matches the slug "${slug}". Are the locale files out of sync?`);
+}
+
+const project = projects[index]!;
+
+const position = caseStudySlugs.indexOf(slug ?? "");
+const nextSlug = caseStudySlugs[(position + 1) % caseStudySlugs.length]!;
+const next = projects[projectSlugs.indexOf(nextSlug)]!;
+---
+
+<Layout
+  title={i18n.t("projectPage.titleTemplate", { name: project.title })}
+  description={project.brief_description}
+>
+  <SiteHeader />
+  <main id="main">
+    <ProjectHeader project={project} />
+    <ProjectOverview project={project} />
+    <ProjectGallery project={project} images={projectScreenshots[index]!} />
+    <ProjectNext next={next} nextSlug={nextSlug} />
+  </main>
+  <Contact />
+</Layout>

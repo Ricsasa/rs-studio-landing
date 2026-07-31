@@ -1,0 +1,22 @@
+---
+import i18n from "i18next";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { whatsappHref } from "@/lib/whatsapp";
+
+const href = whatsappHref();
+---
+
+{/*
+  Separated from the page by a hard ink edge rather than a drop shadow — the
+  system has no soft depth, so lift is expressed as a printed border.
+*/}
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={i18n.t("whatsapp.label")}
+  class="group fixed right-6 bottom-6 z-(--z-float) flex h-16 w-16 items-center justify-center border-2 border-ink bg-moss text-paper transition-colors duration-200 hover:bg-ink"
+>
+  <WhatsAppIcon class="h-7 w-7" />
+  <span aria-hidden="true" class="crosshair top-1 left-1 text-paper/60"></span>
+</a>

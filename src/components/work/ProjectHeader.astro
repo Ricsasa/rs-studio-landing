@@ -1,0 +1,81 @@
+---
+import i18n from "i18next";
+import { sectionHref } from "@/i18n/routing";
+import type { Project } from "@/content/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const backHref = sectionHref(Astro.url.pathname, "#work");
+const isExternal = Boolean(project.href?.startsWith("http"));
+
+const meta = [
+  { label: i18n.t("projectPage.categoryLabel"), value: project.category },
+  { label: i18n.t("projectPage.yearLabel"), value: project.year },
+];
+---
+
+<section class="border-b-2 border-ink bg-substrate">
+  <div class="border-b border-rule px-gutter">
+    <div class="mx-auto flex w-full max-w-content py-2.5">
+      <a
+        href={backHref}
+        class="group label flex items-center gap-2 text-ink-soft transition-colors duration-200 hover:text-moss"
+      >
+        <span
+          aria-hidden="true"
+          class="label-micro text-moss transition-transform duration-200 group-hover:-translate-x-1"
+          >&lt;&lt;&lt;</span
+        >
+        {i18n.t("projectPage.back")}
+      </a>
+    </div>
+  </div>
+
+  <div class="px-gutter pt-hero-top pb-hero-bottom">
+    <div class="mx-auto w-full max-w-content">
+      <h1 class="text-section display-face">{project.title}</h1>
+
+      <p class="mt-lead max-w-[48ch] text-lead text-pretty text-graphite">
+        {project.brief_description}
+      </p>
+
+      {/*
+        Exactly as many tracks as there are entries: `rule-grid` paints the
+        gaps from the container's own background, so an unfilled track would
+        render as a solid slab rather than as empty paper.
+      */}
+      <dl class="mt-cta rule-grid grid-cols-1 sm:grid-cols-2">
+        {
+          meta.map((item) => (
+            <div class="bg-paper p-card-pad">
+              <dt class="label text-mute">{item.label}</dt>
+              <dd class="tnum mt-3 text-subhead display-face">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      {
+        project.href && (
+          <a
+            href={project.href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss"
+          >
+            <span class="label font-bold">{project.cta ?? i18n.t("projectPage.visitSite")}</span>
+            <span
+              aria-hidden="true"
+              class="label-micro opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+            >
+              &gt;&gt;&gt;
+            </span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

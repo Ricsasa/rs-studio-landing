@@ -1,1 +1,342 @@
-@import "tailwindcss";
+@import "./starwind.css";
+
+/*
+ * RS Studio — Swiss Industrial Print, earthy/forest ground.
+ *
+ * One substrate (unbleached oatmeal paper), one ink (bark, a near-black with
+ * a green cast), one accent (deep moss). No gradients, no soft shadows, no
+ * translucency as decoration, no radii. Structure is carried by visible rules
+ * and a strict grid rather than by cards floating on a page.
+ *
+ * Everything above 16px is sized with clamp(), so type and rhythm stay fluid
+ * and nothing snaps when a breakpoint trips. Those clamps live here as theme
+ * tokens rather than as arbitrary values at each call site.
+ */
+@theme {
+  --font-display: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Archivo Black", Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* The design's second stop. 768px is already Tailwind's `md`. */
+  --breakpoint-wide: 1160px;
+
+  /* The design caps content at 1200px and centres it. */
+  --container-content: 1200px;
+
+  /*
+   * Substrate. Two weights of the same paper: `paper` is the default sheet,
+   * `substrate` is the slightly darker stock used to separate adjacent bands
+   * without introducing a third hue.
+   */
+  --color-paper: #f3f1e9;
+  --color-substrate: #e6e2d6;
+
+  /*
+   * Bark ink. Near-black carrying a green cast, so the type sits in the same
+   * family as the accent instead of reading as neutral print. The greys below
+   * it are the same ink at lower coverage, not separate colours.
+   */
+  --color-ink: #161c16;
+  --color-ink-soft: #2c332a;
+  --color-graphite: #4e5449;
+  --color-mute: #767a6b;
+
+  /* Hairlines. `rule` is the standard 1px division, `rule-strong` a printed edge. */
+  --color-rule: #cdc9bb;
+  --color-rule-strong: #a7a291;
+
+  /*
+   * Deep moss. The only accent in the system — used for structural dividers
+   * and vital data. Never decorative. starwind.css already owns
+   * --color-accent, so this is "moss".
+   */
+  --color-moss: #46683b;
+
+  /* Reversed out of a solid ink plate. */
+  --color-reverse: #f3f1e9;
+  --color-reverse-mute: #97a08c;
+  --color-reverse-rule: #333a31;
+
+  /*
+   * The accent at the coverage it needs to stay legible on an ink plate.
+   * Same hue as `moss`, lifted — not a second accent colour.
+   */
+  --color-sage: #9db27f;
+
+  /*
+   * Macro-typography. Massive, tightly tracked, compressed leading, so the
+   * glyphs mass into architectural blocks rather than reading as words.
+   */
+  --text-display: clamp(56px, 12.5vw, 168px);
+  --text-display--line-height: 0.84;
+  --text-display--letter-spacing: -0.05em;
+
+  --text-headline: clamp(46px, 10.5vw, 136px);
+  --text-headline--line-height: 0.85;
+  --text-headline--letter-spacing: -0.048em;
+
+  --text-section: clamp(40px, 8vw, 104px);
+  --text-section--line-height: 0.86;
+  --text-section--letter-spacing: -0.045em;
+
+  /* Viewport-bleeding numerals used as structure, not as text. */
+  --text-mega: clamp(140px, 26vw, 340px);
+  --text-mega--line-height: 0.74;
+  --text-mega--letter-spacing: -0.06em;
+
+  --text-subhead: clamp(21px, 2.5vw, 30px);
+  --text-subhead--line-height: 1.02;
+  --text-subhead--letter-spacing: -0.03em;
+
+  --text-service: clamp(22px, 2.6vw, 32px);
+  --text-service--line-height: 1;
+  --text-service--letter-spacing: -0.032em;
+
+  --text-step: clamp(20px, 2.2vw, 26px);
+  --text-step--line-height: 1.05;
+  --text-step--letter-spacing: -0.028em;
+
+  /* Reading sizes. Set in the display face, never tracked out. */
+  --text-lead: clamp(16px, 1.9vw, 20px);
+  --text-lead--line-height: 1.5;
+
+  --text-lead-sm: clamp(15px, 1.7vw, 18px);
+  --text-lead-sm--line-height: 1.5;
+
+  /*
+   * Micro-typography. Fixed and small — these are instrument markings, so
+   * they must not scale with the viewport the way the macro type does.
+   */
+  --text-label: 11px;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.14em;
+
+  --text-micro: 10px;
+  --text-micro--line-height: 1.2;
+  --text-micro--letter-spacing: 0.16em;
+
+  --text-data: 13px;
+  --text-data--line-height: 1.35;
+  --text-data--letter-spacing: 0.06em;
+
+  /*
+   * Squared off by preference and by doctrine. Overrides the radius scale
+   * starwind.css derives from --radius, so components added later stay square.
+   */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+
+  --spacing-gutter: clamp(20px, 5vw, 80px);
+  --spacing-section: clamp(64px, 9vw, 132px);
+  --spacing-section-lg: clamp(64px, 10vw, 140px);
+  --spacing-hero-top: clamp(40px, 6vw, 88px);
+  --spacing-hero-bottom: clamp(56px, 8vw, 104px);
+  --spacing-flow: clamp(32px, 5vw, 64px);
+  --spacing-split: clamp(28px, 4vw, 64px);
+  --spacing-grid: clamp(24px, 3vw, 40px);
+  --spacing-heading: clamp(32px, 5vw, 56px);
+  --spacing-card-pad: clamp(18px, 2.4vw, 26px);
+  --spacing-lead: clamp(24px, 4vw, 40px);
+  --spacing-cta: clamp(28px, 4vw, 40px);
+  --spacing-cta-lg: clamp(28px, 4vw, 44px);
+  --spacing-footer: clamp(56px, 8vw, 96px);
+
+  /*
+   * One z-index scale, so nothing has to guess a magic number. Anything that
+   * stacks reads from here rather than inventing its own 9999.
+   */
+  --z-drawer: 40;
+  --z-header: 50;
+  --z-float: 55;
+  --z-grain: 60;
+  --z-intro: 100;
+}
+
+/*
+ * Numbers in the stats, meta rows and mono labels are compared column to
+ * column, so they need to share an advance width.
+ */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * The macro-typographic face. Every title in the system is this — one utility
+ * so the display cut, its weight and its casing can never drift apart.
+ *
+ * The weight is pinned to 400 on purpose: Archivo Black ships a single face
+ * registered at 400, and asking for a heavier one makes the browser
+ * synthesise the bold, which smears the stems at display sizes.
+ */
+@utility display-face {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/*
+ * The standard instrument marking: mono, uppercase, tracked out to simulate
+ * mechanical spacing. Every label, unit ID, coordinate and metadata row in
+ * the system is this, so it is one utility rather than six repeated classes.
+ */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility label-micro {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Engineering directive: a 1px gap over an ink ground draws mathematically
+ * perfect hairlines between grid children without any child declaring a
+ * border, and without the double-border seams that `border` collapsing
+ * produces at wrapped rows. Children must set their own background.
+ */
+@utility rule-grid {
+  display: grid;
+  gap: 1px;
+  background-color: var(--color-rule-strong);
+  border: 1px solid var(--color-rule-strong);
+}
+
+/*
+ * Registration crosshair. Drawn from two 1px gradients rather than set as a
+ * `+` glyph, so the arms stay hairline-crisp and centred at any size.
+ */
+@utility crosshair {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  pointer-events: none;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
+}
+
+/*
+ * Diagonal chevrons used as a structural rule where a plain hairline would not
+ * carry enough weight. Painted with `currentColor`, so the same utility works
+ * as `text-moss` on paper and `text-sage` on an ink plate.
+ */
+@utility accent-stripes {
+  background-image: repeating-linear-gradient(45deg, currentColor 0 6px, transparent 6px 14px);
+}
+
+/*
+ * Bitmap dithering. A 1-bit dot matrix laid over continuous-tone artwork with
+ * `multiply`, which degrades the vector/photographic perfection into printed
+ * halftone without pre-processing the asset.
+ */
+@utility halftone {
+  background-image: radial-gradient(var(--color-ink) 0.9px, transparent 1.1px);
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+}
+
+/*
+ * The same screen at a finer pitch, for photographic work that already carries
+ * its own detail. The coarse `halftone` competes with it; this reads as grain.
+ */
+@utility halftone-fine {
+  background-image: radial-gradient(var(--color-ink) 0.5px, transparent 0.75px);
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /*
+     * `clip` rather than `hidden`: hidden makes this a scroll container and
+     * would break the sticky header. Both stop the fluid type from ever
+     * opening a horizontal scrollbar.
+     */
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /*
+   * Keyboard focus. `currentColor` rather than a fixed ink outline: the ink
+   * plates inherit reversed text, so the ring stays visible on both grounds
+   * without every component restating it.
+   */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* Keep the sticky header from covering a heading you just jumped to. */
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+
+  /*
+   * Mechanical noise. Flat vector surfaces read as sterile at this scale; the
+   * grain is barely perceptible but stops the large fields of paper and ink
+   * from looking like untextured digital fills.
+   */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-grain);
+    pointer-events: none;
+    opacity: 0.042;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Visible only once focused, which is the whole point of a skip link. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--z-intro) + 1);
+  transform: translateY(-120%);
+  background: var(--color-moss);
+  color: var(--color-reverse);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: transform 200ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}

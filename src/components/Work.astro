@@ -1,0 +1,98 @@
+---
+import i18n from "i18next";
+import { tList } from "@/i18n/t";
+import { projectPath } from "@/i18n/routing";
+import SectionHead from "./SectionHead.astro";
+import { projectSlugs, projectScreenshots, isCaseStudy, type Project } from "@/content/projects";
+
+const projects = tList<Project>("projects", "projects");
+
+const cards = projects.map((project, index) => {
+  const caseStudy = isCaseStudy(project);
+
+  return {
+    project,
+    // Case studies route internally; everything else follows its own href.
+    href: caseStudy ? projectPath(projectSlugs[index]!) : (project.href ?? "#contact"),
+    external: !caseStudy && Boolean(project.href?.startsWith("http")),
+    label: caseStudy ? i18n.t("work.viewCase") : project.cta,
+    thumbnail: projectScreenshots[index]?.[0],
+  };
+});
+
+const total = String(projects.length).padStart(2, "0");
+---
+
+<section id="work" class="border-b-2 border-ink bg-paper px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("work.title")} meta={i18n.t("work.count", { total })} />
+
+    <div class="mt-heading rule-grid grid-cols-1 md:grid-cols-2 wide:grid-cols-3">
+      {
+        cards.map(({ project, href, external, label, thumbnail }) => (
+          <a
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            class="gsap-reveal-card group relative flex flex-col gap-4 bg-paper p-card-pad transition-colors duration-200 hover:bg-substrate"
+          >
+            {/* The accent rule confirms the target under the cursor. */}
+            <span
+              aria-hidden="true"
+              class="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-moss transition-transform duration-200 group-hover:scale-x-100"
+            />
+
+            <span class="label text-mute">
+              {project.category} / {project.year}
+            </span>
+
+            {thumbnail ? (
+              <div class="relative border border-rule-strong">
+                <img
+                  src={thumbnail}
+                  alt={i18n.t("projectPage.screenshotAlt", { title: project.title, index: 1 })}
+                  loading="lazy"
+                  decoding="async"
+                  class="block aspect-16/10 w-full object-cover object-top"
+                />
+                {/* Screenshots are photographic; the dot matrix prints them onto the page. */}
+                <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-15" />
+              </div>
+            ) : (
+              <div class="flex aspect-16/10 items-center justify-center border border-dashed border-rule-strong">
+                <span class="label text-mute">{i18n.t("work.shotPlaceholder")}</span>
+              </div>
+            )}
+
+            <div>
+              <h3 class="text-subhead display-face">{project.title}</h3>
+              <p class="mt-2.5 text-lead-sm text-pretty text-graphite">
+                {project.brief_description}
+              </p>
+            </div>
+
+            {project.technologies && (
+              <div class="flex flex-wrap gap-1.5">
+                {project.technologies.map((tech) => (
+                  <span class="label border border-rule-strong px-2 py-1.5 text-ink-soft">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <span class="mt-auto flex items-center gap-2 pt-2">
+              <span class="label font-bold">{label}</span>
+              <span
+                aria-hidden="true"
+                class="label-micro text-moss transition-transform duration-200 group-hover:translate-x-1"
+              >
+                &gt;&gt;&gt;
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

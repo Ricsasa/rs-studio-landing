@@ -1,0 +1,102 @@
+---
+import i18n from "i18next";
+import { tList } from "@/i18n/t";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { whatsappHref } from "@/lib/whatsapp";
+
+type Stat = { label: string; value: string };
+
+const stats = tList<Stat>("hero.stats");
+---
+
+<section id="top" class="border-b-2 border-ink bg-substrate">
+  <div class="px-gutter pt-hero-top pb-hero-bottom">
+    <div class="mx-auto w-full max-w-content">
+      <div class="flex items-center gap-3 text-moss">
+        <span aria-hidden="true" class="block h-2.5 w-2.5 bg-moss"></span>
+        <span class="label">{i18n.t("hero.greeting")}</span>
+        <span aria-hidden="true" class="accent-stripes h-2.5 flex-1"></span>
+      </div>
+
+      {/*
+        Macro-typography: the headline is the structure of this screen. It is
+        given the full container width so it can mass into a solid block
+        rather than being squeezed into a text column beside the artwork.
+      */}
+      <h1 class="mt-7 text-display display-face">
+        {i18n.t("hero.title")}
+      </h1>
+
+      <div class="mt-flow rule-grid grid-cols-1 wide:grid-cols-[1.35fr_0.9fr]">
+        <div class="bg-substrate p-card-pad">
+          <p class="max-w-[46ch] text-lead text-pretty text-graphite">
+            {i18n.t("hero.intro")}
+          </p>
+
+          <div class="mt-cta flex flex-wrap gap-2.5">
+            <a
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex min-h-12 items-center gap-2.5 bg-moss px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-ink"
+            >
+              <WhatsAppIcon class="h-4.5 w-4.5" />
+              <span class="label font-bold">{i18n.t("whatsapp.cta")}</span>
+              <span
+                aria-hidden="true"
+                class="label-micro opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+                >&gt;&gt;&gt;</span
+              >
+            </a>
+            <a
+              href="#work"
+              class="group inline-flex min-h-12 items-center gap-2.5 border border-ink px-6 py-3.5 transition-colors duration-200 hover:bg-ink hover:text-paper"
+            >
+              <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">[</span>
+              <span class="label font-bold">{i18n.t("hero.ctaSecondary")}</span>
+              <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">]</span>
+            </a>
+          </div>
+        </div>
+
+        {/*
+          The plate is screened edge to edge with a dot matrix, so it reads as
+          printed stock rather than as flat fill. `multiply` on the overlay is
+          what performs the 1-bit degradation.
+        */}
+        <div class="relative flex items-center justify-center bg-paper p-card-pad text-ink">
+          <span aria-hidden="true" class="halftone absolute inset-0 opacity-40"></span>
+
+          <div class="relative flex aspect-4/3 w-full items-center justify-center">
+            <img
+              src="/monogram.png"
+              alt={i18n.t("hero.monogramAlt")}
+              width="320"
+              height="320"
+              class="h-1/2 w-auto"
+            />
+          </div>
+
+          {/* Registration marks at the plate corners. */}
+          <span aria-hidden="true" class="crosshair top-2 left-2 text-rule-strong"></span>
+          <span aria-hidden="true" class="crosshair top-2 right-2 text-rule-strong"></span>
+          <span aria-hidden="true" class="crosshair bottom-2 left-2 text-rule-strong"></span>
+          <span aria-hidden="true" class="crosshair right-2 bottom-2 text-rule-strong"></span>
+        </div>
+      </div>
+
+      {/* -mt-px collapses this grid's top border into the one above it, so the
+          seam stays a single hairline rather than doubling to 2px. */}
+      <dl class="-mt-px rule-grid grid-cols-2 md:grid-cols-4">
+        {
+          stats.map((stat) => (
+            <div class="bg-paper p-card-pad">
+              <dt class="label text-mute">{stat.label}</dt>
+              <dd class="tnum mt-3 text-subhead display-face">{stat.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

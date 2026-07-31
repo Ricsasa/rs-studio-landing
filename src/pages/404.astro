@@ -1,0 +1,70 @@
+---
+import i18n from "i18next";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Contact from "@/components/Contact.astro";
+import { homePath, sectionHref } from "@/i18n/routing";
+
+// A 404 is served for unknown paths in any locale, so it can't be built per
+// locale the way the routed pages are. It renders in the default locale.
+const home = homePath();
+const workHref = sectionHref("/404", "#work");
+---
+
+<Layout title={`${i18n.t("notFound.title")} — RS Studio`} description={i18n.t("notFound.intro")}>
+  <SiteHeader />
+
+  <main id="main" class="relative border-b-2 border-ink bg-substrate overflow-hidden">
+    {/* The fault code as structure: a plate numeral running off the sheet. */}
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute right-[-0.06em] bottom-[-0.16em] text-mega display-face text-ink/5 select-none"
+    >
+      404
+    </span>
+
+    <div class="border-b border-rule px-gutter">
+      <div class="mx-auto flex w-full max-w-content items-center gap-3 py-2.5">
+        <span aria-hidden="true" class="block h-2.5 w-2.5 bg-moss"></span>
+        <span class="label text-moss">{i18n.t("notFound.code")}</span>
+        <span aria-hidden="true" class="accent-stripes h-2.5 flex-1 opacity-90"></span>
+      </div>
+    </div>
+
+    <div class="relative px-gutter pt-hero-top pb-hero-bottom">
+      <div class="mx-auto w-full max-w-content">
+        <h1 class="max-w-[14ch] text-headline display-face">
+          {i18n.t("notFound.title")}
+        </h1>
+
+        <p class="mt-lead max-w-[44ch] text-lead text-pretty text-graphite">
+          {i18n.t("notFound.intro")}
+        </p>
+
+        <div class="mt-cta flex flex-wrap gap-2.5">
+          <a
+            href={home}
+            class="group inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss"
+          >
+            <span class="label font-bold">{i18n.t("notFound.home")}</span>
+            <span
+              aria-hidden="true"
+              class="label-micro opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+              >&gt;&gt;&gt;</span
+            >
+          </a>
+          <a
+            href={workHref}
+            class="group inline-flex min-h-12 items-center gap-2.5 border border-ink px-6 py-3.5 transition-colors duration-200 hover:bg-ink hover:text-paper"
+          >
+            <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">[</span>
+            <span class="label font-bold">{i18n.t("notFound.work")}</span>
+            <span aria-hidden="true" class="label-micro text-mute group-hover:text-paper">]</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Contact />
+</Layout>

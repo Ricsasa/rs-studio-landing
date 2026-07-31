@@ -1,0 +1,397 @@
+---
+/**
+ * Self-contained scroll-snap carousel.
+ *
+ * Markup, styling hooks and behaviour all live here. The default appearance
+ * reads this project's design tokens, but every visual surface is exposed as
+ * a class prop, so dropping the file into another project only means passing
+ * `stageClass`, `controlClass`, `dotClass` and `screenClass`. The track
+ * scrolls natively, so
+ * touch swiping, trackpads and the scrollbar work even before the script
+ * runs; the script only keeps the controls in sync and drives the full-size
+ * dialog.
+ *
+ * Images may have different aspect ratios: every slide is a fixed-height stage
+ * and the image is centred inside it with `object-contain`, so a phone
+ * screenshot and a laptop screenshot can sit in the same carousel without the
+ * layout shifting between slides.
+ */
+
+export interface CarouselImage {
+    src: string;
+    alt?: string;
+}
+
+export interface CarouselLabels {
+    previous: string;
+    next: string;
+    /** A template containing `{{index}}`, or a function of the 1-based index. */
+    goTo: string | ((index: number) => string);
+    open: string;
+    close: string;
+}
+
+interface Props {
+    /** Image sources, in display order. Aspect ratios may differ. */
+    images: (string | CarouselImage)[];
+    /** Accessible name for the carousel region. */
+    label?: string;
+    /** Unique id for the track, referenced by the controls' `aria-controls`. */
+    id?: string;
+    /** Height of the slide stage. */
+    heightClass?: string;
+    /** Backdrop behind each image, visible around non-filling aspect ratios. */
+    stageClass?: string;
+    /** Appearance of the prev/next buttons. Positioning stays with the component. */
+    controlClass?: string;
+    /** Appearance of the position dots. */
+    dotClass?: string;
+    /**
+     * Texture printed over each slide. Pass "" to leave the images clean. The
+     * zoomed view is deliberately never screened.
+     */
+    screenClass?: string;
+    /** Set false to disable the click-to-zoom dialog. */
+    zoom?: boolean;
+    /** `{{index}}` is replaced with the slide number in `goTo`. */
+    labels?: Partial<CarouselLabels>;
+    class?: string;
+}
+
+const {
+    images,
+    label = "Image carousel",
+    id = "carousel",
+    heightClass = "h-72 sm:h-96 lg:h-120",
+    stageClass = "bg-substrate border border-rule-strong",
+    controlClass = "border border-ink bg-paper p-2 text-ink transition-colors hover:bg-ink hover:text-paper focus-visible:outline-2 focus-visible:outline-current",
+    // Styles the dot span, not the button, so the state variant reads the
+    // `aria-current` the script sets on the button around it.
+    dotClass = "size-2.5 bg-rule-strong transition-colors group-hover/dot:bg-ink group-aria-current/dot:bg-moss",
+    screenClass = "halftone-fine opacity-15",
+    zoom = true,
+    labels: labelOverrides,
+    class: className,
+} = Astro.props;
+
+const labels: CarouselLabels = {
+    previous: "Previous image",
+    next: "Next image",
+    goTo: "Go to image {{index}}",
+    open: "View image at full size",
+    close: "Close",
+    ...labelOverrides,
+};
+
+const slides = images.map((image) =>
+    typeof image === "string" ? { src: image } : image,
+);
+
+const hasControls = slides.length > 1;
+
+const goToLabel = (index: number) =>
+    typeof labels.goTo === "function"
+        ? labels.goTo(index)
+        : labels.goTo.replace("{{index}}", String(index));
+
+const controlPosition =
+    "absolute top-1/2 -translate-y-1/2 disabled:pointer-events-none disabled:opacity-0";
+---
+
+{
+    slides.length > 0 && (
+        <div class:list={["group", className]} data-carousel>
+            <div class="relative">
+                <ul
+                    id={id}
+                    data-carousel-track
+                    tabindex="0"
+                    role="region"
+                    aria-roledescription="carousel"
+                    aria-label={label}
+                    class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth outline-offset-2 focus-visible:outline-2 focus-visible:outline-current scrollbar-none"
+                >
+                    {slides.map((slide, position) => (
+                        <li
+                            class:list={[
+                                "relative flex w-full shrink-0 snap-start items-center justify-center p-3",
+                                heightClass,
+                                stageClass,
+                            ]}
+                            aria-roledescription="slide"
+                            aria-label={`${position + 1} / ${slides.length}`}
+                        >
+                            {zoom ? (
+                                <button
+                                    type="button"
+                                    data-carousel-zoom
+                                    aria-label={labels.open}
+                                    class="flex h-full w-full cursor-zoom-in items-center justify-center focus-visible:outline-2 focus-visible:outline-current"
+                                >
+                                    <img
+                                        src={slide.src}
+                                        alt={slide.alt ?? ""}
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="max-h-full max-w-full object-contain"
+                                    />
+                                </button>
+                            ) : (
+                                <img
+                                    src={slide.src}
+                                    alt={slide.alt ?? ""}
+                                    loading="lazy"
+                                    decoding="async"
+                                    class="max-h-full max-w-full object-contain"
+                                />
+                            )}
+
+                            {/*
+                              Screens the whole stage rather than the image
+                              alone: slides are letterboxed, and a screen that
+                              stopped at the image edge would trace its aspect
+                              ratio. `pointer-events-none` keeps the zoom
+                              trigger underneath clickable.
+                            */}
+                            {screenClass && (
+                                <span
+                                    aria-hidden="true"
+                                    class:list={[
+                                        "pointer-events-none absolute inset-0",
+                                        screenClass,
+                                    ]}
+                                />
+                            )}
+                        </li>
+                    ))}
+                </ul>
+
+                {hasControls && (
+                    <Fragment>
+                        <button
+                            type="button"
+                            data-carousel-prev
+                            aria-controls={id}
+                            aria-label={labels.previous}
+                            class:list={["left-2", controlPosition, controlClass]}
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="size-5"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="m15 6-6 6 6 6" />
+                            </svg>
+                        </button>
+
+                        <button
+                            type="button"
+                            data-carousel-next
+                            aria-controls={id}
+                            aria-label={labels.next}
+                            class:list={["right-2", controlPosition, controlClass]}
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="size-5"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="m9 6 6 6-6 6" />
+                            </svg>
+                        </button>
+                    </Fragment>
+                )}
+            </div>
+
+            {hasControls && (
+                <div class="mt-2 flex items-center justify-between gap-4">
+                    {/*
+                      The dot itself stays small, but the button around it is a
+                      24px target — an 8px hit area is unusable on touch.
+                    */}
+                    <div class="-ml-2 flex">
+                        {slides.map((_, position) => (
+                            <button
+                                type="button"
+                                data-carousel-dot
+                                aria-controls={id}
+                                aria-label={goToLabel(position + 1)}
+                                class="group/dot flex items-center justify-center p-2"
+                            >
+                                <span class:list={[dotClass]} aria-hidden="true" />
+                            </button>
+                        ))}
+                    </div>
+
+                    <span data-carousel-counter class="label text-mute">
+                        {`1 / ${slides.length}`}
+                    </span>
+                </div>
+            )}
+
+            {zoom && (
+                <dialog
+                    data-carousel-dialog
+                    class="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 backdrop:bg-ink/88"
+                >
+                    <div
+                        data-carousel-dialog-backdrop
+                        class="flex h-full w-full items-center justify-center p-4"
+                    >
+                        <img
+                            data-carousel-dialog-image
+                            src=""
+                            alt=""
+                            class="max-h-[92vh] max-w-[95vw] object-contain"
+                        />
+                    </div>
+
+                    <button
+                        type="button"
+                        data-carousel-dialog-close
+                        aria-label={labels.close}
+                        class="absolute right-4 top-4 border border-ink bg-paper p-2 text-ink transition-colors hover:bg-ink hover:text-paper"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            class="size-5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M18 6 6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+                </dialog>
+            )}
+        </div>
+    )
+}
+
+<script>
+    function prefersReducedMotion(): boolean {
+        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    function setupLightbox(root: HTMLElement): void {
+        const dialog = root.querySelector<HTMLDialogElement>("[data-carousel-dialog]");
+        const target = dialog?.querySelector<HTMLImageElement>(
+            "[data-carousel-dialog-image]",
+        );
+
+        if (!dialog || !target) return;
+
+        root.querySelectorAll<HTMLButtonElement>("[data-carousel-zoom]").forEach(
+            (trigger) => {
+                trigger.addEventListener("click", () => {
+                    const source = trigger.querySelector("img");
+                    if (!source) return;
+
+                    target.src = source.currentSrc || source.src;
+                    target.alt = source.alt;
+                    dialog.showModal();
+                });
+            },
+        );
+
+        // Anything outside the image itself dismisses the dialog.
+        dialog.addEventListener("click", (event) => {
+            const clicked = event.target as HTMLElement;
+
+            if (clicked === dialog || clicked.hasAttribute("data-carousel-dialog-backdrop")) {
+                dialog.close();
+            }
+        });
+
+        dialog
+            .querySelector<HTMLButtonElement>("[data-carousel-dialog-close]")
+            ?.addEventListener("click", () => dialog.close());
+    }
+
+    function setupCarousel(root: HTMLElement): void {
+        const track = root.querySelector<HTMLElement>("[data-carousel-track]");
+        if (!track) return;
+
+        const slides = Array.from(track.children) as HTMLElement[];
+        const dots = Array.from(
+            root.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"),
+        );
+        const counter = root.querySelector<HTMLElement>("[data-carousel-counter]");
+        const previous = root.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+        const next = root.querySelector<HTMLButtonElement>("[data-carousel-next]");
+
+        let index = 0;
+
+        const goTo = (target: number) => {
+            const clamped = Math.max(0, Math.min(target, slides.length - 1));
+
+            track.scrollTo({
+                left: clamped * track.clientWidth,
+                behavior: prefersReducedMotion() ? "auto" : "smooth",
+            });
+        };
+
+        const sync = () => {
+            index = track.clientWidth
+                ? Math.max(
+                      0,
+                      Math.min(
+                          Math.round(track.scrollLeft / track.clientWidth),
+                          slides.length - 1,
+                      ),
+                  )
+                : 0;
+
+            dots.forEach((dot, position) =>
+                dot.setAttribute("aria-current", String(position === index)),
+            );
+
+            if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+            if (previous) previous.disabled = index === 0;
+            if (next) next.disabled = index === slides.length - 1;
+        };
+
+        let frame = 0;
+        track.addEventListener(
+            "scroll",
+            () => {
+                cancelAnimationFrame(frame);
+                frame = requestAnimationFrame(sync);
+            },
+            { passive: true },
+        );
+
+        window.addEventListener("resize", sync);
+
+        previous?.addEventListener("click", () => goTo(index - 1));
+        next?.addEventListener("click", () => goTo(index + 1));
+        dots.forEach((dot, position) =>
+            dot.addEventListener("click", () => goTo(position)),
+        );
+
+        track.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+            event.preventDefault();
+            goTo(event.key === "ArrowRight" ? index + 1 : index - 1);
+        });
+
+        setupLightbox(root);
+        sync();
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-carousel]").forEach(setupCarousel);
+</script>

@@ -1,3 +1,189 @@
 {
-    "welcome-label": "Welcome"
+  "meta": {
+    "title": "RS Studio — Scalable, performant software",
+    "description": "A small software studio building scalable, performant products. We work as an embedded team or run projects end-to-end, from architecture to the release you actually ship."
+  },
+  "nav": {
+    "logoAlt": "rs-studio.dev",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "work": "Selected Work",
+    "services": "Services",
+    "process": "Process",
+    "stack": "Stack",
+    "contact": "Contact",
+    "skipToContent": "Skip to content"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Switch to {{language}}"
+  },
+  "hero": {
+    "greeting": "Hi!",
+    "title": "We're RS Studio",
+    "intro": "A small software studio building scalable, performant products. We work as an embedded team or run projects end‑to‑end — from architecture to the release you actually ship.",
+    "ctaSecondary": "See selected work",
+    "monogramAlt": "RS Studio monogram",
+    "stats": [
+      {
+        "label": "SINCE",
+        "value": "2026"
+      },
+      {
+        "label": "PROJECTS",
+        "value": "30+"
+      },
+      {
+        "label": "BASED IN",
+        "value": "Remote"
+      },
+      {
+        "label": "AVAILABLE",
+        "value": "Q4 2026"
+      }
+    ]
+  },
+  "work": {
+    "title": "Selected Work",
+    "count": "{{total}} CASES",
+    "viewCase": "View case",
+    "shotPlaceholder": "NO SCREENSHOT YET"
+  },
+  "projectPage": {
+    "back": "All work",
+    "titleTemplate": "{{name}} — RS Studio",
+    "overviewLabel": "OVERVIEW",
+    "stackLabel": "BUILT WITH",
+    "galleryLabel": "SCREENS",
+    "nextLabel": "NEXT PROJECT",
+    "categoryLabel": "CATEGORY",
+    "yearLabel": "YEAR",
+    "galleryRegion": "Project screenshots",
+    "visitSite": "Visit site",
+    "screenshotAlt": "{{title}} — screen {{index}}"
+  },
+  "carousel": {
+    "previous": "Previous screen",
+    "next": "Next screen",
+    "goTo": "Go to screen {{index}}",
+    "open": "View screen at full size",
+    "close": "Close"
+  },
+  "services": {
+    "title": "What we do",
+    "items": [
+      {
+        "num": "01",
+        "title": "Product engineering",
+        "body": "Full builds from first commit to production — web, mobile, and the API underneath."
+      },
+      {
+        "num": "02",
+        "title": "Scaling & performance",
+        "body": "Profiling, query work, caching and infra changes on systems that outgrew their first design."
+      },
+      {
+        "num": "03",
+        "title": "Embedded team",
+        "body": "We join your sprints, your repo, your standups — with senior judgement, not just hands."
+      },
+      {
+        "num": "04",
+        "title": "Technical audits",
+        "body": "A clear read on architecture, risk and cost, with a prioritised plan you can act on."
+      }
+    ],
+    "meta": "FOUR DISCIPLINES"
+  },
+  "process": {
+    "title": "How we work",
+    "intro": "Short cycles, visible progress, no surprises at the end. You get a working build every week.",
+    "steps": [
+      {
+        "num": "STEP 01",
+        "title": "Scope",
+        "body": "A short paid discovery: goals, constraints, and what we are not building."
+      },
+      {
+        "num": "STEP 02",
+        "title": "Shape",
+        "body": "Architecture, data model and a milestone plan you can hold us to."
+      },
+      {
+        "num": "STEP 03",
+        "title": "Build",
+        "body": "Weekly deploys to a staging URL. You see progress, not status reports."
+      },
+      {
+        "num": "STEP 04",
+        "title": "Hand over",
+        "body": "Documented code, CI, and a team that knows how to run it without us."
+      }
+    ],
+    "meta": "WEEKLY CYCLE"
+  },
+  "stack": {
+    "title": "Stack",
+    "caption": "TOOLS WE REACH FOR FIRST",
+    "groups": [
+      {
+        "label": "FRONTEND",
+        "items": [
+          "React",
+          "React Native",
+          "Astro",
+          "TypeScript",
+          "Tailwind"
+        ]
+      },
+      {
+        "label": "BACKEND",
+        "items": [
+          "Node.js",
+          "Apollo GraphQL",
+          "PHP / Laravel",
+          "REST"
+        ]
+      },
+      {
+        "label": "DATA",
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "Elasticsearch",
+          "Redis"
+        ]
+      },
+      {
+        "label": "INFRA",
+        "items": [
+          "AWS",
+          "GCP",
+          "Docker",
+          "GitHub Actions"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Have something to build?",
+    "intro": "Tell us the problem and the deadline. We'll reply within two business days with a plan and an honest estimate.",
+    "email": "hola@rs-studio.dev",
+    "emailLabel": "EMAIL",
+    "cta": "Book a call",
+    "facebook": "FACEBOOK",
+    "copyright": "© 2026 RS STUDIO"
+  },
+  "whatsapp": {
+    "label": "Chat with us on WhatsApp",
+    "cta": "WhatsApp us",
+    "message": "Hi! I've seen your website and I'd like to know more about your services!"
+  },
+  "notFound": {
+    "code": "ERROR 404",
+    "title": "This page doesn't exist",
+    "intro": "The link may be out of date, or the page moved. Here's the way back.",
+    "home": "Back to home",
+    "work": "See selected work"
+  }
 }

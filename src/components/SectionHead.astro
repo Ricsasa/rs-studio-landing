@@ -1,0 +1,29 @@
+---
+/**
+ * The standard section masthead: the macro-typographic title and an optional
+ * right-aligned reading, sitting on a heavy rule.
+ *
+ * Every section on the site uses this, so the page reads as one document
+ * rather than as a stack of independently styled blocks.
+ */
+interface Props {
+  title: string;
+  /** Optional metadata printed at the far end of the rule. */
+  meta?: string;
+  id?: string;
+  class?: string;
+}
+
+const { title, meta, id, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-wrap items-end justify-between gap-x-8 gap-y-3 border-b-2 border-ink pb-4",
+    className,
+  ]}
+>
+  <h2 id={id} class="text-section display-face">{title}</h2>
+
+  {meta && <span class="label text-mute">{meta}</span>}
+</div>

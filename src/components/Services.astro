@@ -1,0 +1,31 @@
+---
+import i18n from "i18next";
+import { tList } from "@/i18n/t";
+import SectionHead from "./SectionHead.astro";
+
+type Service = { num: string; title: string; body: string };
+
+const services = tList<Service>("services.items");
+---
+
+<section id="services" class="border-b-2 border-ink bg-substrate px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} />
+
+    <div class="mt-heading rule-grid grid-cols-1 md:grid-cols-2 wide:grid-cols-4">
+      {
+        services.map((service) => (
+          <div class="gsap-reveal-card group relative flex flex-col bg-substrate p-card-pad transition-colors duration-200 hover:bg-paper">
+            <span class="label text-mute transition-colors duration-200 group-hover:text-moss">
+              {service.num}
+            </span>
+
+            <h3 class="mt-5 text-service display-face">{service.title}</h3>
+
+            <p class="mt-3 text-lead-sm text-pretty text-graphite">{service.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

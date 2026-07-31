@@ -1,0 +1,37 @@
+---
+import i18n from "i18next";
+import { tList } from "@/i18n/t";
+import SectionHead from "./SectionHead.astro";
+
+type StackGroup = { label: string; items: string[] };
+
+const groups = tList<StackGroup>("stack.groups");
+---
+
+<section id="stack" class="border-b-2 border-ink bg-substrate px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("stack.title")} meta={i18n.t("stack.caption")} />
+
+    {/*
+      A parts manifest rather than a tag cloud: each column is a subsystem,
+      each ruled row a component.
+    */}
+    <div class="mt-heading rule-grid grid-cols-2 md:grid-cols-4">
+      {
+        groups.map((group) => (
+          <div class="gsap-reveal-card flex flex-col bg-substrate">
+            <h3 class="label border-b border-rule-strong px-4 py-3 font-bold text-moss">{group.label}</h3>
+
+            <ul class="m-0 list-none p-0">
+              {group.items.map((item) => (
+                <li class="label border-b border-rule px-4 py-2.5 text-ink-soft last:border-b-0">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

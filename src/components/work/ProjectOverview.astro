@@ -1,0 +1,46 @@
+---
+import i18n from "i18next";
+import { renderRichText } from "@/lib/markdown";
+import type { Project } from "@/content/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<section class="border-b-2 border-ink bg-paper px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <div class="grid grid-cols-1 gap-split wide:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <h2 class="label border-b-2 border-ink pb-3 font-bold text-moss">
+          {i18n.t("projectPage.overviewLabel")}
+        </h2>
+
+        {
+          project.technologies && (
+            <>
+              <h3 class="label mt-heading border-b border-rule-strong pb-3 font-bold text-mute">
+                {i18n.t("projectPage.stackLabel")}
+              </h3>
+
+              {/* Component manifest, matching the stack section on the landing page. */}
+              <ul class="m-0 list-none p-0">
+                {project.technologies.map((tech) => (
+                  <li class="label border-b border-rule py-2.5 text-ink-soft">{tech}</li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+      </div>
+
+      {/* Rendered from markdown, so spacing and emphasis are styled from the parent. */}
+      <div
+        class="text-lead text-pretty text-graphite [&>p]:mt-6 [&>p:first-child]:mt-0 [&_em]:italic [&_strong]:font-bold [&_strong]:text-ink"
+        set:html={renderRichText(project.full_description ?? "")}
+      />
+    </div>
+  </div>
+</section>

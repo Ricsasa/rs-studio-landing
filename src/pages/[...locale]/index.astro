@@ -1,18 +1,30 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Intro from "@/components/Intro.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Hero from "@/components/Hero.astro";
+import Work from "@/components/Work.astro";
+import Services from "@/components/Services.astro";
+import Process from "@/components/Process.astro";
+import Stack from "@/components/Stack.astro";
+import Contact from "@/components/Contact.astro";
 import { buildStaticPaths } from "astro-react-i18next/utils";
 
-import i18n from "i18next";
-
 export function getStaticPaths() {
-	return buildStaticPaths();
+  return buildStaticPaths();
 }
-
-
 ---
 
 <Layout>
-	<div class="flex justify-center">
-		<h1 class="text-5xl">{i18n.t('welcome-label')}</h1>
-	</div>
+  {/* Landing page only — the case-study pages are arrived at from here, so replaying it would just be in the way. */}
+  <Intro />
+  <SiteHeader />
+  <main id="main">
+    <Hero />
+    <Work />
+    <Services />
+    <Process />
+    <Stack />
+  </main>
+  <Contact />
 </Layout>

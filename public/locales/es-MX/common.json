@@ -1,3 +1,189 @@
 {
-    "welcome-label": "Bienvenido"
+  "meta": {
+    "title": "RS Studio — Software escalable y de alto rendimiento",
+    "description": "Un estudio de software pequeño que construye productos escalables y de alto rendimiento. Trabajamos como equipo integrado o llevamos proyectos de principio a fin, desde la arquitectura hasta el lanzamiento que de verdad sale a producción."
+  },
+  "nav": {
+    "logoAlt": "rs-studio.dev",
+    "menu": "Menú",
+    "closeMenu": "Cerrar menú",
+    "work": "Trabajo seleccionado",
+    "services": "Servicios",
+    "process": "Proceso",
+    "stack": "Stack",
+    "contact": "Contacto",
+    "skipToContent": "Saltar al contenido"
+  },
+  "language": {
+    "label": "Idioma",
+    "switchTo": "Cambiar a {{language}}"
+  },
+  "hero": {
+    "greeting": "¡Hola!",
+    "title": "Somos RS Studio",
+    "intro": "Un estudio de software pequeño que construye productos escalables y de alto rendimiento. Trabajamos como equipo integrado o llevamos proyectos de principio a fin — desde la arquitectura hasta el lanzamiento que de verdad sale a producción.",
+    "ctaSecondary": "Ver trabajo seleccionado",
+    "monogramAlt": "Monograma de RS Studio",
+    "stats": [
+      {
+        "label": "DESDE",
+        "value": "2026"
+      },
+      {
+        "label": "PROYECTOS",
+        "value": "30+"
+      },
+      {
+        "label": "SEDE",
+        "value": "Remoto"
+      },
+      {
+        "label": "DISPONIBLES",
+        "value": "T4 2026"
+      }
+    ]
+  },
+  "work": {
+    "title": "Trabajo seleccionado",
+    "count": "{{total}} CASOS",
+    "viewCase": "Ver caso",
+    "shotPlaceholder": "AÚN SIN CAPTURA"
+  },
+  "projectPage": {
+    "back": "Todo el trabajo",
+    "titleTemplate": "{{name}} — RS Studio",
+    "overviewLabel": "RESUMEN",
+    "stackLabel": "CONSTRUIDO CON",
+    "galleryLabel": "PANTALLAS",
+    "nextLabel": "SIGUIENTE PROYECTO",
+    "categoryLabel": "CATEGORÍA",
+    "yearLabel": "AÑO",
+    "galleryRegion": "Capturas del proyecto",
+    "visitSite": "Visitar sitio",
+    "screenshotAlt": "{{title}} — pantalla {{index}}"
+  },
+  "carousel": {
+    "previous": "Pantalla anterior",
+    "next": "Pantalla siguiente",
+    "goTo": "Ir a la pantalla {{index}}",
+    "open": "Ver la pantalla a tamaño completo",
+    "close": "Cerrar"
+  },
+  "services": {
+    "title": "Qué hacemos",
+    "items": [
+      {
+        "num": "01",
+        "title": "Ingeniería de producto",
+        "body": "Desarrollos completos desde el primer commit hasta producción — web, móvil y la API que los sostiene."
+      },
+      {
+        "num": "02",
+        "title": "Escalabilidad y rendimiento",
+        "body": "Profiling, optimización de queries, caché y cambios de infraestructura en sistemas que superaron su diseño original."
+      },
+      {
+        "num": "03",
+        "title": "Equipo integrado",
+        "body": "Nos sumamos a tus sprints, tu repo y tus dailies — con criterio senior, no solo manos."
+      },
+      {
+        "num": "04",
+        "title": "Auditorías técnicas",
+        "body": "Una lectura clara de arquitectura, riesgo y costo, con un plan priorizado que puedes ejecutar."
+      }
+    ],
+    "meta": "CUATRO DISCIPLINAS"
+  },
+  "process": {
+    "title": "Cómo trabajamos",
+    "intro": "Ciclos cortos, avance visible y cero sorpresas al final. Recibes una versión funcional cada semana.",
+    "steps": [
+      {
+        "num": "PASO 01",
+        "title": "Alcance",
+        "body": "Un discovery corto y pagado: objetivos, restricciones y lo que no vamos a construir."
+      },
+      {
+        "num": "PASO 02",
+        "title": "Diseño",
+        "body": "Arquitectura, modelo de datos y un plan de hitos que puedes exigirnos."
+      },
+      {
+        "num": "PASO 03",
+        "title": "Construcción",
+        "body": "Despliegues semanales a una URL de staging. Ves avance, no reportes de estatus."
+      },
+      {
+        "num": "PASO 04",
+        "title": "Entrega",
+        "body": "Código documentado, CI y un equipo que sabe operarlo sin nosotros."
+      }
+    ],
+    "meta": "CICLO SEMANAL"
+  },
+  "stack": {
+    "title": "Stack",
+    "caption": "LAS HERRAMIENTAS QUE ELEGIMOS PRIMERO",
+    "groups": [
+      {
+        "label": "FRONTEND",
+        "items": [
+          "React",
+          "React Native",
+          "Astro",
+          "TypeScript",
+          "Tailwind"
+        ]
+      },
+      {
+        "label": "BACKEND",
+        "items": [
+          "Node.js",
+          "Apollo GraphQL",
+          "PHP / Laravel",
+          "REST"
+        ]
+      },
+      {
+        "label": "DATOS",
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "Elasticsearch",
+          "Redis"
+        ]
+      },
+      {
+        "label": "INFRAESTRUCTURA",
+        "items": [
+          "AWS",
+          "GCP",
+          "Docker",
+          "GitHub Actions"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "¿Tienes algo que construir?",
+    "intro": "Cuéntanos el problema y la fecha límite. Te respondemos en dos días hábiles con un plan y un estimado honesto.",
+    "email": "hola@rs-studio.dev",
+    "emailLabel": "CORREO",
+    "cta": "Agenda una llamada",
+    "facebook": "FACEBOOK",
+    "copyright": "© 2026 RS STUDIO"
+  },
+  "whatsapp": {
+    "label": "Escríbenos por WhatsApp",
+    "cta": "Escríbenos por WhatsApp",
+    "message": "¡Hola! He visto su página y me interesa obtener más información sobre sus servicios!"
+  },
+  "notFound": {
+    "code": "ERROR 404",
+    "title": "Esta página no existe",
+    "intro": "Puede que el enlace esté desactualizado o que la página se haya movido. Por aquí regresas.",
+    "home": "Volver al inicio",
+    "work": "Ver trabajo seleccionado"
+  }
 }
