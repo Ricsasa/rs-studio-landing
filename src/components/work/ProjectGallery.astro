@@ -29,9 +29,9 @@ const labels = {
 
 {
   screenshots.length > 0 && (
-    <section class="border-b-2 border-ink bg-substrate px-gutter py-section">
+    <section class="bg-substrate px-gutter py-section">
       <div class="mx-auto w-full max-w-content">
-        <h2 class="label border-b-2 border-ink pb-3 font-bold text-moss">
+        <h2 class="eyebrow border-t border-rule pt-6 text-moss">
           {i18n.t("projectPage.galleryLabel")}
         </h2>
 
@@ -41,9 +41,9 @@ const labels = {
           label={i18n.t("projectPage.galleryRegion")}
           labels={labels}
           class="gsap-reveal-card mt-heading"
-          stageClass="bg-paper border border-rule-strong"
-          controlClass="border border-ink bg-paper p-2.5 text-ink transition-colors hover:bg-ink hover:text-paper focus-visible:outline-2 focus-visible:outline-current"
-          dotClass="size-2.5 bg-rule-strong transition-colors group-hover/dot:bg-ink group-aria-current/dot:bg-moss"
+          stageClass="bg-paper"
+          controlClass="bg-paper/90 p-2.5 text-graphite transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-current"
+          dotClass="h-px w-6 bg-rule-strong transition-colors group-hover/dot:bg-ink group-aria-current/dot:bg-moss"
           screenClass="halftone-fine opacity-15"
         />
       </div>

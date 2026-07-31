@@ -8,25 +8,28 @@ type Step = { num: string; title: string; body: string };
 const steps = tList<Step>("process.steps");
 ---
 
-<section id="process" class="border-b-2 border-ink bg-paper px-gutter py-section">
+<section id="process" class="bg-paper px-gutter py-section">
   <div class="mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("process.title")} meta={i18n.t("process.meta")} />
 
-    <div class="mt-heading grid grid-cols-1 gap-split wide:grid-cols-[0.8fr_1.2fr]">
+    <div class="mt-heading grid grid-cols-1 gap-split wide:grid-cols-[0.75fr_1.25fr]">
       <p class="max-w-[34ch] text-lead text-pretty text-graphite">
         {i18n.t("process.intro")}
       </p>
 
-      {/* A specification sheet: one ruled row per step, read top to bottom. */}
-      <ol class="m-0 list-none border-t border-rule-strong p-0">
+      {/*
+        One ruled row per step, read top to bottom. The numbers stay because
+        the order is the point here — this is a sequence, not a list.
+      */}
+      <ol class="m-0 list-none p-0">
         {
           steps.map((step) => (
-            <li class="gsap-reveal-card group grid grid-cols-[auto_1fr] gap-x-[clamp(14px,2.5vw,32px)] border-b border-rule-strong py-6 transition-colors duration-200 hover:bg-substrate">
-              <span class="label pt-1.5 text-moss">{step.num}</span>
+            <li class="gsap-reveal-card grid grid-cols-[auto_1fr] gap-x-[clamp(20px,3vw,48px)] border-t border-rule py-7 last:border-b last:border-rule">
+              <span class="label pt-1 text-moss">{step.num}</span>
 
               <div>
                 <h3 class="text-step display-face">{step.title}</h3>
-                <p class="mt-2 text-lead-sm text-pretty text-graphite">{step.body}</p>
+                <p class="mt-2 max-w-[52ch] text-lead-sm text-pretty text-graphite">{step.body}</p>
               </div>
             </li>
           ))

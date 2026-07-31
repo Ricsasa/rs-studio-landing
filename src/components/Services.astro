@@ -2,26 +2,35 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
+import ServiceGlyph, { type GlyphName } from "./ServiceGlyph.astro";
 
 type Service = { num: string; title: string; body: string };
 
 const services = tList<Service>("services.items");
+
+/*
+ * Positional, like every other list that pairs with the catalogue: index N in
+ * services.items is index N here in both locales. Falls back to the build
+ * glyph, so adding a fifth service renders rather than throwing.
+ */
+const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
 ---
 
-<section id="services" class="border-b-2 border-ink bg-substrate px-gutter py-section">
+<section id="services" class="bg-substrate px-gutter py-section">
   <div class="mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} />
 
-    <div class="mt-heading rule-grid grid-cols-1 md:grid-cols-2 wide:grid-cols-4">
+    {/*
+      Four text blocks on open ground. The `num` in the content is left
+      unprinted: with only four of them, counting them is not information.
+    */}
+    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-4">
       {
-        services.map((service) => (
-          <div class="gsap-reveal-card group relative flex flex-col bg-substrate p-card-pad transition-colors duration-200 hover:bg-paper">
-            <span class="label text-mute transition-colors duration-200 group-hover:text-moss">
-              {service.num}
-            </span>
+        services.map((service, index) => (
+          <div class="gsap-reveal-card border-t border-rule pt-6">
+            <ServiceGlyph name={glyphs[index] ?? "build"} class="h-8 w-8 text-moss" />
 
             <h3 class="mt-5 text-service display-face">{service.title}</h3>
-
             <p class="mt-3 text-lead-sm text-pretty text-graphite">{service.body}</p>
           </div>
         ))

@@ -18,12 +18,14 @@ const links = [
 const logoHref = onHome ? "#top" : homePath();
 ---
 
-<header class="sticky top-0 z-(--z-header) border-b-2 border-ink bg-paper">
-  <div class="flex items-stretch justify-between">
-    <a
-      href={logoHref}
-      class="flex items-center gap-1.5 border-r border-rule px-gutter py-3.5 transition-colors duration-200 hover:bg-ink hover:text-paper"
-    >
+{/*
+  A hairline and a wash of paper, nothing else: the cell borders that used to
+  divide the logo, nav and controls are gone, so the header reads as a margin
+  rather than as a toolbar.
+*/}
+<header class="sticky top-0 z-(--z-header) border-b border-rule bg-paper/92 backdrop-blur-sm">
+  <div class="mx-auto flex w-full max-w-content items-center justify-between gap-6 px-gutter py-4">
+    <a href={logoHref} class="flex items-center transition-opacity duration-200 hover:opacity-70">
       <img
         src="/logo.svg"
         alt={i18n.t("nav.logoAlt")}
@@ -33,30 +35,24 @@ const logoHref = onHome ? "#top" : homePath();
       />
     </a>
 
-    <nav class="hidden items-stretch md:flex">
+    {/* The accent underline marks the section you are actually in. */}
+    <nav class="hidden items-center gap-[clamp(16px,2.2vw,32px)] md:flex">
       {
         links.map((link) => (
           <a
             href={link.href}
             data-nav-link
             data-section={link.hash.slice(1)}
-            class="group relative flex items-center border-l border-rule px-[clamp(12px,1.8vw,24px)] text-ink-soft transition-colors duration-200 hover:bg-ink hover:text-paper aria-current:text-ink"
+            class="rule-wipe text-lead-sm text-graphite transition-colors duration-200 hover:text-ink hover:rule-wipe-on aria-current:text-moss aria-current:rule-wipe-on"
           >
-            {/* The accent rule marks the section you are actually in. */}
-            <span
-              aria-hidden="true"
-              class="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-moss transition-transform duration-200 group-aria-current:scale-x-100"
-            />
-            <span class="label font-medium">{i18n.t(link.key)}</span>
+            {i18n.t(link.key)}
           </a>
         ))
       }
     </nav>
 
-    <div class="flex items-stretch border-l border-rule">
-      <div class="flex items-center px-[clamp(12px,2vw,20px)]">
-        <LanguageToggle />
-      </div>
+    <div class="flex items-center gap-2">
+      <LanguageToggle />
 
       <button
         type="button"
@@ -64,23 +60,23 @@ const logoHref = onHome ? "#top" : homePath();
         aria-label={i18n.t("nav.menu")}
         aria-expanded="false"
         aria-controls="mobile-drawer"
-        class="flex w-14 flex-col items-center justify-center gap-1.5 border-l border-rule transition-colors duration-200 hover:bg-ink md:hidden"
+        class="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-1.5 transition-opacity duration-200 hover:opacity-70 md:hidden"
       >
-        <span class="block h-0.5 w-5 bg-ink"></span>
-        <span class="block h-0.5 w-5 bg-ink"></span>
+        <span class="block h-px w-5 bg-ink"></span>
+        <span class="block h-px w-5 bg-ink"></span>
       </button>
     </div>
   </div>
 </header>
 
 {/* Sits under the sticky header (z-40 vs z-50) so it never needs to know the header's exact height. */}
-<div id="mobile-drawer" class="fixed inset-0 z-(--z-drawer) hidden flex-col bg-paper pt-20 md:hidden">
-  <div class="border-t border-rule">
+<div id="mobile-drawer" class="fixed inset-0 z-(--z-drawer) hidden flex-col bg-paper pt-24 md:hidden">
+  <div>
     {
       links.map((link) => (
         <a
           href={link.href}
-          class="block border-b border-rule px-gutter py-5 transition-colors duration-200 hover:bg-ink hover:text-paper"
+          class="block border-b border-rule px-gutter py-5 transition-colors duration-200 hover:text-moss"
         >
           <span class="text-service display-face">{i18n.t(link.key)}</span>
         </a>
@@ -88,7 +84,7 @@ const logoHref = onHome ? "#top" : homePath();
     }
   </div>
 
-  <div class="mt-auto px-gutter py-6">
+  <div class="mt-auto px-gutter py-8">
     <span class="label text-mute">{i18n.t("contact.copyright")}</span>
   </div>
 </div>

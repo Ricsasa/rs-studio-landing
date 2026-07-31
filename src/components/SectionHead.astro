@@ -1,14 +1,16 @@
 ---
 /**
- * The standard section masthead: the macro-typographic title and an optional
- * right-aligned reading, sitting on a heavy rule.
+ * The standard section masthead: a hairline, the annotation that names the
+ * section, then the title.
  *
  * Every section on the site uses this, so the page reads as one document
- * rather than as a stack of independently styled blocks.
+ * rather than as a stack of independently styled blocks. The rule sits above
+ * the title rather than under it — with no borders around the content below,
+ * the line is what tells you a new section has started.
  */
 interface Props {
   title: string;
-  /** Optional metadata printed at the far end of the rule. */
+  /** Optional annotation printed above the title. */
   meta?: string;
   id?: string;
   class?: string;
@@ -17,13 +19,10 @@ interface Props {
 const { title, meta, id, class: className } = Astro.props;
 ---
 
-<div
-  class:list={[
-    "flex flex-wrap items-end justify-between gap-x-8 gap-y-3 border-b-2 border-ink pb-4",
-    className,
-  ]}
->
-  <h2 id={id} class="text-section display-face">{title}</h2>
+<div class:list={["border-t border-rule pt-6", className]}>
+  {meta && <span class="eyebrow text-mute">{meta}</span>}
 
-  {meta && <span class="label text-mute">{meta}</span>}
+  <h2 id={id} class:list={["max-w-[20ch] text-section display-face text-balance", meta && "mt-4"]}>
+    {title}
+  </h2>
 </div>

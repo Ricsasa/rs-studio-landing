@@ -5,40 +5,35 @@ export function initIntro() {
   if (!overlay) return;
 
   const monogram = overlay.querySelector<HTMLImageElement>("#intro-monogram");
-  // The dot matrix is a separate layer, so it has to leave with the artwork
-  // it is printed over rather than fading on its own.
-  const plate = [monogram, overlay.querySelector<HTMLElement>("#intro-halftone")].filter(
-    (element): element is HTMLElement => element !== null,
-  );
-  const marks = overlay.querySelectorAll<HTMLElement>(".intro-mark");
   const barFill = overlay.querySelector<HTMLElement>("#intro-bar-fill");
 
+  // The hero animation waits on this rather than on a guessed delay, so the two
+  // stay in step if the intro's timing ever changes. The flag covers the
+  // reduced-motion path, where `finish` runs before the hero can subscribe.
   const finish = () => {
     document.documentElement.classList.remove("intro-active");
+    document.documentElement.dataset.introDone = "true";
     overlay.remove();
+    window.dispatchEvent(new CustomEvent("intro:complete"));
   };
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !monogram) {
     finish();
     return;
   }
 
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" }, onComplete: finish });
+  const tl = gsap.timeline({
+    // The same curve the scroll reveals use, so the site has one motion voice.
+    defaults: { ease: "expo.out" },
+    onComplete: finish,
+  });
 
-  tl.from(plate, {
+  // A rise into place rather than a scale-up: nothing on this site zooms.
+  tl.from(monogram, {
     autoAlpha: 0,
-    scale: 0.86,
-    duration: 0.55,
+    y: 12,
+    duration: 0.7,
   })
-    .from(
-      marks,
-      {
-        autoAlpha: 0,
-        duration: 0.4,
-        stagger: 0.04,
-      },
-      0.1,
-    )
     // The progress rule is the only motion carrying the accent colour, so it
     // runs the full length of the hold rather than easing out early.
     .to(
@@ -52,10 +47,10 @@ export function initIntro() {
     )
     .addLabel("exit", 0.95)
     .to(
-      plate,
+      monogram,
       {
         autoAlpha: 0,
-        y: -24,
+        y: -12,
         duration: 0.4,
         ease: "power2.in",
       },
@@ -65,8 +60,8 @@ export function initIntro() {
       overlay,
       {
         yPercent: -100,
-        duration: 0.55,
-        ease: "power3.inOut",
+        duration: 0.65,
+        ease: "expo.inOut",
       },
       "exit+=0.15",
     );

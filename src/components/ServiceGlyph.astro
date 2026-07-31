@@ -1,0 +1,85 @@
+---
+/**
+ * The four things the studio sells, drawn rather than named twice.
+ *
+ * Hand-drawn on a 32-unit grid instead of pulled from an icon set: every line
+ * in this system is a 1px hairline on a square corner, and the usual libraries
+ * ship rounded caps and joins that would be the only soft geometry on the page.
+ * Stroke stays at 1 and scales with the glyph, so it matches the rules around
+ * it at any size.
+ */
+export type GlyphName = "build" | "scale" | "team" | "audit";
+
+interface Props {
+  name: GlyphName;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 32 32"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+  focusable="false"
+  class:list={["block", className]}
+>
+  {/* Product engineering: a desktop screen and a phone, the two things we ship. */}
+  {
+    name === "build" && (
+      <>
+        <rect x="1.5" y="4.5" width="20" height="14" />
+        <path d="M8.5 22.5h6M11.5 18.5v4" />
+        <rect x="23.5" y="11.5" width="7" height="16" />
+        <path d="M25.5 25.5h3" />
+      </>
+    )
+  }
+
+  {/* Scaling and performance: a load curve climbing over a baseline. */}
+  {
+    name === "scale" && (
+      <>
+        <path d="M2.5 27.5h27" />
+        <path d="M2.5 27.5V2.5" />
+        <path d="M5.5 23.5l6-6 5 4 9-11" />
+        <path d="M21.5 10.5h5v5" />
+      </>
+    )
+  }
+
+  {/*
+    Embedded team: three people, the middle one filled — that one is us,
+    sitting inside your team rather than beside it.
+  */}
+  {
+    name === "team" && (
+      <>
+        <rect x="3.5" y="5.5" width="4" height="4" />
+        <rect x="1.5" y="12.5" width="8" height="7" />
+
+        <rect x="14.5" y="5.5" width="4" height="4" fill="currentColor" />
+        <rect x="12.5" y="12.5" width="8" height="7" fill="currentColor" />
+
+        <rect x="25.5" y="5.5" width="4" height="4" />
+        <rect x="23.5" y="12.5" width="8" height="7" />
+      </>
+    )
+  }
+
+  {/* Technical audit: a sheet with findings, the top one flagged. */}
+  {
+    name === "audit" && (
+      <>
+        <rect x="5.5" y="2.5" width="21" height="27" />
+        <path d="M9.5 9.5h6M9.5 15.5h13M9.5 21.5h13" />
+        <path d="M19.5 7.5h3v4h-3z" />
+      </>
+    )
+  }
+</svg>

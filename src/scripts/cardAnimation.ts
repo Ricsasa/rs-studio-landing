@@ -26,21 +26,23 @@ export function initCardAnimations(scope: ParentNode = document) {
   // Set the initial state in GSAP instead of relying on a CSS class. Some cards
   // have `transition-all`, so adding a class can make the initial hide/show
   // transition compete with the ScrollTrigger animation.
+  // 12px, not 40: the reveal should register as the block settling rather
+  // than as an element flying in.
   gsap.set(cards, {
     autoAlpha: 0,
-    y: 40,
+    y: 12,
   });
 
   const animations = cards.map((card) =>
     gsap.to(card, {
       autoAlpha: 1,
       y: 0,
-      duration: 0.7,
-      ease: "power2.out",
+      duration: 0.6,
+      ease: "expo.out",
 
       scrollTrigger: {
         trigger: card,
-        start: "top 85%",
+        start: "top 88%",
         once: true,
       },
     }),

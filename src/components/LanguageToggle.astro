@@ -24,7 +24,7 @@ const pathname = Astro.url.pathname;
           title={i18n.t("language.switchTo", { language: locale.label })}
           class:list={[
             "transition-colors duration-200",
-            locale.code === current ? "font-bold text-moss" : "text-mute hover:text-ink",
+            locale.code === current ? "text-moss" : "text-mute hover:text-ink",
           ]}
         >
           {locale.short}

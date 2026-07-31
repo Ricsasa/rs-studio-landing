@@ -11,27 +11,25 @@ interface Props {
 const { next, nextSlug } = Astro.props;
 ---
 
-<section class="border-b-2 border-ink bg-paper px-gutter py-section">
+<section class="bg-paper px-gutter py-section">
   <div class="mx-auto w-full max-w-content">
     <a
       href={projectPath(nextSlug)}
-      class="group relative flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-t-2 border-ink pt-7 transition-colors duration-200 hover:bg-substrate"
+      class="group flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-t border-rule pt-8"
     >
-      <span
-        aria-hidden="true"
-        class="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-moss transition-transform duration-200 group-hover:scale-x-100"
-      ></span>
-
       <div>
-        <span class="label text-mute">{i18n.t("projectPage.nextLabel")}</span>
-        <div class="mt-3 text-service display-face">{next.title}</div>
+        <span class="eyebrow text-mute">{i18n.t("projectPage.nextLabel")}</span>
+        <div class="mt-3 text-service display-face">
+          <span class="rule-wipe group-hover:rule-wipe-on">{next.title}</span>
+        </div>
       </div>
 
       <span
         aria-hidden="true"
-        class="label text-moss transition-transform duration-200 group-hover:translate-x-1"
-        >&gt;&gt;&gt;</span
+        class="text-moss transition-transform duration-200 group-hover:translate-x-1"
       >
+        &#8594;
+      </span>
     </a>
   </div>
 </section>

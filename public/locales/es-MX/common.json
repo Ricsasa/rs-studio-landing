@@ -24,40 +24,24 @@
     "intro": "Un estudio de software pequeño que construye productos escalables y de alto rendimiento. Trabajamos como equipo integrado o llevamos proyectos de principio a fin — desde la arquitectura hasta el lanzamiento que de verdad sale a producción.",
     "ctaSecondary": "Ver trabajo seleccionado",
     "monogramAlt": "Monograma de RS Studio",
-    "stats": [
-      {
-        "label": "DESDE",
-        "value": "2026"
-      },
-      {
-        "label": "PROYECTOS",
-        "value": "30+"
-      },
-      {
-        "label": "SEDE",
-        "value": "Remoto"
-      },
-      {
-        "label": "DISPONIBLES",
-        "value": "T4 2026"
-      }
-    ]
+    "screenAlt": "Un sitio de cliente construido por el estudio, en una pantalla de escritorio",
+    "phoneAlt": "Un sitio de cliente construido por el estudio, en un teléfono"
   },
   "work": {
     "title": "Trabajo seleccionado",
-    "count": "{{total}} CASOS",
+    "head": "Ejemplos",
     "viewCase": "Ver caso",
-    "shotPlaceholder": "AÚN SIN CAPTURA"
+    "shotPlaceholder": "Aún sin captura"
   },
   "projectPage": {
     "back": "Todo el trabajo",
     "titleTemplate": "{{name}} — RS Studio",
-    "overviewLabel": "RESUMEN",
-    "stackLabel": "CONSTRUIDO CON",
-    "galleryLabel": "PANTALLAS",
-    "nextLabel": "SIGUIENTE PROYECTO",
-    "categoryLabel": "CATEGORÍA",
-    "yearLabel": "AÑO",
+    "overviewLabel": "Resumen",
+    "stackLabel": "Construido con",
+    "galleryLabel": "Pantallas",
+    "nextLabel": "Siguiente proyecto",
+    "categoryLabel": "Categoría",
+    "yearLabel": "Año",
     "galleryRegion": "Capturas del proyecto",
     "visitSite": "Visitar sitio",
     "screenshotAlt": "{{title}} — pantalla {{index}}"
@@ -93,41 +77,41 @@
         "body": "Una lectura clara de arquitectura, riesgo y costo, con un plan priorizado que puedes ejecutar."
       }
     ],
-    "meta": "CUATRO DISCIPLINAS"
+    "meta": "Cuatro disciplinas"
   },
   "process": {
     "title": "Cómo trabajamos",
     "intro": "Ciclos cortos, avance visible y cero sorpresas al final. Recibes una versión funcional cada semana.",
     "steps": [
       {
-        "num": "PASO 01",
+        "num": "01",
         "title": "Alcance",
         "body": "Un discovery corto y pagado: objetivos, restricciones y lo que no vamos a construir."
       },
       {
-        "num": "PASO 02",
+        "num": "02",
         "title": "Diseño",
         "body": "Arquitectura, modelo de datos y un plan de hitos que puedes exigirnos."
       },
       {
-        "num": "PASO 03",
+        "num": "03",
         "title": "Construcción",
         "body": "Despliegues semanales a una URL de staging. Ves avance, no reportes de estatus."
       },
       {
-        "num": "PASO 04",
+        "num": "04",
         "title": "Entrega",
         "body": "Código documentado, CI y un equipo que sabe operarlo sin nosotros."
       }
     ],
-    "meta": "CICLO SEMANAL"
+    "meta": "Ciclo semanal"
   },
   "stack": {
     "title": "Stack",
-    "caption": "LAS HERRAMIENTAS QUE ELEGIMOS PRIMERO",
+    "caption": "Las herramientas que elegimos primero",
     "groups": [
       {
-        "label": "FRONTEND",
+        "label": "Frontend",
         "items": [
           "React",
           "React Native",
@@ -137,7 +121,7 @@
         ]
       },
       {
-        "label": "BACKEND",
+        "label": "Backend",
         "items": [
           "Node.js",
           "Apollo GraphQL",
@@ -146,7 +130,7 @@
         ]
       },
       {
-        "label": "DATOS",
+        "label": "Datos",
         "items": [
           "PostgreSQL",
           "MySQL",
@@ -155,7 +139,7 @@
         ]
       },
       {
-        "label": "INFRAESTRUCTURA",
+        "label": "Infraestructura",
         "items": [
           "AWS",
           "GCP",
@@ -169,10 +153,10 @@
     "title": "¿Tienes algo que construir?",
     "intro": "Cuéntanos el problema y la fecha límite. Te respondemos en dos días hábiles con un plan y un estimado honesto.",
     "email": "hola@rs-studio.dev",
-    "emailLabel": "CORREO",
+    "emailLabel": "Correo",
     "cta": "Agenda una llamada",
-    "facebook": "FACEBOOK",
-    "copyright": "© 2026 RS STUDIO"
+    "facebook": "Facebook",
+    "copyright": "© 2026 RS Studio"
   },
   "whatsapp": {
     "label": "Escríbenos por WhatsApp",
@@ -180,7 +164,7 @@
     "message": "¡Hola! He visto su página y me interesa obtener más información sobre sus servicios!"
   },
   "notFound": {
-    "code": "ERROR 404",
+    "code": "Error 404",
     "title": "Esta página no existe",
     "intro": "Puede que el enlace esté desactualizado o que la página se haya movido. Por aquí regresas.",
     "home": "Volver al inicio",

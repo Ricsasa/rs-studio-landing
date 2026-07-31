@@ -67,12 +67,13 @@ const alternates = Astro.site
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     {/*
-      Archivo Black carries the macro-typography — it is a heavier display cut
-      than Archivo's own 900, which is the top of that family's weight axis.
-      Archivo handles reading sizes; the mono needs 700 for emphasised data.
+      Archivo alone, at three weights: 400 for prose, 500 for titles and UI,
+      600 where a title needs a little more presence. The Archivo Black cut
+      the earlier design used is deliberately not loaded — nothing on the page
+      is set heavy enough to need it, and it was a request on every page load.
     */}
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>

@@ -8,25 +8,23 @@ type StackGroup = { label: string; items: string[] };
 const groups = tList<StackGroup>("stack.groups");
 ---
 
-<section id="stack" class="border-b-2 border-ink bg-substrate px-gutter py-section">
+<section id="stack" class="bg-substrate px-gutter py-section">
   <div class="mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("stack.title")} meta={i18n.t("stack.caption")} />
 
     {/*
-      A parts manifest rather than a tag cloud: each column is a subsystem,
-      each ruled row a component.
+      Four plain columns. The tools are set at reading size rather than as
+      tags or manifest rows — they are names, and names do not need boxes.
     */}
-    <div class="mt-heading rule-grid grid-cols-2 md:grid-cols-4">
+    <div class="mt-heading grid grid-cols-2 gap-x-grid gap-y-flow md:grid-cols-4">
       {
         groups.map((group) => (
-          <div class="gsap-reveal-card flex flex-col bg-substrate">
-            <h3 class="label border-b border-rule-strong px-4 py-3 font-bold text-moss">{group.label}</h3>
+          <div class="gsap-reveal-card border-t border-rule pt-6">
+            <h3 class="eyebrow text-moss">{group.label}</h3>
 
-            <ul class="m-0 list-none p-0">
+            <ul class="m-0 mt-4 list-none space-y-2 p-0">
               {group.items.map((item) => (
-                <li class="label border-b border-rule px-4 py-2.5 text-ink-soft last:border-b-0">
-                  {item}
-                </li>
+                <li class="text-lead-sm text-ink-soft">{item}</li>
               ))}
             </ul>
           </div>

@@ -10,25 +10,25 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<section class="border-b-2 border-ink bg-paper px-gutter py-section">
+<section class="bg-paper px-gutter py-section">
   <div class="mx-auto w-full max-w-content">
-    <div class="grid grid-cols-1 gap-split wide:grid-cols-[0.8fr_1.2fr]">
+    <div class="grid grid-cols-1 gap-split wide:grid-cols-[0.75fr_1.25fr]">
       <div>
-        <h2 class="label border-b-2 border-ink pb-3 font-bold text-moss">
+        <h2 class="eyebrow border-t border-rule pt-6 text-moss">
           {i18n.t("projectPage.overviewLabel")}
         </h2>
 
         {
           project.technologies && (
             <>
-              <h3 class="label mt-heading border-b border-rule-strong pb-3 font-bold text-mute">
+              <h3 class="eyebrow mt-heading border-t border-rule pt-6 text-mute">
                 {i18n.t("projectPage.stackLabel")}
               </h3>
 
-              {/* Component manifest, matching the stack section on the landing page. */}
-              <ul class="m-0 list-none p-0">
+              {/* Plain names, matching the stack section on the landing page. */}
+              <ul class="m-0 mt-4 list-none space-y-2 p-0">
                 {project.technologies.map((tech) => (
-                  <li class="label border-b border-rule py-2.5 text-ink-soft">{tech}</li>
+                  <li class="text-lead-sm text-ink-soft">{tech}</li>
                 ))}
               </ul>
             </>
@@ -38,7 +38,7 @@ const { project } = Astro.props;
 
       {/* Rendered from markdown, so spacing and emphasis are styled from the parent. */}
       <div
-        class="text-lead text-pretty text-graphite [&>p]:mt-6 [&>p:first-child]:mt-0 [&_em]:italic [&_strong]:font-bold [&_strong]:text-ink"
+        class="max-w-prose text-lead text-pretty text-graphite [&>p]:mt-6 [&>p:first-child]:mt-0 [&_em]:italic [&_strong]:font-medium [&_strong]:text-ink"
         set:html={renderRichText(project.full_description ?? "")}
       />
     </div>

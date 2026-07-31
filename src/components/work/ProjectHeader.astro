@@ -17,65 +17,57 @@ const meta = [
 ];
 ---
 
-<section class="border-b-2 border-ink bg-substrate">
-  <div class="border-b border-rule px-gutter">
-    <div class="mx-auto flex w-full max-w-content py-2.5">
-      <a
-        href={backHref}
-        class="group label flex items-center gap-2 text-ink-soft transition-colors duration-200 hover:text-moss"
+<section class="bg-paper px-gutter pt-10 pb-hero-bottom">
+  <div class="mx-auto w-full max-w-content">
+    <a
+      href={backHref}
+      class="group inline-flex items-center gap-2 text-lead-sm text-graphite transition-colors duration-200 hover:text-ink"
+    >
+      <span
+        aria-hidden="true"
+        class="text-moss transition-transform duration-200 group-hover:-translate-x-1"
       >
-        <span
-          aria-hidden="true"
-          class="label-micro text-moss transition-transform duration-200 group-hover:-translate-x-1"
-          >&lt;&lt;&lt;</span
-        >
-        {i18n.t("projectPage.back")}
-      </a>
-    </div>
-  </div>
+        &#8592;
+      </span>
+      {i18n.t("projectPage.back")}
+    </a>
 
-  <div class="px-gutter pt-hero-top pb-hero-bottom">
-    <div class="mx-auto w-full max-w-content">
-      <h1 class="text-section display-face">{project.title}</h1>
+    <h1 class="mt-hero-top max-w-[18ch] text-display display-face text-balance">{project.title}</h1>
 
-      <p class="mt-lead max-w-[48ch] text-lead text-pretty text-graphite">
-        {project.brief_description}
-      </p>
+    <p class="mt-lead max-w-prose text-lead text-pretty text-graphite">
+      {project.brief_description}
+    </p>
 
-      {/*
-        Exactly as many tracks as there are entries: `rule-grid` paints the
-        gaps from the container's own background, so an unfilled track would
-        render as a solid slab rather than as empty paper.
-      */}
-      <dl class="mt-cta rule-grid grid-cols-1 sm:grid-cols-2">
-        {
-          meta.map((item) => (
-            <div class="bg-paper p-card-pad">
-              <dt class="label text-mute">{item.label}</dt>
-              <dd class="tnum mt-3 text-subhead display-face">{item.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-
+    <dl class="mt-cta grid grid-cols-2 gap-x-grid border-t border-rule pt-6 sm:max-w-md">
       {
-        project.href && (
-          <a
-            href={project.href}
-            target={isExternal ? "_blank" : undefined}
-            rel={isExternal ? "noopener noreferrer" : undefined}
-            class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss"
-          >
-            <span class="label font-bold">{project.cta ?? i18n.t("projectPage.visitSite")}</span>
-            <span
-              aria-hidden="true"
-              class="label-micro opacity-70 transition-transform duration-200 group-hover:translate-x-1"
-            >
-              &gt;&gt;&gt;
-            </span>
-          </a>
-        )
+        meta.map((item) => (
+          <div>
+            <dt class="label text-mute">{item.label}</dt>
+            <dd class="tnum mt-2 text-subhead display-face">{item.value}</dd>
+          </div>
+        ))
       }
-    </div>
+    </dl>
+
+    {
+      project.href && (
+        <a
+          href={project.href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss active:scale-[0.99]"
+        >
+          <span class="text-lead-sm font-medium">
+            {project.cta ?? i18n.t("projectPage.visitSite")}
+          </span>
+          <span
+            aria-hidden="true"
+            class="opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+          >
+            &#8594;
+          </span>
+        </a>
+      )
+    }
   </div>
 </section>
