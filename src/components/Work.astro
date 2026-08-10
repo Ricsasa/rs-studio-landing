@@ -3,6 +3,7 @@ import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import { projectPath } from "@/i18n/routing";
 import SectionHead from "./SectionHead.astro";
+import OrganicField from "./OrganicField.astro";
 import { projectSlugs, projectScreenshots, isCaseStudy, type Project } from "@/content/projects";
 
 const projects = tList<Project>("projects", "projects");
@@ -23,8 +24,10 @@ const cards = projects.map((project, index) => {
 const total = String(projects.length).padStart(2, "0");
 ---
 
-<section id="work" class="bg-paper px-gutter py-section">
-  <div class="mx-auto w-full max-w-content">
+<section id="work" data-parallax-plate class="relative isolate bg-paper px-gutter parallax-plate">
+  <OrganicField variant="work" />
+
+  <div data-parallax-content class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("work.title")} meta={i18n.t("work.head")} />
 
     {/*

@@ -11,6 +11,7 @@
     "services": "Services",
     "process": "Process",
     "stack": "Stack",
+    "blog": "Blog",
     "contact": "Contact",
     "skipToContent": "Skip to content"
   },
@@ -45,6 +46,13 @@
     "galleryRegion": "Project screenshots",
     "visitSite": "Visit site",
     "screenshotAlt": "{{title}} — screen {{index}}"
+  },
+  "blog": {
+    "title": "Blog",
+    "head": "Notes",
+    "description": "Notes on architecture, product decisions, and what we learn shipping projects end to end.",
+    "back": "All posts",
+    "readMore": "Read post"
   },
   "carousel": {
     "previous": "Previous screen",

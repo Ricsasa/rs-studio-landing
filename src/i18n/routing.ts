@@ -10,6 +10,14 @@ export function projectPath(slug: string): string {
   return getLocalizedPathname(`/work/${slug}`, i18n.language);
 }
 
+export function blogPath(): string {
+  return getLocalizedPathname("/blog", i18n.language);
+}
+
+export function blogPostPath(slug: string): string {
+  return getLocalizedPathname(`/blog/${slug}`, i18n.language);
+}
+
 function normalize(pathname: string): string {
   return pathname.replace(/\/+$/, "") || "/";
 }

@@ -1,0 +1,287 @@
+---
+/**
+ * The organic layer.
+ *
+ * Everything the reader can touch on this site is square, and stays square.
+ * The curves live strictly behind that: flat, closed, near-round colour fields
+ * scattered across a section the way overlapping ink layers sit on a riso print
+ * — no gradients, no blur, no soft shadow. Two of them overlapping on
+ * `multiply` produce a third tone the palette never had to declare.
+ *
+ * The shapes are generated here rather than pasted in as path data, so a field
+ * can be re-seeded without hand-editing beziers. The generator is deterministic
+ * — the same seed always yields the same blob — which matters because this
+ * renders on the server and must not differ from what hydration would draw.
+ */
+interface Props {
+  variant: keyof typeof VARIANTS;
+  class?: string;
+}
+
+const { variant, class: className } = Astro.props;
+
+/** Mulberry32 — small, fast, and stable across runs for a given seed. */
+function prng(seed: number): () => number {
+  let state = seed >>> 0;
+
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(state ^ (state >>> 15), 1 | state);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * A closed drop on a 0–100 viewBox.
+ *
+ * The radius is a smooth function of the angle — a base circle plus three
+ * low-frequency harmonics at random phases — sampled densely and joined with a
+ * Catmull-Rom spline. Jittering each point independently, which is the usual
+ * way to do this, is what produced the earlier potatoes: neighbouring radii
+ * disagree, so the outline lurches in and out and the spline runs nearly
+ * straight between the lumps. Harmonics vary the radius *slowly*, so the
+ * outline is all long arcs, like surface tension pulling a drop of ink round.
+ *
+ * `amplitude` is how far the drop departs from a circle: 0 is a circle, ~0.10
+ * is a stone, ~0.20 is a drop that has just landed. Past ~0.3 it necks.
+ */
+function blob(seed: number, amplitude = 0.16): string {
+  const random = prng(seed);
+
+  /*
+   * Higher harmonics get proportionally less amplitude (the /k), which is what
+   * keeps the deviation smooth rather than ripply — the first harmonic makes it
+   * egg-shaped, the third only softens the result.
+   */
+  const harmonics = [1, 2, 3].map((k) => ({
+    k,
+    amp: (amplitude * (0.7 + random() * 0.6)) / k,
+    phase: random() * Math.PI * 2,
+  }));
+
+  // Dense enough that the spline follows the curve rather than shortcutting it.
+  const SAMPLES = 28;
+
+  const radii = Array.from({ length: SAMPLES }, (_, index) => {
+    const angle = (index / SAMPLES) * Math.PI * 2;
+
+    return harmonics.reduce(
+      (radius, { k, amp, phase }) => radius + amp * Math.sin(k * angle + phase),
+      1,
+    );
+  });
+
+  /*
+   * Normalised to 46 rather than to the full 50 the viewBox allows. A
+   * Catmull-Rom curve bulges slightly past the points it interpolates, so a
+   * drop scaled to touch the edge has its widest lobes sliced off flat by the
+   * SVG viewport — which is what made these read as cropped no matter where
+   * they were placed on the page. The 4 units of headroom absorb the overshoot.
+   */
+  const scale = 46 / Math.max(...radii);
+
+  const nodes = radii.map((radius, index) => {
+    const angle = (index / SAMPLES) * Math.PI * 2;
+
+    return [
+      50 + Math.cos(angle) * radius * scale,
+      50 + Math.sin(angle) * radius * scale,
+    ] as const;
+  });
+
+  const at = (index: number) => nodes[(index + nodes.length * 2) % nodes.length]!;
+
+  const curves = nodes.map((_, index) => {
+    const [x0, y0] = at(index - 1);
+    const [x1, y1] = at(index);
+    const [x2, y2] = at(index + 1);
+    const [x3, y3] = at(index + 2);
+
+    // Catmull-Rom to cubic Bézier, tension 0.5.
+    const c1 = [x1 + (x2 - x0) / 6, y1 + (y2 - y0) / 6];
+    const c2 = [x2 - (x3 - x1) / 6, y2 - (y3 - y1) / 6];
+
+    return `C${c1[0]!.toFixed(2)},${c1[1]!.toFixed(2)} ${c2[0]!.toFixed(2)},${c2[1]!.toFixed(2)} ${x2.toFixed(2)},${y2.toFixed(2)}`;
+  });
+
+  const [startX, startY] = at(0);
+
+  return `M${startX.toFixed(2)},${startY.toFixed(2)}${curves.join("")}Z`;
+}
+
+type Shape = {
+  seed: number;
+  /** How far this drop departs from a circle. See `blob`. */
+  amplitude?: number;
+  /**
+   * Placement and width, as Tailwind insets and a percentage of the section.
+   * Width only — the box is square, so the shape keeps the proportions it was
+   * generated with instead of being stretched into an oval.
+   */
+  class: string;
+  fill: string;
+  opacity: number;
+};
+
+type Field = { blend: "multiply" | "screen"; shapes: Shape[] };
+
+/*
+ * One composition per section: a lead drop, a companion opposite it and a
+ * couple of small satellites thrown off it, so scrolling the page swings the
+ * weight from side to side rather than stamping the same form six times.
+ *
+ * Everything is sized off the section's *height*, not its width, with a square
+ * box. Sections are always wider than the shapes are tall, so a height-driven
+ * size is the one that cannot collide with an edge — and a shape touching an
+ * edge is the failure mode here: the field is clipped to its own section (the
+ * plate below paints over it), so any overlap comes back as a straight cut
+ * through a curve. Insets keep the largest drop clear of all four sides.
+ */
+const VARIANTS = {
+  /*
+   * The hero and the work grid are the only sections holding opaque children —
+   * the device mock and the screenshot thumbnails. A drop passing behind one of
+   * those gets sliced by its straight edge, which looks exactly like a crop, so
+   * both compositions are laid out around that media rather than under it.
+   */
+  hero: {
+    blend: "multiply",
+    shapes: [
+      {
+        seed: 7,
+        amplitude: 0.2,
+        class: "top-[7%] left-[8%] h-[60%]",
+        fill: "var(--color-fern-veil)",
+        opacity: 0.24,
+      },
+      { seed: 21, class: "bottom-[5%] left-[1%] h-[36%]", fill: "var(--color-moss-veil)", opacity: 0.19 },
+      {
+        seed: 45,
+        amplitude: 0.2,
+        class: "bottom-[8%] right-[11%] h-[18%]",
+        fill: "var(--color-fern-veil)",
+        opacity: 0.21,
+      },
+      { seed: 33, class: "top-[10%] right-[5%] h-[12%]", fill: "var(--color-moss-veil)", opacity: 0.16 },
+    ],
+  },
+  work: {
+    blend: "multiply",
+    shapes: [
+      {
+        seed: 42,
+        amplitude: 0.2,
+        class: "bottom-[5%] right-[4%] h-[46%]",
+        fill: "var(--color-moss-veil)",
+        opacity: 0.18,
+      },
+      { seed: 51, class: "top-[2%] left-[2%] h-[28%]", fill: "var(--color-fern-veil)", opacity: 0.21 },
+      { seed: 58, class: "top-[5%] right-[8%] h-[15%]", fill: "var(--color-fern-veil)", opacity: 0.16 },
+      { seed: 63, class: "bottom-[9%] left-[3%] h-[12%]", fill: "var(--color-moss-veil)", opacity: 0.14 },
+    ],
+  },
+  /*
+   * The two `screen` sections invert the readability problem: they sit on a
+   * pine plate with type reversed out of it, so a *lighter* green here closes
+   * the gap the text depends on. These keep the deeper accents and give back
+   * contrast through coverage instead.
+   */
+  services: {
+    blend: "screen",
+    shapes: [
+      { seed: 13, amplitude: 0.2, class: "top-[8%] left-[3%] h-[76%]", fill: "var(--color-fern)", opacity: 0.2 },
+      {
+        seed: 88,
+        class: "bottom-[8%] right-[4%] h-[50%]",
+        fill: "var(--color-lichen)",
+        opacity: 0.12,
+      },
+      { seed: 91, class: "top-[14%] right-[23%] h-[22%]", fill: "var(--color-fern)", opacity: 0.16 },
+    ],
+  },
+  process: {
+    blend: "multiply",
+    shapes: [
+      { seed: 64, amplitude: 0.2, class: "top-[8%] left-[2%] h-[64%]", fill: "var(--color-fern-veil)", opacity: 0.22 },
+      {
+        seed: 70,
+        class: "bottom-[8%] right-[4%] h-[40%]",
+        fill: "var(--color-moss-veil)",
+        opacity: 0.16,
+      },
+      { seed: 77, class: "bottom-[32%] left-[13%] h-[15%]", fill: "var(--color-fern-veil)", opacity: 0.18 },
+      { seed: 84, class: "top-[5%] right-[29%] h-[9%]", fill: "var(--color-moss-veil)", opacity: 0.14 },
+    ],
+  },
+  stack: {
+    blend: "multiply",
+    shapes: [
+      { seed: 5, amplitude: 0.2, class: "top-[8%] right-[4%] h-[72%]", fill: "var(--color-moss-veil)", opacity: 0.16 },
+      {
+        seed: 99,
+        class: "bottom-[8%] left-[3%] h-[48%]",
+        fill: "var(--color-fern-veil)",
+        opacity: 0.21,
+      },
+      { seed: 18, class: "top-[22%] left-[25%] h-[19%]", fill: "var(--color-moss-veil)", opacity: 0.14 },
+    ],
+  },
+  /*
+   * The case-study masthead is a third the height of a landing section, so it
+   * gets its own pair — the landing compositions scatter shapes down a height
+   * this one does not have.
+   */
+  caseStudy: {
+    blend: "multiply",
+    shapes: [
+      { seed: 34, amplitude: 0.2, class: "top-[10%] right-[5%] h-[72%]", fill: "var(--color-fern-veil)", opacity: 0.22 },
+      {
+        seed: 12,
+        class: "bottom-[12%] left-[2%] h-[40%]",
+        fill: "var(--color-moss-veil)",
+        opacity: 0.18,
+      },
+    ],
+  },
+  contact: {
+    blend: "screen",
+    shapes: [
+      { seed: 31, amplitude: 0.2, class: "top-[8%] right-[4%] h-[74%]", fill: "var(--color-moss)", opacity: 0.32 },
+      {
+        seed: 76,
+        class: "bottom-[9%] left-[3%] h-[46%]",
+        fill: "var(--color-fern)",
+        opacity: 0.24,
+      },
+      { seed: 82, class: "top-[44%] right-[27%] h-[20%]", fill: "var(--color-moss)", opacity: 0.22 },
+    ],
+  },
+} satisfies Record<string, Field>;
+
+const { blend, shapes } = VARIANTS[variant] as Field;
+---
+
+{/*
+  `overflow-hidden` on the field, not on the section: the section keeps its own
+  overflow so nothing inside it — sticky offsets, focus rings — is clipped by a
+  decoration.
+*/}
+<div
+  aria-hidden="true"
+  class:list={["pointer-events-none absolute inset-0 overflow-hidden", className]}
+  style={`mix-blend-mode:${blend}`}
+>
+  {
+    shapes.map((shape) => (
+      <svg
+        viewBox="0 0 100 100"
+        focusable="false"
+        class:list={["absolute block aspect-square", shape.class]}
+        style={`color:${shape.fill};opacity:${shape.opacity}`}
+      >
+        <path d={blob(shape.seed, shape.amplitude)} fill="currentColor" />
+      </svg>
+    ))
+  }
+</div>

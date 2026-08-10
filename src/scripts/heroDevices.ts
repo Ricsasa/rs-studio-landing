@@ -95,19 +95,44 @@ export function initHeroDevices() {
     });
   };
 
+  /**
+   * Hero parallax: the composition leaves slower than the page does.
+   *
+   * Everything is pulled *down* as the reader scrolls up, which nets out at
+   * roughly 70% of scroll speed. Measured in pixels rather than percent so the
+   * copy and the devices lag by the same distance and the split stays square —
+   * a percentage would tie each element's lag to its own height and shear the
+   * two columns apart.
+   *
+   * The rate is read from `--hero-lag` rather than written here: the section's
+   * min-height is padded by the same fraction, and the two have to move
+   * together or the lag drags the composition over the section boundary.
+   *
+   * `ease: "none"`: position is driven by scroll, not by time.
+   */
   const parallax = () => {
-    // Different rates, so the composition has depth on the way out. `ease:
-    // "none"` because the position is driven by scroll, not by time.
-    gsap.to(screen, {
-      yPercent: -9,
-      ease: "none",
-      scrollTrigger: { trigger: root, start: "top bottom", end: "bottom top", scrub: 0.5 },
-    });
+    const section = root.closest("section");
+    if (!section) return;
 
-    gsap.to(phone, {
-      yPercent: 7,
+    const targets = [root, section.querySelector("#hero-copy")].filter(Boolean);
+
+    const lag = () =>
+      parseFloat(getComputedStyle(section).getPropertyValue("--hero-lag")) || 0;
+
+    gsap.to(targets, {
+      // Resolved per refresh against the live section height, so the lag is
+      // the same fraction of the scroll on a laptop and on a tall monitor.
+      y: () => section.offsetHeight * lag(),
       ease: "none",
-      scrollTrigger: { trigger: root, start: "top bottom", end: "bottom top", scrub: 0.5 },
+      scrollTrigger: {
+        trigger: section,
+        // The hero is already in view at load; the scrub has to begin where it
+        // starts leaving, not on entry, or it opens mid-tween.
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+      },
     });
   };
 

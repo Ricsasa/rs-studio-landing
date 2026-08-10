@@ -17,6 +17,13 @@ export function initIntro() {
     window.dispatchEvent(new CustomEvent("intro:complete"));
   };
 
+  // The inline pre-paint script already decided to skip (reduced motion, or an
+  // in-session navigation back to this page); just clear the markup away.
+  if (document.documentElement.dataset.introDone === "true") {
+    overlay.remove();
+    return;
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !monogram) {
     finish();
     return;

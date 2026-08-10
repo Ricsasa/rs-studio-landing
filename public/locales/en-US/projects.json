@@ -41,7 +41,7 @@
             "full_description": "**How do you present your professional experience in a way that truly reflects who you are as a developer?** That was the question I asked myself when designing my personal portfolio.\n\nI wanted to create something that went beyond a traditional résumé—a platform where recruiters, clients, and fellow developers could explore my experience, technical skills, projects, certifications, and education through a clear, engaging, and interactive experience.\n\nI designed and developed a portfolio with a **modern visual identity**, a **carefully crafted** user experience, a **responsive design**, subtle animations, and an **information architecture** focused on highlighting my strengths while making it easy to navigate my professional journey.\n\nThis project reflects my approach as a developer: _combining design, user experience, and software engineering to build products that **communicate value**, inspire confidence, and authentically represent both my technical expertise and my problem-solving mindset._",
             "category": "Portfolio",
             "year": "2026",
-            "href": "http://ricsasa.work",
+            "href": "http://rs-studio.dev",
             "cta": "Visit site",
             "technologies": [
                 "Astro",
