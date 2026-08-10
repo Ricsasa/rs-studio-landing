@@ -2,14 +2,17 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
+import OrganicField from "./OrganicField.astro";
 
 type StackGroup = { label: string; items: string[] };
 
 const groups = tList<StackGroup>("stack.groups");
 ---
 
-<section id="stack" class="bg-substrate px-gutter py-section">
-  <div class="mx-auto w-full max-w-content">
+<section id="stack" data-parallax-plate class="relative isolate bg-substrate px-gutter parallax-plate">
+  <OrganicField variant="stack" />
+
+  <div data-parallax-content class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("stack.title")} meta={i18n.t("stack.caption")} />
 
     {/*

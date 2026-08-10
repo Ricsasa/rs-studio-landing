@@ -1,0 +1,82 @@
+---
+import i18n from "i18next";
+import { getCollection } from "astro:content";
+import { buildStaticPaths } from "astro-react-i18next/utils";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Contact from "@/components/Contact.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import OrganicField from "@/components/OrganicField.astro";
+import { blogPostPath } from "@/i18n/routing";
+import { postSlug } from "@/content.config";
+
+export function getStaticPaths() {
+  return buildStaticPaths();
+}
+
+const allPosts = await getCollection("blog", (p) => !p.data.draft);
+const posts = allPosts
+  .filter((post) => post.data.lang === i18n.language)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title={i18n.t("blog.title")} description={i18n.t("blog.description")}>
+  <SiteHeader />
+  <main id="main">
+    <section class="relative isolate bg-paper px-gutter pt-10 pb-hero-bottom">
+      <OrganicField variant="work" />
+
+      <div class="relative mx-auto w-full max-w-content">
+        <SectionHead title={i18n.t("blog.title")} meta={i18n.t("blog.head")} />
+
+        <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-3">
+          {
+            posts.map((post) => (
+              <a href={blogPostPath(postSlug(post.id))} class="gsap-reveal-card group flex flex-col">
+                {post.data.cover ? (
+                  <div class="relative overflow-hidden bg-substrate">
+                    <img
+                      src={post.data.cover.src}
+                      alt={post.data.coverAlt ?? ""}
+                      loading="lazy"
+                      decoding="async"
+                      class="block aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+                    />
+                    <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-15" />
+                  </div>
+                ) : (
+                  <div class="flex aspect-16/10 items-center justify-center bg-substrate">
+                    <span class="label text-mute">{post.data.title}</span>
+                  </div>
+                )}
+
+                <span class="label mt-5 text-mute">
+                  {new Intl.DateTimeFormat(i18n.language, { year: "numeric", month: "long", day: "numeric" }).format(
+                    post.data.pubDate,
+                  )}
+                </span>
+
+                <h3 class="mt-2 text-subhead display-face">
+                  <span class="rule-wipe group-hover:rule-wipe-on">{post.data.title}</span>
+                </h3>
+
+                <p class="mt-2.5 text-lead-sm text-pretty text-graphite">{post.data.description}</p>
+
+                <span class="mt-auto flex items-center gap-2 pt-5 text-lead-sm font-medium">
+                  {i18n.t("blog.readMore")}
+                  <span
+                    aria-hidden="true"
+                    class="text-moss transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    &#8594;
+                  </span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Contact />
+</Layout>

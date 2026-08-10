@@ -1,0 +1,17 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="my-10">
+  <div class="relative overflow-hidden bg-substrate">
+    <img src={src} alt={alt} loading="lazy" decoding="async" class="block w-full object-cover" />
+    <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-15" />
+  </div>
+  {caption && <figcaption class="label mt-3 text-mute">{caption}</figcaption>}
+</figure>

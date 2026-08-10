@@ -2,6 +2,7 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
+import OrganicField from "./OrganicField.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 import { projectScreenshots } from "@/content/projects";
 import { readImageSize } from "@/lib/imageSize";
@@ -109,13 +110,31 @@ const phoneFrames = interleave(
 );
 ---
 
-<section id="top" class="bg-paper px-gutter pt-hero-top pb-hero-bottom">
-  <div class="mx-auto w-full max-w-content">
+{
+  /*
+  Two heights, doing two different jobs. The inner frame is exactly the space
+  left under the sticky header, and the split is centred in it — so the
+  composition sits on the viewport's centre line, not on the section's. The
+  section itself then runs `--hero-lag` past that — the room the parallax
+  travels into on the way out. Same token the script reads, so strengthening
+  the effect grows the run-out with it; without that the composition would be
+  dragged over the section boundary.
+  */
+}
+<section
+  id="top"
+  class="relative isolate grid min-h-[calc((100svh-var(--size-header))*(1+var(--hero-lag)))] content-start bg-paper px-gutter py-hero-top"
+>
+  <OrganicField variant="hero" />
+
+  <div
+    class="relative mx-auto grid w-full max-w-content min-h-[calc(100svh-var(--size-header)-var(--spacing-hero-top)*2)] content-center"
+  >
 
     <div
-      class="mt-flow grid grid-cols-1 items-center gap-split wide:grid-cols-[1fr_1.05fr]"
+      class="grid grid-cols-1 items-center gap-split wide:grid-cols-[1fr_1.05fr]"
     >
-      <div class="max-w-prose">
+      <div id="hero-copy" class="max-w-prose">
         <h1 class="mt-5 max-w-[13ch] text-display display-face text-balance">
           {i18n.t("hero.title")}
         </h1>
@@ -128,7 +147,7 @@ const phoneFrames = interleave(
             href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss active:scale-[0.99]"
+            class="inline-flex min-h-12 items-center gap-2.5 bg-moss px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
           >
             <WhatsAppIcon class="h-4.5 w-4.5" />
             <span class="text-lead-sm font-medium"
@@ -138,7 +157,7 @@ const phoneFrames = interleave(
 
           <a
             href="#work"
-            class="group inline-flex min-h-12 items-center gap-2.5 border border-rule-strong px-6 py-3.5 transition-colors duration-200 hover:border-ink"
+            class="group inline-flex min-h-12 items-center gap-2.5 border border-rule-strong px-6 py-3.5 transition-colors duration-200 hover:border-moss hover:text-moss"
           >
             <span class="text-lead-sm font-medium"
               >{i18n.t("hero.ctaSecondary")}</span

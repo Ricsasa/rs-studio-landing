@@ -11,6 +11,7 @@
     "services": "Servicios",
     "process": "Proceso",
     "stack": "Stack",
+    "blog": "Blog",
     "contact": "Contacto",
     "skipToContent": "Saltar al contenido"
   },
@@ -45,6 +46,13 @@
     "galleryRegion": "Capturas del proyecto",
     "visitSite": "Visitar sitio",
     "screenshotAlt": "{{title}} — pantalla {{index}}"
+  },
+  "blog": {
+    "title": "Blog",
+    "head": "Notas",
+    "description": "Notas sobre arquitectura, decisiones de producto y lo que aprendemos entregando proyectos de principio a fin.",
+    "back": "Todo el blog",
+    "readMore": "Leer post"
   },
   "carousel": {
     "previous": "Pantalla anterior",
