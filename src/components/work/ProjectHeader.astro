@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import { sectionHref } from "@/i18n/routing";
 import type { Project } from "@/content/projects";
-import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
   project: Project;
@@ -18,10 +17,8 @@ const meta = [
 ];
 ---
 
-<section class="relative isolate bg-paper px-gutter pt-10 pb-hero-bottom">
-  <OrganicField variant="caseStudy" />
-
-  <div class="relative mx-auto w-full max-w-content">
+<section class="bg-paper px-gutter pt-10 pb-hero-bottom">
+  <div class="mx-auto w-full max-w-content">
     <a
       href={backHref}
       class="group inline-flex items-center gap-2 text-lead-sm text-graphite transition-colors duration-200 hover:text-ink"
@@ -58,7 +55,7 @@ const meta = [
           href={project.href}
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noopener noreferrer" : undefined}
-          class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-moss px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
+          class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-ink px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-moss active:scale-[0.99]"
         >
           <span class="text-lead-sm font-medium">
             {project.cta ?? i18n.t("projectPage.visitSite")}

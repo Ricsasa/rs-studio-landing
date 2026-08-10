@@ -1,22 +1,19 @@
 ---
 import i18n from "i18next";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
-import OrganicField from "./OrganicField.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 
 const email = i18n.t("contact.email");
 ---
 
 {/*
-  The closing plate. Deepest pine in the document — the bottom of the same green
-  ramp the paper sits at the top of — so the sheet ends darker than it started.
+  The single solid ink plate in the document. It closes the sheet the way a
+  printed back cover does — same three colours, full coverage.
 */}
-<section id="contact" data-parallax-plate class="relative isolate bg-pine-deep px-gutter parallax-plate [--plate-pad:var(--spacing-section-lg)] text-reverse">
-  <OrganicField variant="contact" />
-
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
-    {/* `lichen` rather than `moss`: the accent needs more coverage to stay legible on a plate. */}
-    <span class="eyebrow text-lichen">{i18n.t("nav.contact")}</span>
+<section id="contact" class="bg-ink px-gutter py-section-lg text-reverse">
+  <div class="mx-auto w-full max-w-content">
+    {/* `sage` rather than `moss`: the accent needs more coverage to stay legible on ink. */}
+    <span class="eyebrow text-sage">{i18n.t("nav.contact")}</span>
 
     <h2 class="mt-5 max-w-[18ch] text-headline display-face text-balance">
       {i18n.t("contact.title")}
@@ -29,7 +26,7 @@ const email = i18n.t("contact.email");
     <div class="mt-cta-lg flex flex-wrap items-center gap-3">
       <a
         href={`mailto:${email}`}
-        class="inline-flex min-h-13 items-center bg-lichen px-6 py-4 text-pine transition-colors duration-200 hover:bg-paper active:scale-[0.99]"
+        class="inline-flex min-h-13 items-center bg-paper px-6 py-4 text-ink transition-colors duration-200 hover:bg-sage active:scale-[0.99]"
       >
         <span class="text-lead-sm font-medium">{email}</span>
       </a>
@@ -38,7 +35,7 @@ const email = i18n.t("contact.email");
         href={whatsappHref()}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-13 items-center gap-2.5 border border-reverse-rule px-6 py-4 transition-colors duration-200 hover:border-lichen hover:text-lichen"
+        class="inline-flex min-h-13 items-center gap-2.5 border border-reverse-rule px-6 py-4 transition-colors duration-200 hover:border-sage hover:text-sage"
       >
         <WhatsAppIcon class="h-4.5 w-4.5" />
         <span class="text-lead-sm font-medium">{i18n.t("whatsapp.cta")}</span>
@@ -60,13 +57,13 @@ const email = i18n.t("contact.email");
             href="https://www.facebook.com/rsstudiodev/"
             rel="noopener noreferrer"
             target="_blank"
-            class="label text-reverse-mute transition-colors duration-200 hover:text-lichen"
+            class="label text-reverse-mute transition-colors duration-200 hover:text-sage"
           >
             {i18n.t("contact.facebook")}
           </a>
           <a
             href={`mailto:${email}`}
-            class="label text-reverse-mute transition-colors duration-200 hover:text-lichen"
+            class="label text-reverse-mute transition-colors duration-200 hover:text-sage"
           >
             {i18n.t("contact.emailLabel")}
           </a>

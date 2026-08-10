@@ -8,37 +8,14 @@ import { getLocalizedPathname } from "astro-react-i18next/utils";
 interface Props {
   title?: string;
   description?: string;
-  /** Absolute URL. Defaults to the site monogram. */
-  ogImage?: string;
-  ogImageAlt?: string;
-  /** "website" for every existing page, "article" for blog posts. */
-  ogType?: string;
-  /** Defaults to the current page's own URL. */
-  canonicalURL?: string;
 }
 
-const {
-  title = i18n.t("meta.title"),
-  description = i18n.t("meta.description"),
-  ogImage: ogImageProp,
-  ogImageAlt,
-  ogType = "website",
-  canonicalURL,
-} = Astro.props;
+const { title = i18n.t("meta.title"), description = i18n.t("meta.description") } = Astro.props;
 
 // `Astro.site` is only set once the `site` option is configured; without it
 // these stay relative rather than emitting a broken absolute URL.
-const canonical = Astro.site
-  ? canonicalURL
-    ? new URL(canonicalURL)
-    : new URL(Astro.url.pathname, Astro.site)
-  : undefined;
-const usingDefaultOgImage = !ogImageProp;
-const ogImage = ogImageProp
-  ? new URL(ogImageProp)
-  : Astro.site
-    ? new URL("/monogram.png", Astro.site)
-    : undefined;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const ogImage = Astro.site ? new URL("/monogram.png", Astro.site) : undefined;
 
 // Every locale this page also exists in, for hreflang. Crawlers ignore
 // relative hreflang hrefs, so these are only emitted once `site` gives us an
@@ -60,7 +37,7 @@ const alternates = Astro.site
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
-    <meta name="theme-color" content="#ece8d9" />
+    <meta name="theme-color" content="#f3f1e9" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -73,16 +50,14 @@ const alternates = Astro.site
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content={ogType} />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RS Studio" />
     <meta property="og:locale" content={i18n.language.replace("-", "_")} />
     {canonical && <meta property="og:url" content={canonical.href} />}
     {ogImage && <meta property="og:image" content={ogImage.href} />}
-    {ogImage && usingDefaultOgImage && <meta property="og:image:width" content="320" />}
-    {ogImage && usingDefaultOgImage && <meta property="og:image:height" content="320" />}
-    {ogImage && (
-      <meta property="og:image:alt" content={ogImageAlt ?? i18n.t("hero.monogramAlt")} />
-    )}
+    {ogImage && <meta property="og:image:width" content="320" />}
+    {ogImage && <meta property="og:image:height" content="320" />}
+    {ogImage && <meta property="og:image:alt" content={i18n.t("hero.monogramAlt")} />}
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
@@ -111,8 +86,6 @@ const alternates = Astro.site
 
 <script>
   import { initCardAnimations } from "@/scripts/cardAnimation";
-  import { initSectionParallax } from "@/scripts/sectionParallax";
 
   initCardAnimations();
-  initSectionParallax();
 </script>

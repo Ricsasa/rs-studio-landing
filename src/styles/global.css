@@ -1,22 +1,17 @@
 @import "./starwind.css";
 
 /*
- * RS Studio — editorial minimalism on a forest ground.
+ * RS Studio — editorial minimalism, earthy/forest ground.
  *
- * One hue, taken the whole way down: unbleached oatmeal paper at the top of the
- * ramp, fern and moss through the middle, pine at the bottom. No second colour
- * family, no gradients, no soft shadows, no radii.
+ * One substrate (unbleached oatmeal paper), one ink (bark, a near-black with
+ * a green cast), one accent (deep moss). No gradients, no soft shadows, no
+ * translucency as decoration, no radii.
  *
- * What changed in this cut is how much area the colour is allowed to hold. The
- * earlier version kept green to hairlines and to the odd underline; here whole
- * sections are set on solid pine, and flat organic colour fields sit behind the
- * type on the paper sections (see OrganicField.astro). Those curves are the
- * only ones in the system — every element the reader can touch is square, on
- * hover and focus as much as at rest.
- *
- * Structure is still carried by whitespace and single hairlines: type sits at
- * reading weight, sections are separated by air rather than by borders, and the
- * accent marks what is interactive or current.
+ * Structure is carried by whitespace and single hairlines. Where the earlier
+ * cut of this system caged every block in printed rules and set its titles in
+ * a black display face, this one lets the paper do that work: type sits at
+ * reading weight, sections are separated by air rather than by borders, and
+ * the accent appears only where something is actually interactive or current.
  *
  * Everything above 16px is sized with clamp(), so type and rhythm stay fluid
  * and nothing snaps when a breakpoint trips. Those clamps live here as theme
@@ -51,72 +46,44 @@
   --container-prose: 720px;
 
   /*
-   * The palette is one hue — green — carried from a bleached oatmeal ground
-   * down to a near-black pine, and it is the whole design. No second family:
-   * boldness comes from saturation and from how much area the colour is
-   * allowed to cover, not from introducing a warm counterpart.
-   *
-   * Substrate. Two weights of the same paper, both taken down from the earlier
-   * near-white so the greens above them have something to bite into.
+   * Substrate. Two weights of the same paper: `paper` is the default sheet,
+   * `substrate` is the slightly darker stock used to separate adjacent bands
+   * without introducing a third hue.
    */
-  --color-paper: #ece8d9;
-  --color-substrate: #ddd8c3;
+  --color-paper: #f3f1e9;
+  --color-substrate: #e6e2d6;
 
   /*
-   * Ink. Near-black carrying a green cast, so the type sits in the same family
-   * as everything else instead of reading as neutral print. The greys below it
-   * are the same ink at lower coverage, not separate colours.
+   * Bark ink. Near-black carrying a green cast, so the type sits in the same
+   * family as the accent instead of reading as neutral print. The greys below
+   * it are the same ink at lower coverage, not separate colours.
    */
-  --color-ink: #101a12;
-  --color-ink-soft: #24331f;
-  --color-graphite: #465040;
-  --color-mute: #6d7563;
+  --color-ink: #161c16;
+  --color-ink-soft: #2c332a;
+  --color-graphite: #4e5449;
+  --color-mute: #767a6b;
 
   /* Hairlines. `rule` is the standard 1px division, `rule-strong` a printed edge. */
-  --color-rule: #c6c0a8;
-  --color-rule-strong: #9c957c;
+  --color-rule: #cdc9bb;
+  --color-rule-strong: #a7a291;
 
   /*
-   * Deep moss: the interactive accent. Used for structural markers and for
-   * anything the reader can act on. starwind.css already owns --color-accent,
-   * so this is "moss".
+   * Deep moss. The only accent in the system — used for structural dividers
+   * and vital data. Never decorative. starwind.css already owns
+   * --color-accent, so this is "moss".
    */
-  --color-moss: #3f6b34;
+  --color-moss: #46683b;
+
+  /* Reversed out of a solid ink plate. */
+  --color-reverse: #f3f1e9;
+  --color-reverse-mute: #97a08c;
+  --color-reverse-rule: #333a31;
 
   /*
-   * Fern. The saturated end of the ramp — the one colour on the page loud
-   * enough to be seen across the room. Reserved for organic ground fields and
-   * for the primary call to action; it is not a text colour on paper.
+   * The accent at the coverage it needs to stay legible on an ink plate.
+   * Same hue as `moss`, lifted — not a second accent colour.
    */
-  --color-fern: #6d8f3f;
-
-  /*
-   * Pine. A full plate, not an accent: whole sections are set on it, which is
-   * where most of the new weight in this cut comes from.
-   */
-  --color-pine: #14291a;
-  --color-pine-deep: #0d1c11;
-
-  /* Reversed out of a pine or ink plate. */
-  --color-reverse: #ece8d9;
-  --color-reverse-mute: #93a184;
-  --color-reverse-rule: #2c4230;
-
-  /*
-   * Lichen. The accent at the coverage it needs to stay legible on a dark
-   * plate — the same hue lifted, not a second accent colour.
-   */
-  --color-lichen: #b3c98c;
-
-  /*
-   * Veils. Moss and fern lifted for the organic background fields on paper.
-   * Those fields sit under body copy, and the accent weights above are dark
-   * enough that a drop multiplied onto paper pulled the ground down far enough
-   * to cost the text contrast. Same hue, higher value — the fields still read
-   * as the palette, they just no longer compete with what is set on top.
-   */
-  --color-moss-veil: #93b085;
-  --color-fern-veil: #b3c996;
+  --color-sage: #9db27f;
 
   /*
    * Titles. Large enough to open a section, small enough to still be read as
@@ -199,71 +166,20 @@
   --spacing-footer: clamp(72px, 9vw, 112px);
 
   /*
-   * Height of the sticky header, so a full-height block below it can subtract
-   * the space it occupies and still centre on the viewport rather than on
-   * itself. Measured, not guessed: 44px of touch target plus the 16px rhythm
-   * and the hairline on mobile, dropping to the nav's own height once the
-   * hamburger is replaced by the inline nav at 48rem.
-   */
-  --size-header: 77px;
-
-  /*
-   * How far the hero lags the scroll, as a fraction of its own height. One
-   * number for two things: the parallax distance, and the run-out the section
-   * grows to travel into. Raising it here strengthens the effect and buys the
-   * room for it in the same move.
-   */
-  --hero-lag: 0.3;
-
-  /*
-   * The same idea for the plates below the hero, but measured against the
-   * viewport rather than the section: a plate is crossed, not landed on, so
-   * the distance that matters is how far the reader scrolled while it passed,
-   * and that is one viewport plus the plate. A fraction of the section height
-   * would make a tall plate drift much further than a short one for no reason
-   * the reader can see.
-   *
-   * Content is offset by half this either side of centre, so a plate sits
-   * exactly where it was composed at the moment it is centred on screen, and
-   * lags only on the way in and the way out.
-   */
-  --section-lag: 0.3;
-
-  /*
    * One z-index scale, so nothing has to guess a magic number. Anything that
    * stacks reads from here rather than inventing its own 9999.
    */
+  --z-drawer: 40;
   --z-header: 50;
   --z-float: 55;
-  /* Above both of those: the open drawer covers the header and the float. */
-  --z-drawer: 58;
   --z-grain: 60;
   --z-intro: 100;
-}
-
-/* The hamburger gives way to the inline nav, and the header loses ~18px. */
-@media (min-width: 48rem) {
-  :root {
-    --size-header: 59px;
-  }
 }
 
 /*
  * Numbers in the stats, meta rows and mono labels are compared column to
  * column, so they need to share an advance width.
  */
-/*
- * A plate that drifts. The extra padding is the run-out its own parallax
- * travels into — half the drift at each end — so the content never rides over
- * the boundary into the plate above or below. `--plate-pad` is the rhythm the
- * plate would have had standing still; a section that wants the wider spacing
- * overrides it rather than restating this sum.
- */
-@utility parallax-plate {
-  --plate-pad: var(--spacing-section);
-  padding-block: calc(var(--plate-pad) + var(--section-lag) * 50vh);
-}
-
 @utility tnum {
   font-variant-numeric: tabular-nums;
 }
@@ -331,76 +247,6 @@
 
 @utility rule-wipe-on {
   background-size: 100% 1px;
-}
-
-/*
- * Blog body copy. MDX content has no Tailwind classes of its own, so the
- * elements it renders (headings, paragraphs, code, lists, links) need their
- * styling declared once here rather than per-post.
- */
-.prose-blog {
-  font-size: var(--text-lead);
-  line-height: 1.6;
-  color: var(--color-ink-soft);
-}
-
-.prose-blog > * + * {
-  margin-top: 1.5em;
-}
-
-.prose-blog h2 {
-  margin-top: 2.5em;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: var(--text-subhead);
-  line-height: 1.25;
-  color: var(--color-ink);
-}
-
-.prose-blog h3 {
-  margin-top: 2em;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: var(--text-service);
-  line-height: 1.25;
-  color: var(--color-ink);
-}
-
-.prose-blog a {
-  color: var(--color-moss);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.prose-blog ul,
-.prose-blog ol {
-  padding-left: 1.4em;
-}
-
-.prose-blog li + li {
-  margin-top: 0.5em;
-}
-
-.prose-blog ul {
-  list-style: disc;
-}
-
-.prose-blog ol {
-  list-style: decimal;
-}
-
-.prose-blog pre {
-  padding: 1.25em;
-  overflow-x: auto;
-  font-size: var(--text-lead-sm);
-  line-height: 1.6;
-}
-
-.prose-blog :not(pre) > code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: var(--color-substrate);
-  padding: 0.15em 0.35em;
 }
 
 @layer base {

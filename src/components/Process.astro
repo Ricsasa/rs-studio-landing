@@ -2,17 +2,14 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
-import OrganicField from "./OrganicField.astro";
 
 type Step = { num: string; title: string; body: string };
 
 const steps = tList<Step>("process.steps");
 ---
 
-<section id="process" data-parallax-plate class="relative isolate bg-paper px-gutter parallax-plate">
-  <OrganicField variant="process" />
-
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
+<section id="process" class="bg-paper px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("process.title")} meta={i18n.t("process.meta")} />
 
     <div class="mt-heading grid grid-cols-1 gap-split wide:grid-cols-[0.75fr_1.25fr]">

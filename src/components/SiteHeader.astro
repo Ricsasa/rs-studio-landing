@@ -1,22 +1,18 @@
 ---
 import i18n from "i18next";
 import LanguageToggle from "./LanguageToggle.astro";
-import { blogPath, homePath, isHome, sectionHref } from "@/i18n/routing";
+import { homePath, isHome, sectionHref } from "@/i18n/routing";
 
 const pathname = Astro.url.pathname;
 const onHome = isHome(pathname);
 
-// `blog` is a real route, not an in-page hash, so it skips `sectionHref` and
-// carries its own `href` — everything else still scrolls on the landing page
-// and routes home first anywhere else.
 const links = [
   { hash: "#work", key: "nav.work" },
   { hash: "#services", key: "nav.services" },
   { hash: "#process", key: "nav.process" },
   { hash: "#stack", key: "nav.stack" },
-  { hash: undefined, key: "nav.blog", href: blogPath() },
   { hash: "#contact", key: "nav.contact" },
-].map((link) => ({ ...link, href: link.href ?? sectionHref(pathname, link.hash!) }));
+].map((link) => ({ ...link, href: sectionHref(pathname, link.hash) }));
 
 // On the landing page this is an in-page scroll; elsewhere it routes home.
 const logoHref = onHome ? "#top" : homePath();
@@ -46,7 +42,7 @@ const logoHref = onHome ? "#top" : homePath();
           <a
             href={link.href}
             data-nav-link
-            data-section={link.hash?.slice(1)}
+            data-section={link.hash.slice(1)}
             class="rule-wipe text-lead-sm text-graphite transition-colors duration-200 hover:text-ink hover:rule-wipe-on aria-current:text-moss aria-current:rule-wipe-on"
           >
             {i18n.t(link.key)}
@@ -58,7 +54,6 @@ const logoHref = onHome ? "#top" : homePath();
     <div class="flex items-center gap-2">
       <LanguageToggle />
 
-      {/* Opens the drawer only. The drawer covers this row and closes itself. */}
       <button
         type="button"
         id="menu-toggle"
@@ -74,46 +69,9 @@ const logoHref = onHome ? "#top" : homePath();
   </div>
 </header>
 
-{/*
-  Sits *over* the sticky header rather than under it. Locking body scroll while
-  the page is scrolled down takes the sticky header with it on mobile, so a
-  control living up there — the old X — became unreachable exactly when it was
-  needed. The drawer now covers the header (and the floating WhatsApp button)
-  and carries its own close control, so it depends on nothing outside itself.
-*/}
-<div id="mobile-drawer" class="fixed inset-0 z-(--z-drawer) hidden flex-col bg-paper md:hidden">
-  {/* Restates the header row it is covering, with the X where the toggle was. */}
-  <div class="flex items-center justify-between gap-6 px-gutter py-4">
-    <a href={logoHref} class="flex items-center transition-opacity duration-200 hover:opacity-70">
-      <img
-        src="/logo.svg"
-        alt={i18n.t("nav.logoAlt")}
-        width="1261"
-        height="209"
-        class="block h-5 w-auto"
-      />
-    </a>
-
-    <div class="flex items-center gap-2">
-      {/* The header's copy is covered, so the drawer carries the switch itself. */}
-      <LanguageToggle />
-
-      <button
-        type="button"
-        id="menu-close"
-        aria-label={i18n.t("nav.closeMenu")}
-        class="-mr-2 flex h-11 w-11 items-center justify-center transition-opacity duration-200 hover:opacity-70"
-      >
-        {/* Two hairlines crossed — the same 20px bar the toggle draws, rotated. */}
-        <span aria-hidden="true" class="relative block h-5 w-5">
-          <span class="absolute top-1/2 left-0 block h-px w-5 rotate-45 bg-ink"></span>
-          <span class="absolute top-1/2 left-0 block h-px w-5 -rotate-45 bg-ink"></span>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <div class="mt-6">
+{/* Sits under the sticky header (z-40 vs z-50) so it never needs to know the header's exact height. */}
+<div id="mobile-drawer" class="fixed inset-0 z-(--z-drawer) hidden flex-col bg-paper pt-24 md:hidden">
+  <div>
     {
       links.map((link) => (
         <a
@@ -137,23 +95,13 @@ const logoHref = onHome ? "#top" : homePath();
 
   if (toggle && drawer) {
     const setOpen = (open: boolean) => {
-      // Escape and the desktop breakpoint both close unconditionally; without
-      // this they would pull focus back to the toggle when nothing was open.
-      if (open === !drawer.classList.contains("hidden")) return;
-
       toggle.setAttribute("aria-expanded", String(open));
       drawer.classList.toggle("hidden", !open);
       drawer.classList.toggle("flex", open);
       document.body.classList.toggle("overflow-hidden", open);
-
-      // Focus follows the panel, so the close button is the next tab stop in
-      // and the toggle is where focus lands on the way back out.
-      if (open) document.getElementById("menu-close")?.focus();
-      else toggle.focus();
     };
 
-    toggle.addEventListener("click", () => setOpen(true));
-    document.getElementById("menu-close")?.addEventListener("click", () => setOpen(false));
+    toggle.addEventListener("click", () => setOpen(drawer.classList.contains("hidden")));
 
     drawer.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setOpen(false));

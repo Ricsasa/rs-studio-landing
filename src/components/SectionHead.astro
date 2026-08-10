@@ -12,19 +12,15 @@ interface Props {
   title: string;
   /** Optional annotation printed above the title. */
   meta?: string;
-  /** `dark` reverses the rule and annotation out of a pine plate. */
-  tone?: "paper" | "dark";
   id?: string;
   class?: string;
 }
 
-const { title, meta, tone = "paper", id, class: className } = Astro.props;
-
-const dark = tone === "dark";
+const { title, meta, id, class: className } = Astro.props;
 ---
 
-<div class:list={[dark ? "border-reverse-rule" : "border-rule", "border-t pt-6", className]}>
-  {meta && <span class:list={["eyebrow", dark ? "text-lichen" : "text-mute"]}>{meta}</span>}
+<div class:list={["border-t border-rule pt-6", className]}>
+  {meta && <span class="eyebrow text-mute">{meta}</span>}
 
   <h2 id={id} class:list={["max-w-[20ch] text-section display-face text-balance", meta && "mt-4"]}>
     {title}

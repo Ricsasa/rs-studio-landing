@@ -68,11 +68,6 @@
     overflow: hidden;
   }
 
-  /* Skipped intro: hidden before first paint, then removed by the script. */
-  html[data-intro-done="true"] #intro-overlay {
-    display: none;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     #intro-overlay {
       display: none;
@@ -81,36 +76,10 @@
 </style>
 
 <script is:inline>
-  // The intro belongs to a fresh arrival, not to every page view: navigating
-  // back to the home page from a project would otherwise replay it. A session
-  // flag marks "already seen in this tab", and an explicit reload always
-  // overrides it so refreshing the page still shows the animation.
-  (function () {
-    var KEY = "rs-intro-seen";
-    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    var seen = false;
-    var reloaded = false;
-    try {
-      seen = sessionStorage.getItem(KEY) === "1";
-      sessionStorage.setItem(KEY, "1");
-    } catch (e) {
-      // Private mode or blocked storage: fall back to always playing.
-    }
-
-    var nav = performance.getEntriesByType("navigation")[0];
-    reloaded = nav ? nav.type === "reload" : false;
-
-    if (reduced || (seen && !reloaded)) {
-      // Marked before any module script runs, so the hero animation sees the
-      // flag on its first read and starts without waiting for intro:complete.
-      document.documentElement.dataset.introDone = "true";
-      return;
-    }
-
-    // Lock scroll before paint so the intro never scrolls with the page.
+  // Lock scroll before paint so the intro never scrolls with the page.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.documentElement.classList.add("intro-active");
-  })();
+  }
 </script>
 
 <script>

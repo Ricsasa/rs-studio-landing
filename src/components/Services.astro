@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
-import OrganicField from "./OrganicField.astro";
 import ServiceGlyph, { type GlyphName } from "./ServiceGlyph.astro";
 
 type Service = { num: string; title: string; body: string };
@@ -17,17 +16,9 @@ const services = tList<Service>("services.items");
 const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
 ---
 
-{/*
-  The first of the two pine plates. Setting the services on solid colour rather
-  than on a second weight of paper is most of what makes this cut read as bold:
-  the page opens on paper, drops to full-coverage forest here, comes back up,
-  and closes on pine again at the contact plate.
-*/}
-<section id="services" data-parallax-plate class="relative isolate bg-pine px-gutter parallax-plate text-reverse">
-  <OrganicField variant="services" />
-
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
-    <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} tone="dark" />
+<section id="services" class="bg-substrate px-gutter py-section">
+  <div class="mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} />
 
     {/*
       Four text blocks on open ground. The `num` in the content is left
@@ -36,11 +27,11 @@ const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-4">
       {
         services.map((service, index) => (
-          <div class="gsap-reveal-card border-t border-reverse-rule pt-6">
-            <ServiceGlyph name={glyphs[index] ?? "build"} class="h-8 w-8 text-lichen" />
+          <div class="gsap-reveal-card border-t border-rule pt-6">
+            <ServiceGlyph name={glyphs[index] ?? "build"} class="h-8 w-8 text-moss" />
 
             <h3 class="mt-5 text-service display-face">{service.title}</h3>
-            <p class="mt-3 text-lead-sm text-pretty text-reverse-mute">{service.body}</p>
+            <p class="mt-3 text-lead-sm text-pretty text-graphite">{service.body}</p>
           </div>
         ))
       }
