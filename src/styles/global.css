@@ -305,6 +305,38 @@
 }
 
 /*
+ * Tag pill: shared by static post tags and the blog index filter chips.
+ * Square (no border-radius, per the site's flat-edge language), border in
+ * `rule`, fills solid `moss` when it's the active filter.
+ */
+@utility tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-rule);
+  padding: 0.25em 0.75em;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--color-graphite);
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+a.tag:hover {
+  border-color: var(--color-moss);
+  color: var(--color-ink);
+}
+
+a.tag[aria-current="true"] {
+  background: var(--color-moss);
+  border-color: var(--color-moss);
+  color: var(--color-reverse);
+}
+
+/*
  * Bitmap dithering. A 1-bit dot matrix laid over continuous-tone artwork with
  * `multiply`, which degrades the photographic perfection into printed
  * halftone without pre-processing the asset. Fine pitch on purpose: it should

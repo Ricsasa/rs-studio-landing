@@ -52,7 +52,9 @@
     "head": "Notas",
     "description": "Notas sobre arquitectura, decisiones de producto y lo que aprendemos entregando proyectos de principio a fin.",
     "back": "Todo el blog",
-    "readMore": "Leer post"
+    "readMore": "Leer post",
+    "filter-all-label": "Todos",
+    "filter-empty-label": "Ningún post tiene esta etiqueta."
   },
   "carousel": {
     "previous": "Pantalla anterior",

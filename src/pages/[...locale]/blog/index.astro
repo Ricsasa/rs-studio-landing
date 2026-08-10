@@ -7,7 +7,7 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
 import SectionHead from "@/components/SectionHead.astro";
 import OrganicField from "@/components/OrganicField.astro";
-import { blogPostPath } from "@/i18n/routing";
+import { blogPath, blogPostPath } from "@/i18n/routing";
 import { postSlug } from "@/content.config";
 
 export function getStaticPaths() {
@@ -18,6 +18,11 @@ const allPosts = await getCollection("blog", (p) => !p.data.draft);
 const posts = allPosts
   .filter((post) => post.data.lang === i18n.language)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const blogIndexHref = blogPath();
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b) =>
+  a.localeCompare(b),
+);
 ---
 
 <Layout title={i18n.t("blog.title")} description={i18n.t("blog.description")}>
@@ -29,10 +34,43 @@ const posts = allPosts
       <div class="relative mx-auto w-full max-w-content">
         <SectionHead title={i18n.t("blog.title")} meta={i18n.t("blog.head")} />
 
+        {
+          allTags.length > 0 && (
+            <div
+              data-tag-filter
+              data-tag-filter-base={blogIndexHref}
+              class="mt-heading flex flex-wrap gap-1.5"
+            >
+              <a href={blogIndexHref} data-tag="" data-tag-filter-option aria-current="true" class="tag">
+                {i18n.t("blog.filter-all-label")}
+              </a>
+              {allTags.map((tag) => (
+                <a
+                  href={`${blogIndexHref}?tag=${encodeURIComponent(tag)}`}
+                  data-tag={tag}
+                  data-tag-filter-option
+                  aria-current="false"
+                  class="tag"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )
+        }
+
+        <p data-tag-filter-empty hidden class="mt-heading text-lead-sm text-mute">
+          {i18n.t("blog.filter-empty-label")}
+        </p>
+
         <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-3">
           {
             posts.map((post) => (
-              <a href={blogPostPath(postSlug(post.id))} class="gsap-reveal-card group flex flex-col">
+              <div
+                data-tag-filter-item
+                data-tags={post.data.tags.join("|")}
+                class="gsap-reveal-card group relative flex flex-col"
+              >
                 {post.data.cover ? (
                   <div class="relative overflow-hidden bg-substrate">
                     <img
@@ -57,10 +95,25 @@ const posts = allPosts
                 </span>
 
                 <h3 class="mt-2 text-subhead display-face">
-                  <span class="rule-wipe group-hover:rule-wipe-on">{post.data.title}</span>
+                  <a href={blogPostPath(postSlug(post.id))} class="static after:absolute after:inset-0">
+                    <span class="rule-wipe group-hover:rule-wipe-on">{post.data.title}</span>
+                  </a>
                 </h3>
 
                 <p class="mt-2.5 text-lead-sm text-pretty text-graphite">{post.data.description}</p>
+
+                {post.data.tags.length > 0 && (
+                  <div class="relative z-10 mt-3 flex flex-wrap gap-1.5">
+                    {post.data.tags.map((tag) => (
+                      <a
+                        href={`${blogIndexHref}?tag=${encodeURIComponent(tag)}`}
+                        class="tag relative z-10"
+                      >
+                        {tag}
+                      </a>
+                    ))}
+                  </div>
+                )}
 
                 <span class="mt-auto flex items-center gap-2 pt-5 text-lead-sm font-medium">
                   {i18n.t("blog.readMore")}
@@ -71,7 +124,7 @@ const posts = allPosts
                     &#8594;
                   </span>
                 </span>
-              </a>
+              </div>
             ))
           }
         </div>
@@ -80,3 +133,50 @@ const posts = allPosts
   </main>
   <Contact />
 </Layout>
+
+<script>
+  function initTagFilter() {
+    const container = document.querySelector<HTMLElement>("[data-tag-filter]");
+    if (!container) return;
+
+    const base = container.dataset.tagFilterBase ?? "";
+    const chips = Array.from(container.querySelectorAll<HTMLAnchorElement>("[data-tag-filter-option]"));
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-tag-filter-item]"));
+    const empty = document.querySelector<HTMLElement>("[data-tag-filter-empty]");
+
+    function applyTag(tag: string) {
+      let visibleCount = 0;
+
+      for (const item of items) {
+        const tags = (item.dataset.tags ?? "").split("|").filter(Boolean);
+        const visible = tag === "" || tags.includes(tag);
+        item.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+
+      for (const chip of chips) {
+        chip.setAttribute("aria-current", String((chip.dataset.tag ?? "") === tag));
+      }
+
+      if (empty) empty.hidden = visibleCount > 0;
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener("click", (event) => {
+        event.preventDefault();
+        const tag = chip.dataset.tag ?? "";
+
+        const url = new URL(base, window.location.origin);
+        if (tag) url.searchParams.set("tag", tag);
+        history.replaceState(null, "", `${url.pathname}${url.search}`);
+
+        applyTag(tag);
+      });
+    }
+
+    const initialTag = new URLSearchParams(window.location.search).get("tag") ?? "";
+    applyTag(initialTag);
+  }
+
+  initTagFilter();
+</script>

@@ -52,7 +52,9 @@
     "head": "Notes",
     "description": "Notes on architecture, product decisions, and what we learn shipping projects end to end.",
     "back": "All posts",
-    "readMore": "Read post"
+    "readMore": "Read post",
+    "filter-all-label": "All",
+    "filter-empty-label": "No posts have this tag."
   },
   "carousel": {
     "previous": "Previous screen",

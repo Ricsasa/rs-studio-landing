@@ -43,7 +43,13 @@ const dateLabel = new Intl.DateTimeFormat(i18n.language, {
       <span class="label text-mute">{dateLabel}</span>
       {
         tags.length > 0 && (
-          <span class="label text-mute">{tags.join(" · ")}</span>
+          <div class="flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <a href={`${blogPath()}?tag=${encodeURIComponent(tag)}`} class="tag">
+                {tag}
+              </a>
+            ))}
+          </div>
         )
       }
     </div>
