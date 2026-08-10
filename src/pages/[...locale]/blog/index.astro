@@ -69,7 +69,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
               <div
                 data-tag-filter-item
                 data-tags={post.data.tags.join("|")}
-                class="gsap-reveal-card group relative flex flex-col"
+                class="group relative flex flex-col"
               >
                 {post.data.cover ? (
                   <div class="relative overflow-hidden bg-substrate">
@@ -80,7 +80,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
                       decoding="async"
                       class="block aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                     />
-                    <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-15" />
+                    <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-8" />
                   </div>
                 ) : (
                   <div class="flex aspect-16/10 items-center justify-center bg-substrate">

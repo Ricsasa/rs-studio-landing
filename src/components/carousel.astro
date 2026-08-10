@@ -44,8 +44,12 @@ interface Props {
     stageClass?: string;
     /** Appearance of the prev/next buttons. Positioning stays with the component. */
     controlClass?: string;
-    /** Appearance of the position dots. */
+    /** Appearance of the position dots. Ignored when `thumbnails` is true. */
     dotClass?: string;
+    /** Show slide thumbnails instead of position dots. */
+    thumbnails?: boolean;
+    /** Appearance of each thumbnail button's border ring. */
+    thumbnailClass?: string;
     /**
      * Texture printed over each slide. Pass "" to leave the images clean. The
      * zoomed view is deliberately never screened.
@@ -68,7 +72,9 @@ const {
     // Styles the dot span, not the button, so the state variant reads the
     // `aria-current` the script sets on the button around it.
     dotClass = "h-px w-6 bg-rule-strong transition-colors group-hover/dot:bg-ink group-aria-current/dot:bg-moss",
-    screenClass = "halftone-fine opacity-15",
+    thumbnails = false,
+    thumbnailClass = "border-rule-strong group-hover/dot:border-graphite group-aria-current/dot:border-moss",
+    screenClass = "halftone-fine opacity-8",
     zoom = true,
     labels: labelOverrides,
     class: className,
@@ -219,18 +225,38 @@ const controlPosition =
                       The dot itself stays small, but the button around it is a
                       24px target — an 8px hit area is unusable on touch.
                     */}
-                    <div class="-ml-2 flex">
-                        {slides.map((_, position) => (
-                            <button
-                                type="button"
-                                data-carousel-dot
-                                aria-controls={id}
-                                aria-label={goToLabel(position + 1)}
-                                class="group/dot flex items-center justify-center p-2"
-                            >
-                                <span class:list={[dotClass]} aria-hidden="true" />
-                            </button>
-                        ))}
+                    <div class:list={thumbnails ? "flex gap-3" : "-ml-2 flex"}>
+                        {thumbnails
+                            ? slides.map((slide, position) => (
+                                  <button
+                                      type="button"
+                                      data-carousel-dot
+                                      aria-controls={id}
+                                      aria-label={goToLabel(position + 1)}
+                                      class="group/dot h-14 w-20 shrink-0"
+                                  >
+                                      <span class:list={["block h-full w-full overflow-hidden border-2 bg-substrate transition-colors", thumbnailClass]}>
+                                          <img
+                                              src={slide.src}
+                                              alt=""
+                                              loading="lazy"
+                                              decoding="async"
+                                              class="h-full w-full object-cover"
+                                          />
+                                      </span>
+                                  </button>
+                              ))
+                            : slides.map((_, position) => (
+                                  <button
+                                      type="button"
+                                      data-carousel-dot
+                                      aria-controls={id}
+                                      aria-label={goToLabel(position + 1)}
+                                      class="group/dot flex items-center justify-center p-2"
+                                  >
+                                      <span class:list={[dotClass]} aria-hidden="true" />
+                                  </button>
+                              ))}
                     </div>
 
                     <span data-carousel-counter class="label text-mute">

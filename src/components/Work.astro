@@ -24,10 +24,10 @@ const cards = projects.map((project, index) => {
 const total = String(projects.length).padStart(2, "0");
 ---
 
-<section id="work" data-parallax-plate class="relative isolate bg-paper px-gutter parallax-plate">
+<section id="work" class="relative isolate bg-paper px-gutter parallax-plate">
   <OrganicField variant="work" />
 
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
+  <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("work.title")} meta={i18n.t("work.head")} />
 
     {/*
@@ -41,7 +41,7 @@ const total = String(projects.length).padStart(2, "0");
             href={href}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
-            class="gsap-reveal-card group flex flex-col"
+            class="group flex flex-col"
           >
             {thumbnail ? (
               <div class="relative overflow-hidden bg-substrate">
@@ -53,7 +53,7 @@ const total = String(projects.length).padStart(2, "0");
                   class="block aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                 />
                 {/* Screenshots are photographic; the dot matrix prints them onto the page. */}
-                <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-15" />
+                <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-8" />
               </div>
             ) : (
               <div class="flex aspect-16/10 items-center justify-center bg-substrate">

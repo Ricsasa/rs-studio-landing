@@ -9,10 +9,10 @@ type Step = { num: string; title: string; body: string };
 const steps = tList<Step>("process.steps");
 ---
 
-<section id="process" data-parallax-plate class="relative isolate bg-paper px-gutter parallax-plate">
+<section id="process" class="relative isolate bg-paper px-gutter parallax-plate">
   <OrganicField variant="process" />
 
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
+  <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("process.title")} meta={i18n.t("process.meta")} />
 
     <div class="mt-heading grid grid-cols-1 gap-split wide:grid-cols-[0.75fr_1.25fr]">
@@ -27,7 +27,7 @@ const steps = tList<Step>("process.steps");
       <ol class="m-0 list-none p-0">
         {
           steps.map((step) => (
-            <li class="gsap-reveal-card grid grid-cols-[auto_1fr] gap-x-[clamp(20px,3vw,48px)] border-t border-rule py-7 last:border-b last:border-rule">
+            <li class="grid grid-cols-[auto_1fr] gap-x-[clamp(20px,3vw,48px)] border-t border-rule py-7 last:border-b last:border-rule">
               <span class="label pt-1 text-moss">{step.num}</span>
 
               <div>

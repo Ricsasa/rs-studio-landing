@@ -216,20 +216,6 @@
   --hero-lag: 0.3;
 
   /*
-   * The same idea for the plates below the hero, but measured against the
-   * viewport rather than the section: a plate is crossed, not landed on, so
-   * the distance that matters is how far the reader scrolled while it passed,
-   * and that is one viewport plus the plate. A fraction of the section height
-   * would make a tall plate drift much further than a short one for no reason
-   * the reader can see.
-   *
-   * Content is offset by half this either side of centre, so a plate sits
-   * exactly where it was composed at the moment it is centred on screen, and
-   * lags only on the way in and the way out.
-   */
-  --section-lag: 0.3;
-
-  /*
    * One z-index scale, so nothing has to guess a magic number. Anything that
    * stacks reads from here rather than inventing its own 9999.
    */
@@ -252,16 +238,9 @@
  * Numbers in the stats, meta rows and mono labels are compared column to
  * column, so they need to share an advance width.
  */
-/*
- * A plate that drifts. The extra padding is the run-out its own parallax
- * travels into — half the drift at each end — so the content never rides over
- * the boundary into the plate above or below. `--plate-pad` is the rhythm the
- * plate would have had standing still; a section that wants the wider spacing
- * overrides it rather than restating this sum.
- */
 @utility parallax-plate {
   --plate-pad: var(--spacing-section);
-  padding-block: calc(var(--plate-pad) + var(--section-lag) * 50vh);
+  padding-block: var(--plate-pad);
 }
 
 @utility tnum {

@@ -23,10 +23,10 @@ const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
   the page opens on paper, drops to full-coverage forest here, comes back up,
   and closes on pine again at the contact plate.
 */}
-<section id="services" data-parallax-plate class="relative isolate bg-pine px-gutter parallax-plate text-reverse">
+<section id="services" class="relative isolate bg-pine px-gutter parallax-plate text-reverse">
   <OrganicField variant="services" />
 
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
+  <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} tone="dark" />
 
     {/*
@@ -36,7 +36,7 @@ const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-4">
       {
         services.map((service, index) => (
-          <div class="gsap-reveal-card border-t border-reverse-rule pt-6">
+          <div class="border-t border-reverse-rule pt-6">
             <ServiceGlyph name={glyphs[index] ?? "build"} class="h-8 w-8 text-lichen" />
 
             <h3 class="mt-5 text-service display-face">{service.title}</h3>

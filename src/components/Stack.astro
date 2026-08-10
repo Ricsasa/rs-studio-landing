@@ -9,10 +9,10 @@ type StackGroup = { label: string; items: string[] };
 const groups = tList<StackGroup>("stack.groups");
 ---
 
-<section id="stack" data-parallax-plate class="relative isolate bg-substrate px-gutter parallax-plate">
+<section id="stack" class="relative isolate bg-substrate px-gutter parallax-plate">
   <OrganicField variant="stack" />
 
-  <div data-parallax-content class="relative mx-auto w-full max-w-content">
+  <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("stack.title")} meta={i18n.t("stack.caption")} />
 
     {/*
@@ -22,7 +22,7 @@ const groups = tList<StackGroup>("stack.groups");
     <div class="mt-heading grid grid-cols-2 gap-x-grid gap-y-flow md:grid-cols-4">
       {
         groups.map((group) => (
-          <div class="gsap-reveal-card border-t border-rule pt-6">
+          <div class="border-t border-rule pt-6">
             <h3 class="eyebrow text-moss">{group.label}</h3>
 
             <ul class="m-0 mt-4 list-none space-y-2 p-0">

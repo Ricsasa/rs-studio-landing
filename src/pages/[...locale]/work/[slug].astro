@@ -47,8 +47,8 @@ const next = projects[projectSlugs.indexOf(nextSlug)]!;
   <SiteHeader />
   <main id="main">
     <ProjectHeader project={project} />
-    <ProjectOverview project={project} />
     <ProjectGallery project={project} images={projectScreenshots[index]!} />
+    <ProjectOverview project={project} />
     <ProjectNext next={next} nextSlug={nextSlug} />
   </main>
   <Contact />
