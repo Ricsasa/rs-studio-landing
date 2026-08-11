@@ -18,7 +18,7 @@ export default defineConfig({
   reactI18next({
     defaultLocale: "es-MX",
     locales: ["en-US", "es-MX"],
-    namespaces: ['common', 'projects']
+    namespaces: ['common', 'projects', 'services']
   }),
 
   mdx(),

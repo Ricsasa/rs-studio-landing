@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Contact from "@/components/Contact.astro";
+import ServicePage from "@/components/services/ServicePage.astro";
+import { buildStaticPaths } from "astro-react-i18next/utils";
+import i18n from "i18next";
+
+export function getStaticPaths() {
+  return buildStaticPaths();
+}
+---
+
+<Layout
+  title={i18n.t("digitalMarketing.meta.title", { ns: "services" })}
+  description={i18n.t("digitalMarketing.meta.description", { ns: "services" })}
+>
+  <SiteHeader />
+  <main id="main">
+    <ServicePage serviceKey="digitalMarketing" />
+  </main>
+  <Contact />
+</Layout>

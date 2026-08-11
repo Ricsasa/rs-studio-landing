@@ -1,0 +1,243 @@
+{
+  "landingPages": {
+    "title": "Landing pages que convierten visitantes en clientes",
+    "intro": "¿Tu negocio aún depende de las recomendaciones o tus redes sociales? Una landing page bien diseñada convierte visitantes en clientes. La construimos para generar contactos, citas, cotizaciones o ventas, con una experiencia rápida y enfocada en un solo objetivo.",
+    "problem": "Muchos negocios pierden clientes porque su página no está diseñada para vender: es lenta, confusa o no deja claro qué hacer a continuación. El visitante llega, no encuentra una razón clara para actuar, y se va sin dejar sus datos ni completar una compra.",
+    "whyItMatters": "Cada visitante que llega a tu sitio representa una oportunidad de venta. Sin una página enfocada en conversión, esa inversión en tráfico —ya sea de publicidad, redes sociales o buscadores— se desperdicia. Una landing page optimizada convierte ese tráfico en clientes reales y en crecimiento medible para tu negocio.",
+    "benefits": [
+      "Mayor tasa de conversión",
+      "Mejor rendimiento de tus campañas",
+      "Optimizada para dispositivos móviles",
+      "Carga rápida",
+      "Seguimiento de conversiones"
+    ],
+    "deliverables": [
+      "Diseño responsivo",
+      "Integración con WhatsApp",
+      "Integración con Analytics",
+      "SEO básico",
+      "Optimización de velocidad"
+    ],
+    "process": [
+      {
+        "title": "Descubrimiento",
+        "body": "Entendemos tu negocio, tu oferta y el objetivo de la página: contactos, citas, cotizaciones o ventas."
+      },
+      {
+        "title": "Estrategia",
+        "body": "Definimos la estructura, el mensaje y el llamado a la acción que va a convertir mejor para tu audiencia."
+      },
+      {
+        "title": "Implementación",
+        "body": "Diseñamos y desarrollamos la landing page, con formularios, WhatsApp y seguimiento de conversiones ya integrados."
+      },
+      {
+        "title": "Optimización",
+        "body": "Medimos resultados y ajustamos textos, diseño y velocidad para mejorar la conversión con el tiempo."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué es una landing page?",
+        "answer": "Es una página enfocada en un solo objetivo: que el visitante te contacte, agende una cita, pida una cotización o compre. A diferencia de un sitio completo, no distrae con más opciones."
+      },
+      {
+        "question": "¿Cuánto tiempo toma?",
+        "answer": "Una landing page suele estar lista entre 1 y 2 semanas, dependiendo del contenido y los ajustes que necesites."
+      },
+      {
+        "question": "¿Se puede conectar con Meta Ads o Google Ads?",
+        "answer": "Sí. Integramos seguimiento de conversiones y píxeles para que puedas medir el resultado de tus campañas directamente en la landing page."
+      }
+    ],
+    "seoKeywords": ["landing pages", "landing page para negocios", "diseño de landing pages", "generación de leads"],
+    "meta": {
+      "title": "Landing pages que convierten — RS Studio",
+      "description": "Diseñamos landing pages enfocadas en conversión para generar contactos, cotizaciones y ventas. Optimizadas, rápidas y listas para tus campañas."
+    },
+    "whatsappMessage": "¡Hola! Me interesa una landing page para mi negocio."
+  },
+  "wordpressEcommerce": {
+    "title": "Tiendas online con WordPress y WooCommerce",
+    "intro": "Vende tus productos en línea con una tienda escalable y fácil de administrar. Construimos tu e-commerce sobre WordPress y WooCommerce, listo para crecer con tu negocio.",
+    "problem": "Vender solo en persona o por redes sociales limita tu alcance y complica el control de inventario, pagos y envíos. Sin una tienda propia, dependes de terceros y pierdes ventas fuera de tu horario de atención.",
+    "whyItMatters": "Una tienda en línea vende 24 horas al día, los 7 días de la semana, sin depender de que alguien esté disponible para atender. Te da control total sobre tu catálogo, tus precios y tus datos de clientes, y es la base para crecer sin límite de local físico.",
+    "benefits": [
+      "Ventas las 24 horas",
+      "Control de inventario",
+      "Pagos en línea",
+      "Gestión de envíos",
+      "Fácil de administrar"
+    ],
+    "deliverables": [
+      "Configuración de WooCommerce",
+      "Catálogo de productos",
+      "Pasarelas de pago",
+      "Configuración de envíos",
+      "Cupones de descuento",
+      "Analítica",
+      "SEO básico"
+    ],
+    "process": [
+      {
+        "title": "Descubrimiento",
+        "body": "Revisamos tu catálogo, tus métodos de pago y envío, y cómo operas tu negocio hoy."
+      },
+      {
+        "title": "Estrategia",
+        "body": "Definimos la estructura de la tienda, categorías de producto y el flujo de compra más simple para tus clientes."
+      },
+      {
+        "title": "Implementación",
+        "body": "Configuramos WooCommerce, cargamos tu catálogo y conectamos pagos, envíos y cupones."
+      },
+      {
+        "title": "Optimización",
+        "body": "Ajustamos velocidad, SEO y el proceso de compra según el comportamiento real de tus clientes."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Por qué WooCommerce?",
+        "answer": "Es la plataforma de e-commerce más usada en WordPress: flexible, con miles de integraciones y sin costos de licencia mensual."
+      },
+      {
+        "question": "¿Puedo administrar la tienda yo mismo?",
+        "answer": "Sí. Te entregamos un panel simple para agregar productos, ver pedidos y gestionar tu inventario sin ayuda técnica."
+      },
+      {
+        "question": "¿Es escalable?",
+        "answer": "Sí. WooCommerce soporta desde catálogos pequeños hasta miles de productos y pedidos."
+      }
+    ],
+    "seoKeywords": ["tienda en línea WordPress", "WooCommerce México", "ecommerce WordPress", "desarrollo de tiendas online"],
+    "meta": {
+      "title": "Tiendas online con WordPress — RS Studio",
+      "description": "Desarrollamos e-commerce con WooCommerce: catálogo, pagos, envíos y cupones, listo para vender en línea de forma segura."
+    },
+    "whatsappMessage": "¡Hola! Me interesa una tienda en línea para mi negocio."
+  },
+  "businessManagementTool": {
+    "title": "Herramienta de control empresarial",
+    "intro": "Una herramienta hecha a tu medida para llevar el control de ventas, compras, clientes y citas desde un solo lugar. Sin hojas de cálculo sueltas ni procesos manuales que se pierden.",
+    "problem": "Muchos negocios controlan ventas, compras, clientes y citas en hojas de cálculo, cuadernos o varias aplicaciones sueltas. La información se dispersa, se duplica el trabajo y es fácil perder de vista pagos pendientes, seguimientos o citas agendadas.",
+    "whyItMatters": "Centralizar esta información te ahorra tiempo, reduce errores y te da una vista clara de cómo va tu negocio en cualquier momento. Con procesos más ordenados, tu equipo trabaja mejor y tú tomas decisiones con información real, no con suposiciones.",
+    "benefits": [
+      "Automatización de procesos",
+      "Mejor gestión de clientes",
+      "Menos errores manuales",
+      "Mejores reportes",
+      "Un negocio que puede crecer"
+    ],
+    "deliverables": [
+      "Ventas",
+      "Compras",
+      "Reportes",
+      "Clientes",
+      "Expedientes",
+      "Seguimientos",
+      "Agenda de citas"
+    ],
+    "process": [
+      {
+        "title": "Descubrimiento",
+        "body": "Entendemos cómo operas hoy: qué controlas en hojas de cálculo, cuadernos o varias aplicaciones distintas."
+      },
+      {
+        "title": "Estrategia",
+        "body": "Definimos qué módulos necesitas —ventas, compras, clientes, citas— y cómo se conectan entre sí."
+      },
+      {
+        "title": "Implementación",
+        "body": "Construimos tu herramienta a la medida, con los módulos definidos y tus datos migrados."
+      },
+      {
+        "title": "Optimización",
+        "body": "Ajustamos reportes y procesos conforme tu equipo empieza a usarla en el día a día."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puede reemplazar mis hojas de cálculo?",
+        "answer": "Sí. Si hoy llevas tu negocio en hojas de cálculo, cuadernos o varias aplicaciones sueltas, una herramienta a la medida centraliza todo en un solo lugar, te ahorra tiempo y evita errores."
+      },
+      {
+        "question": "¿Cuánto tiempo toma construirla?",
+        "answer": "Depende de los módulos que necesites. Un discovery inicial nos permite darte un estimado claro de tiempo y alcance."
+      },
+      {
+        "question": "¿Se puede integrar con WhatsApp?",
+        "answer": "Sí. Podemos conectar recordatorios de citas o seguimientos directamente por WhatsApp."
+      }
+    ],
+    "seoKeywords": ["CRM personalizado", "ERP para empresas", "sistema de citas", "automatización de procesos", "herramienta de control empresarial", "software para administrar mi negocio"],
+    "meta": {
+      "title": "Herramienta de control empresarial — RS Studio",
+      "description": "Centraliza ventas, compras, clientes y citas en una sola herramienta hecha a la medida de tu negocio."
+    },
+    "whatsappMessage": "¡Hola! Me interesa una herramienta para controlar mi negocio."
+  },
+  "digitalMarketing": {
+    "title": "Marketing digital y administración de campañas",
+    "intro": "Generamos oportunidades de negocio medibles a través de Meta Ads y Google Ads. Administramos tus campañas de principio a fin, con foco en resultados, no solo en alcance.",
+    "problem": "Invertir en publicidad sin una estrategia clara desperdicia presupuesto: campañas mal configuradas, audiencias equivocadas o sin seguimiento de resultados. El negocio gasta en anuncios, pero no sabe cuántos clientes reales generó esa inversión.",
+    "whyItMatters": "La publicidad digital bien administrada es una de las formas más rápidas de conseguir clientes nuevos y medir exactamente qué retorno te da cada peso invertido. Sin administración profesional, es fácil gastar de más y obtener poco a cambio.",
+    "benefits": [
+      "Más clientes potenciales calificados",
+      "Mejor retorno de inversión",
+      "Optimización continua de campañas",
+      "Seguimiento de conversiones",
+      "Reportes claros"
+    ],
+    "deliverables": [
+      "Estrategia de campaña",
+      "Investigación de audiencia",
+      "Creación de anuncios",
+      "Optimización de presupuesto",
+      "Seguimiento de píxel y conversiones",
+      "Reportes mensuales"
+    ],
+    "process": [
+      {
+        "title": "Descubrimiento",
+        "body": "Entendemos tu negocio, tu producto y quién es tu cliente ideal."
+      },
+      {
+        "title": "Estrategia",
+        "body": "Definimos plataformas, audiencias y presupuesto según tus objetivos."
+      },
+      {
+        "title": "Implementación",
+        "body": "Creamos y lanzamos las campañas, con seguimiento de conversiones ya configurado."
+      },
+      {
+        "title": "Optimización",
+        "body": "Ajustamos audiencias, anuncios y presupuesto según los resultados reales cada mes."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Meta Ads o Google Ads?",
+        "answer": "Depende de tu negocio y tu cliente ideal. Te recomendamos la plataforma —o combinación— que mejor se ajuste a tus objetivos."
+      },
+      {
+        "question": "¿Qué presupuesto necesito?",
+        "answer": "Varía según tu industria y objetivos. En el discovery inicial te damos una recomendación clara antes de empezar."
+      },
+      {
+        "question": "¿Cómo se miden los resultados?",
+        "answer": "Con seguimiento de conversiones y píxeles, medimos leads, ventas o citas generadas por cada campaña."
+      },
+      {
+        "question": "¿Qué tan rápido pueden iniciar las campañas?",
+        "answer": "Una vez definida la estrategia, las campañas suelen estar activas en menos de una semana."
+      }
+    ],
+    "seoKeywords": ["Meta Ads", "Google Ads", "administración de campañas", "marketing digital para negocios"],
+    "meta": {
+      "title": "Marketing digital — RS Studio",
+      "description": "Administramos campañas en Meta Ads y Google Ads para generar clientes potenciales y mejorar tu retorno de inversión."
+    },
+    "whatsappMessage": "¡Hola! Me interesa administrar campañas de publicidad para mi negocio."
+  }
+}

@@ -1,6 +1,7 @@
 ---
 /**
- * The four things the studio sells, drawn rather than named twice.
+ * The four services the studio sells, drawn rather than named twice, plus a
+ * shared checkmark for benefit cards.
  *
  * Hand-drawn on a 32-unit grid instead of pulled from an icon set: every line
  * in this system is a 1px hairline on a square corner, and the usual libraries
@@ -8,7 +9,7 @@
  * Stroke stays at 1 and scales with the glyph, so it matches the rules around
  * it at any size.
  */
-export type GlyphName = "build" | "scale" | "team" | "audit";
+export type GlyphName = "landingPages" | "ecommerce" | "businessTool" | "marketing" | "check";
 
 interface Props {
   name: GlyphName;
@@ -29,9 +30,9 @@ const { name, class: className } = Astro.props;
   focusable="false"
   class:list={["block", className]}
 >
-  {/* Product engineering: a desktop screen and a phone, the two things we ship. */}
+  {/* Landing pages: a desktop screen and a phone, the two places they convert. */}
   {
-    name === "build" && (
+    name === "landingPages" && (
       <>
         <rect x="1.5" y="4.5" width="20" height="14" />
         <path d="M8.5 22.5h6M11.5 18.5v4" />
@@ -41,9 +42,29 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/* Scaling and performance: a load curve climbing over a baseline. */}
+  {/* WordPress ecommerce: a bag, the everyday shape of buying something. */}
   {
-    name === "scale" && (
+    name === "ecommerce" && (
+      <>
+        <rect x="4.5" y="11.5" width="23" height="16" />
+        <path d="M11.5 11.5V8L16 4.5 20.5 8v3.5" />
+      </>
+    )
+  }
+
+  {/* Business management tool: a ledger grid — sales, purchases, records, one table. */}
+  {
+    name === "businessTool" && (
+      <>
+        <rect x="3.5" y="3.5" width="25" height="25" />
+        <path d="M3.5 11.5h25M3.5 19.5h25M12.5 3.5v25M20.5 3.5v25" />
+      </>
+    )
+  }
+
+  {/* Digital marketing: a load curve climbing over a baseline. */}
+  {
+    name === "marketing" && (
       <>
         <path d="M2.5 27.5h27" />
         <path d="M2.5 27.5V2.5" />
@@ -53,33 +74,8 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/*
-    Embedded team: three people, the middle one filled — that one is us,
-    sitting inside your team rather than beside it.
-  */}
+  {/* Shared benefit-card checkmark. */}
   {
-    name === "team" && (
-      <>
-        <rect x="3.5" y="5.5" width="4" height="4" />
-        <rect x="1.5" y="12.5" width="8" height="7" />
-
-        <rect x="14.5" y="5.5" width="4" height="4" fill="currentColor" />
-        <rect x="12.5" y="12.5" width="8" height="7" fill="currentColor" />
-
-        <rect x="25.5" y="5.5" width="4" height="4" />
-        <rect x="23.5" y="12.5" width="8" height="7" />
-      </>
-    )
-  }
-
-  {/* Technical audit: a sheet with findings, the top one flagged. */}
-  {
-    name === "audit" && (
-      <>
-        <rect x="5.5" y="2.5" width="21" height="27" />
-        <path d="M9.5 9.5h6M9.5 15.5h13M9.5 21.5h13" />
-        <path d="M19.5 7.5h3v4h-3z" />
-      </>
-    )
+    name === "check" && <path d="M4.5 17.5l7 7 16-16" />
   }
 </svg>

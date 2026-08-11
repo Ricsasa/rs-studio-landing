@@ -1,0 +1,31 @@
+---
+import i18n from "i18next";
+import SectionHead from "@/components/SectionHead.astro";
+import ServiceGlyph from "@/components/ServiceGlyph.astro";
+import OrganicField from "@/components/OrganicField.astro";
+
+interface Props {
+  benefits: string[];
+}
+
+const { benefits } = Astro.props;
+---
+
+<section class="relative isolate bg-pine px-gutter py-section text-reverse">
+  <OrganicField variant="services" />
+
+  <div class="relative mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("servicePage.benefitsLabel")} tone="dark" />
+
+    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-4">
+      {
+        benefits.map((benefit) => (
+          <div class="flex items-start gap-3 border-t border-reverse-rule pt-6 md:block md:gap-0">
+            <ServiceGlyph name="check" class="h-6 w-6 shrink-0 text-lichen" />
+            <p class="text-lead-sm text-pretty text-reverse-mute md:mt-4">{benefit}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

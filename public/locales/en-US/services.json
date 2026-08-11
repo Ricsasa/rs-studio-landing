@@ -1,0 +1,243 @@
+{
+  "landingPages": {
+    "title": "Landing pages that convert visitors into customers",
+    "intro": "Does your business still depend on word of mouth or your social media? A well-built landing page turns visitors into customers. We build it to generate leads, appointments, quotes or sales, with a fast experience focused on a single goal.",
+    "problem": "Many businesses lose customers because their page isn't built to sell: it's slow, confusing, or doesn't make clear what to do next. Visitors arrive, find no clear reason to act, and leave without leaving their details or completing a purchase.",
+    "whyItMatters": "Every visitor who reaches your site is a sales opportunity. Without a conversion-focused page, that traffic investment — from ads, social media or search — goes to waste. An optimized landing page turns that traffic into real customers and measurable growth for your business.",
+    "benefits": [
+      "Higher conversion rates",
+      "Better campaign performance",
+      "Mobile optimization",
+      "Fast loading speed",
+      "Conversion tracking"
+    ],
+    "deliverables": [
+      "Responsive design",
+      "WhatsApp integration",
+      "Analytics integration",
+      "Basic SEO",
+      "Speed optimization"
+    ],
+    "process": [
+      {
+        "title": "Discovery",
+        "body": "We learn about your business, your offer, and the page's goal: leads, appointments, quotes or sales."
+      },
+      {
+        "title": "Strategy",
+        "body": "We define the structure, message and call to action that will convert best for your audience."
+      },
+      {
+        "title": "Implementation",
+        "body": "We design and build the landing page, with forms, WhatsApp and conversion tracking already integrated."
+      },
+      {
+        "title": "Optimization",
+        "body": "We measure results and adjust copy, design and speed to improve conversion over time."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is a landing page?",
+        "answer": "It's a page focused on one goal: getting the visitor to contact you, book an appointment, request a quote or buy. Unlike a full site, it doesn't distract with more options."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "A landing page is usually ready in 1 to 2 weeks, depending on the content and adjustments you need."
+      },
+      {
+        "question": "Can it connect with Meta Ads or Google Ads?",
+        "answer": "Yes. We integrate conversion tracking and pixels so you can measure your campaign results directly on the landing page."
+      }
+    ],
+    "seoKeywords": ["landing pages", "lead generation landing pages", "conversion-focused landing pages", "landing page design"],
+    "meta": {
+      "title": "Landing pages that convert — RS Studio",
+      "description": "We design conversion-focused landing pages to generate leads, quotes and sales. Optimized, fast, and ready for your campaigns."
+    },
+    "whatsappMessage": "Hi! I'm interested in a landing page for my business."
+  },
+  "wordpressEcommerce": {
+    "title": "Online stores with WordPress and WooCommerce",
+    "intro": "Sell your products online with a scalable, easy-to-manage store. We build your ecommerce on WordPress and WooCommerce, ready to grow with your business.",
+    "problem": "Selling only in person or on social media limits your reach and makes inventory, payments and shipping harder to control. Without your own store, you depend on third parties and lose sales outside your business hours.",
+    "whyItMatters": "An online store sells 24/7, without depending on someone being available to help. It gives you full control over your catalog, prices and customer data, and it's the foundation to grow beyond a physical location.",
+    "benefits": [
+      "24/7 sales",
+      "Inventory control",
+      "Online payments",
+      "Shipping management",
+      "Easy administration"
+    ],
+    "deliverables": [
+      "WooCommerce setup",
+      "Product catalog",
+      "Payment gateways",
+      "Shipping configuration",
+      "Coupons",
+      "Analytics",
+      "Basic SEO"
+    ],
+    "process": [
+      {
+        "title": "Discovery",
+        "body": "We review your catalog, payment and shipping methods, and how you run your business today."
+      },
+      {
+        "title": "Strategy",
+        "body": "We define the store structure, product categories and the simplest purchase flow for your customers."
+      },
+      {
+        "title": "Implementation",
+        "body": "We set up WooCommerce, load your catalog, and connect payments, shipping and coupons."
+      },
+      {
+        "title": "Optimization",
+        "body": "We tune speed, SEO and the checkout flow based on your customers' actual behavior."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Why WooCommerce?",
+        "answer": "It's the most widely used ecommerce platform on WordPress: flexible, with thousands of integrations and no monthly licensing cost."
+      },
+      {
+        "question": "Can I manage the store myself?",
+        "answer": "Yes. We hand you a simple dashboard to add products, view orders and manage inventory with no technical help."
+      },
+      {
+        "question": "Is it scalable?",
+        "answer": "Yes. WooCommerce supports everything from small catalogs to thousands of products and orders."
+      }
+    ],
+    "seoKeywords": ["WordPress ecommerce", "WooCommerce development", "online store development", "ecommerce website"],
+    "meta": {
+      "title": "Online stores with WordPress — RS Studio",
+      "description": "We build WooCommerce ecommerce: catalog, payments, shipping and coupons, ready to sell online securely."
+    },
+    "whatsappMessage": "Hi! I'm interested in an online store for my business."
+  },
+  "businessManagementTool": {
+    "title": "Business management tool",
+    "intro": "A tool built to your business, to keep sales, purchases, customers and appointments in one place. No scattered spreadsheets, no manual processes that get lost.",
+    "problem": "Many businesses track sales, purchases, customers and appointments in spreadsheets, notebooks or several separate apps. Information gets scattered, work gets duplicated, and it's easy to lose track of pending payments, follow-ups or booked appointments.",
+    "whyItMatters": "Centralizing this information saves you time, reduces errors, and gives you a clear view of how your business is doing at any moment. With more organized processes, your team works better and you make decisions based on real information, not guesses.",
+    "benefits": [
+      "Process automation",
+      "Better customer management",
+      "Fewer manual errors",
+      "Better reporting",
+      "A business that can scale"
+    ],
+    "deliverables": [
+      "Sales",
+      "Purchases",
+      "Reports",
+      "Customers",
+      "Records",
+      "Follow-ups",
+      "Appointment scheduling"
+    ],
+    "process": [
+      {
+        "title": "Discovery",
+        "body": "We learn how you operate today: what you track in spreadsheets, notebooks or several separate apps."
+      },
+      {
+        "title": "Strategy",
+        "body": "We define which modules you need — sales, purchases, customers, appointments — and how they connect."
+      },
+      {
+        "title": "Implementation",
+        "body": "We build your custom tool, with the defined modules and your data migrated."
+      },
+      {
+        "title": "Optimization",
+        "body": "We tune reports and processes as your team starts using it day to day."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can it replace my spreadsheets?",
+        "answer": "Yes. If you currently run your business on spreadsheets, notebooks or several separate apps, a custom tool centralizes everything in one place, saves you time and avoids errors."
+      },
+      {
+        "question": "How long does it take to build?",
+        "answer": "It depends on the modules you need. An initial discovery gives you a clear estimate of time and scope."
+      },
+      {
+        "question": "Can it integrate with WhatsApp?",
+        "answer": "Yes. We can connect appointment reminders or follow-ups directly through WhatsApp."
+      }
+    ],
+    "seoKeywords": ["custom CRM", "ERP software", "appointment booking system", "business automation", "business management tool", "software to manage my business"],
+    "meta": {
+      "title": "Business management tool — RS Studio",
+      "description": "Centralize sales, purchases, customers and appointments in one custom tool built for your business."
+    },
+    "whatsappMessage": "Hi! I'm interested in a tool to manage my business."
+  },
+  "digitalMarketing": {
+    "title": "Digital marketing and campaign management",
+    "intro": "We generate measurable business opportunities through Meta Ads and Google Ads. We manage your campaigns end to end, focused on results, not just reach.",
+    "problem": "Spending on ads without a clear strategy wastes budget: poorly set up campaigns, the wrong audiences, or no tracking of results. The business spends on ads but doesn't know how many real customers that investment produced.",
+    "whyItMatters": "Well-managed digital advertising is one of the fastest ways to get new customers and measure exactly what return you get from every dollar spent. Without professional management, it's easy to overspend and get little in return.",
+    "benefits": [
+      "More qualified leads",
+      "Better ROI",
+      "Ongoing campaign optimization",
+      "Conversion tracking",
+      "Clear reporting"
+    ],
+    "deliverables": [
+      "Campaign strategy",
+      "Audience research",
+      "Ad creation",
+      "Budget optimization",
+      "Pixel and conversion tracking",
+      "Monthly reports"
+    ],
+    "process": [
+      {
+        "title": "Discovery",
+        "body": "We learn about your business, your product, and who your ideal customer is."
+      },
+      {
+        "title": "Strategy",
+        "body": "We define platforms, audiences and budget based on your goals."
+      },
+      {
+        "title": "Implementation",
+        "body": "We create and launch the campaigns, with conversion tracking already set up."
+      },
+      {
+        "title": "Optimization",
+        "body": "We adjust audiences, ads and budget based on real results every month."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Meta Ads or Google Ads?",
+        "answer": "It depends on your business and your ideal customer. We recommend the platform — or combination — that best fits your goals."
+      },
+      {
+        "question": "What budget do I need?",
+        "answer": "It varies by industry and goals. In the initial discovery we give you a clear recommendation before starting."
+      },
+      {
+        "question": "How are results measured?",
+        "answer": "With conversion tracking and pixels, we measure leads, sales or appointments generated by each campaign."
+      },
+      {
+        "question": "How quickly can campaigns start?",
+        "answer": "Once the strategy is defined, campaigns are usually live in under a week."
+      }
+    ],
+    "seoKeywords": ["Meta Ads management", "Google Ads management", "digital marketing services", "PPC campaign management"],
+    "meta": {
+      "title": "Digital marketing — RS Studio",
+      "description": "We manage Meta Ads and Google Ads campaigns to generate leads and improve your return on investment."
+    },
+    "whatsappMessage": "Hi! I'm interested in managing ad campaigns for my business."
+  }
+}

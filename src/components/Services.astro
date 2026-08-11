@@ -4,46 +4,94 @@ import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
 import OrganicField from "./OrganicField.astro";
 import ServiceGlyph, { type GlyphName } from "./ServiceGlyph.astro";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { servicePath, type ServiceKey } from "@/i18n/routing";
+import { whatsappHref } from "@/lib/whatsapp";
 
-type Service = { num: string; title: string; body: string };
+type Service = { key: ServiceKey; title: string; body: string };
 
 const services = tList<Service>("services.items");
 
-/*
- * Positional, like every other list that pairs with the catalogue: index N in
- * services.items is index N here in both locales. Falls back to the build
- * glyph, so adding a fifth service renders rather than throwing.
- */
-const glyphs: GlyphName[] = ["build", "scale", "team", "audit"];
+const GLYPHS: Record<ServiceKey, GlyphName> = {
+  landingPages: "landingPages",
+  wordpressEcommerce: "ecommerce",
+  businessManagementTool: "businessTool",
+  digitalMarketing: "marketing",
+};
+
+const email = i18n.t("contact.email");
 ---
 
 {/*
-  The first of the two pine plates. Setting the services on solid colour rather
-  than on a second weight of paper is most of what makes this cut read as bold:
-  the page opens on paper, drops to full-coverage forest here, comes back up,
-  and closes on pine again at the contact plate.
+  Was a full pine plate; moved to substrate after the copy read as hard to
+  scan reversed out of dark green on a section that is most of the site's
+  lead generation. Same weight-break from paper as before, just legible.
 */}
-<section id="services" class="relative isolate bg-pine px-gutter parallax-plate text-reverse">
-  <OrganicField variant="services" />
+<section id="services" class="relative isolate bg-substrate px-gutter parallax-plate">
+  <OrganicField variant="caseStudy" />
 
   <div class="relative mx-auto w-full max-w-content">
-    <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} tone="dark" />
+    <SectionHead title={i18n.t("services.title")} meta={i18n.t("services.meta")} />
 
-    {/*
-      Four text blocks on open ground. The `num` in the content is left
-      unprinted: with only four of them, counting them is not information.
-    */}
+    <p class="mt-heading max-w-prose text-lead text-pretty text-graphite">
+      {i18n.t("services.intro")}
+    </p>
+
+    {/* Each card is a single link — the whole surface is the click target. */}
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-4">
       {
-        services.map((service, index) => (
-          <div class="border-t border-reverse-rule pt-6">
-            <ServiceGlyph name={glyphs[index] ?? "build"} class="h-8 w-8 text-lichen" />
+        services.map((service) => (
+          <a
+            href={servicePath(service.key)}
+            class="group block border-t border-rule pt-6 transition-colors duration-200 hover:border-moss"
+          >
+            <ServiceGlyph name={GLYPHS[service.key]} class="h-8 w-8 text-moss" />
 
             <h3 class="mt-5 text-service display-face">{service.title}</h3>
-            <p class="mt-3 text-lead-sm text-pretty text-reverse-mute">{service.body}</p>
-          </div>
+            <p class="mt-3 text-lead-sm text-pretty text-graphite">{service.body}</p>
+
+            <span class="mt-4 inline-flex items-center gap-2 text-lead-sm font-medium text-moss">
+              {i18n.t("services.readMore")}
+              <span
+                aria-hidden="true"
+                class="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                &#8594;
+              </span>
+            </span>
+          </a>
         ))
       }
+    </div>
+
+    {/* The homepage-only "which one do I need?" prompt, closing this plate. */}
+    <div class="mt-cta-lg border-t border-rule pt-heading">
+      <h3 class="max-w-[20ch] text-section display-face text-balance">
+        {i18n.t("services.cta.title")}
+      </h3>
+
+      <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">
+        {i18n.t("services.cta.intro")}
+      </p>
+
+      <div class="mt-cta flex flex-wrap items-center gap-3">
+        <a
+          href={`mailto:${email}`}
+          class="inline-flex min-h-13 items-center bg-moss px-6 py-4 text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
+        >
+          <span class="text-lead-sm font-medium">{i18n.t("cta.requestProposal")}</span>
+        </a>
+
+        <a
+          href={whatsappHref(i18n.t("services.cta.whatsappMessage"))}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-13 items-center gap-2.5 border border-rule px-6 py-4 transition-colors duration-200 hover:border-moss hover:text-moss"
+        >
+          <WhatsAppIcon class="h-4.5 w-4.5" />
+          <span class="text-lead-sm font-medium">{i18n.t("cta.scheduleCall")}</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>

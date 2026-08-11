@@ -18,6 +18,19 @@ export function blogPostPath(slug: string): string {
   return getLocalizedPathname(`/blog/${slug}`, i18n.language);
 }
 
+export type ServiceKey = "landingPages" | "wordpressEcommerce" | "businessManagementTool" | "digitalMarketing";
+
+export const SERVICE_SLUGS: Record<ServiceKey, string> = {
+  landingPages: "landing-pages",
+  wordpressEcommerce: "wordpress-ecommerce",
+  businessManagementTool: "business-management-tool",
+  digitalMarketing: "digital-marketing",
+};
+
+export function servicePath(key: ServiceKey): string {
+  return getLocalizedPathname(`/${SERVICE_SLUGS[key]}`, i18n.language);
+}
+
 function normalize(pathname: string): string {
   return pathname.replace(/\/+$/, "") || "/";
 }

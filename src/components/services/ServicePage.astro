@@ -1,0 +1,51 @@
+---
+import i18n from "i18next";
+import ServiceHero from "./ServiceHero.astro";
+import ServiceProblem from "./ServiceProblem.astro";
+import ServiceBenefits from "./ServiceBenefits.astro";
+import ServiceDeliverables from "./ServiceDeliverables.astro";
+import ServiceProcess from "./ServiceProcess.astro";
+import ServiceFaq from "./ServiceFaq.astro";
+import ServiceFinalCta from "./ServiceFinalCta.astro";
+import ServiceSchema from "./ServiceSchema.astro";
+import type { GlyphName } from "@/components/ServiceGlyph.astro";
+import { servicePath, type ServiceKey } from "@/i18n/routing";
+
+interface Props {
+  serviceKey: ServiceKey;
+}
+
+type Service = {
+  title: string;
+  intro: string;
+  problem: string;
+  whyItMatters: string;
+  benefits: string[];
+  deliverables: string[];
+  process: { title: string; body: string }[];
+  faq: { question: string; answer: string }[];
+  meta: { title: string; description: string };
+  whatsappMessage: string;
+};
+
+const GLYPHS: Record<ServiceKey, GlyphName> = {
+  landingPages: "landingPages",
+  wordpressEcommerce: "ecommerce",
+  businessManagementTool: "businessTool",
+  digitalMarketing: "marketing",
+};
+
+const { serviceKey } = Astro.props;
+const service = i18n.t(serviceKey, { ns: "services", returnObjects: true }) as unknown as Service;
+const path = servicePath(serviceKey);
+const url = Astro.site ? new URL(path, Astro.site).href : path;
+---
+
+<ServiceHero title={service.title} intro={service.intro} glyph={GLYPHS[serviceKey]} />
+<ServiceProblem problem={service.problem} whyItMatters={service.whyItMatters} />
+<ServiceBenefits benefits={service.benefits} />
+<ServiceDeliverables deliverables={service.deliverables} />
+<ServiceProcess process={service.process} />
+<ServiceFaq faq={service.faq} />
+<ServiceFinalCta whatsappMessage={service.whatsappMessage} />
+<ServiceSchema name={service.title} description={service.meta.description} url={url} />

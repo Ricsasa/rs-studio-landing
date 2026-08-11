@@ -64,30 +64,52 @@
     "close": "Cerrar"
   },
   "services": {
-    "title": "Qué hacemos",
+    "title": "Soluciones digitales para hacer crecer tu negocio",
+    "intro": "Desarrollamos soluciones digitales para aumentar ventas, automatizar procesos y fortalecer la presencia online de tu negocio.",
+    "meta": "Nuestros servicios",
+    "readMore": "Conocer más",
     "items": [
       {
-        "num": "01",
-        "title": "Ingeniería de producto",
-        "body": "Desarrollos completos desde el primer commit hasta producción — web, móvil y la API que los sostiene."
+        "key": "landingPages",
+        "title": "Landing pages",
+        "body": "Páginas diseñadas para generar contactos, cotizaciones y ventas mediante una experiencia enfocada en conversión."
       },
       {
-        "num": "02",
-        "title": "Escalabilidad y rendimiento",
-        "body": "Profiling, optimización de queries, caché y cambios de infraestructura en sistemas que superaron su diseño original."
+        "key": "wordpressEcommerce",
+        "title": "Tiendas online con WordPress",
+        "body": "Desarrollamos e-commerce con WooCommerce para vender productos en línea de forma segura y fácil de administrar."
       },
       {
-        "num": "03",
-        "title": "Equipo integrado",
-        "body": "Nos sumamos a tus sprints, tu repo y tus dailies — con criterio senior, no solo manos."
+        "key": "businessManagementTool",
+        "title": "Herramienta de control empresarial",
+        "body": "Creamos una herramienta a la medida para gestionar clientes, operaciones, inventario y citas desde un solo lugar."
       },
       {
-        "num": "04",
-        "title": "Auditorías técnicas",
-        "body": "Una lectura clara de arquitectura, riesgo y costo, con un plan priorizado que puedes ejecutar."
+        "key": "digitalMarketing",
+        "title": "Marketing digital",
+        "body": "Administramos campañas en Meta Ads y Google Ads para generar clientes potenciales y aumentar el retorno de inversión."
       }
     ],
-    "meta": "Cuatro disciplinas"
+    "cta": {
+      "title": "¿No sabes cuál solución necesita tu negocio?",
+      "intro": "Te ayudamos a identificar la mejor estrategia según tus objetivos y presupuesto.",
+      "whatsappMessage": "¡Hola! Quiero platicar sobre qué solución le conviene más a mi negocio."
+    }
+  },
+  "cta": {
+    "requestProposal": "Solicitar una propuesta",
+    "scheduleCall": "Agendar una llamada"
+  },
+  "servicePage": {
+    "problemLabel": "El problema",
+    "whyItMattersLabel": "Por qué importa",
+    "benefitsLabel": "Beneficios",
+    "deliverablesLabel": "Qué construimos",
+    "processLabel": "Nuestro proceso",
+    "processMeta": "Cuatro pasos",
+    "faqLabel": "Preguntas frecuentes",
+    "ctaTitle": "¿Listo para empezar?",
+    "ctaIntro": "Cuéntanos tu proyecto y te respondemos con una propuesta clara y un estimado honesto."
   },
   "process": {
     "title": "Cómo trabajamos",

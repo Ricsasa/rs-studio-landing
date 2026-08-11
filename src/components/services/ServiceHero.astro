@@ -1,0 +1,44 @@
+---
+import i18n from "i18next";
+import OrganicField from "@/components/OrganicField.astro";
+import ServiceGlyph, { type GlyphName } from "@/components/ServiceGlyph.astro";
+
+interface Props {
+  title: string;
+  intro: string;
+  glyph: GlyphName;
+}
+
+const { title, intro, glyph } = Astro.props;
+const email = i18n.t("contact.email");
+---
+
+<section class="relative isolate bg-paper px-gutter pt-10 pb-heading">
+  <OrganicField variant="caseStudy" />
+
+  <div class="relative mx-auto w-full max-w-content">
+    <span class="eyebrow flex items-center gap-2 text-moss">
+      <ServiceGlyph name={glyph} class="h-4 w-4" />
+      {i18n.t("nav.services")}
+    </span>
+
+    <h1 class="mt-5 max-w-[18ch] text-display display-face text-balance">{title}</h1>
+
+    <p class="mt-lead max-w-prose text-lead text-pretty text-graphite">
+      {intro}
+    </p>
+
+    <a
+      href={`mailto:${email}`}
+      class="group mt-cta inline-flex min-h-12 items-center gap-2.5 bg-moss px-6 py-3.5 text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
+    >
+      <span class="text-lead-sm font-medium">{i18n.t("cta.requestProposal")}</span>
+      <span
+        aria-hidden="true"
+        class="opacity-70 transition-transform duration-200 group-hover:translate-x-1"
+      >
+        &#8594;
+      </span>
+    </a>
+  </div>
+</section>

@@ -64,30 +64,52 @@
     "close": "Close"
   },
   "services": {
-    "title": "What we do",
+    "title": "Digital solutions to grow your business",
+    "intro": "We build digital solutions to increase sales, automate processes and strengthen your business's online presence.",
+    "meta": "Our services",
+    "readMore": "Learn more",
     "items": [
       {
-        "num": "01",
-        "title": "Product engineering",
-        "body": "Full builds from first commit to production — web, mobile, and the API underneath."
+        "key": "landingPages",
+        "title": "Landing pages",
+        "body": "Pages designed to generate leads, quotes and sales through a conversion-focused experience."
       },
       {
-        "num": "02",
-        "title": "Scaling & performance",
-        "body": "Profiling, query work, caching and infra changes on systems that outgrew their first design."
+        "key": "wordpressEcommerce",
+        "title": "WordPress online stores",
+        "body": "We build WooCommerce ecommerce so you can sell products online, securely and easily managed."
       },
       {
-        "num": "03",
-        "title": "Embedded team",
-        "body": "We join your sprints, your repo, your standups — with senior judgement, not just hands."
+        "key": "businessManagementTool",
+        "title": "Business management tool",
+        "body": "A custom tool to manage customers, operations, inventory and appointments from one place."
       },
       {
-        "num": "04",
-        "title": "Technical audits",
-        "body": "A clear read on architecture, risk and cost, with a prioritised plan you can act on."
+        "key": "digitalMarketing",
+        "title": "Digital marketing",
+        "body": "We manage Meta Ads and Google Ads campaigns to generate leads and increase your return on investment."
       }
     ],
-    "meta": "Four disciplines"
+    "cta": {
+      "title": "Not sure which solution your business needs?",
+      "intro": "We'll help you identify the best strategy for your goals and budget.",
+      "whatsappMessage": "Hi! I'd like to talk about which solution fits my business best."
+    }
+  },
+  "cta": {
+    "requestProposal": "Request a proposal",
+    "scheduleCall": "Schedule a call"
+  },
+  "servicePage": {
+    "problemLabel": "The problem",
+    "whyItMattersLabel": "Why it matters",
+    "benefitsLabel": "Benefits",
+    "deliverablesLabel": "What we build",
+    "processLabel": "Our process",
+    "processMeta": "Four steps",
+    "faqLabel": "FAQ",
+    "ctaTitle": "Ready to get started?",
+    "ctaIntro": "Tell us about your project and we'll reply with a clear proposal and an honest estimate."
   },
   "process": {
     "title": "How we work",
