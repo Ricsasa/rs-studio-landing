@@ -1,10 +1,10 @@
-# Astro Boilerplate
+# RS Studio — Landing site
 
-A modern starting point for building fast, content-focused websites with [Astro](https://astro.build). It includes React support, Tailwind CSS v4, Starwind design tokens and utilities, sitemap generation, Partytown, and an i18n integration.
+The marketing site for RS Studio: a static, bilingual (Spanish/English) [Astro](https://astro.build) site with a homepage, dedicated service pages, portfolio case studies, and a blog. Built with React (for interactive islands), Tailwind CSS v4, and `astro-react-i18next` for localized routing.
 
 ## Requirements
 
-- Node.js 22.12 or newer
+- Node.js 22.12 or newer (run `nvm use 22` before starting work)
 - npm
 
 ## Getting started
@@ -12,11 +12,25 @@ A modern starting point for building fast, content-focused websites with [Astro]
 Install dependencies and start the development server:
 
 ```sh
+nvm use 22
 npm install
 npm run dev
 ```
 
 The site is then available at [http://localhost:4321](http://localhost:4321).
+
+### Running the dev server in the background
+
+When working with an agent or in a terminal you don't want blocked, run the dev server detached and manage it with the Astro CLI:
+
+```sh
+npx astro dev --background
+npx astro dev status
+npx astro dev logs
+npx astro dev stop
+```
+
+**Content changes in `public/locales/**/*.json` are not hot-reloaded.** The i18next filesystem backend loads every namespace once when the dev server starts, so after editing any locale JSON file, restart the dev server (`astro dev stop && astro dev --background`) to see the change.
 
 ## Available commands
 
@@ -27,125 +41,92 @@ The site is then available at [http://localhost:4321](http://localhost:4321).
 | `npm run preview` | Serve the production build locally. |
 | `npm run astro -- <command>` | Run the Astro CLI directly. |
 
-## Deployment URL and base path
-
-Before deploying, set `site` in `astro.config.mjs` to the final public URL of the project. Astro uses this URL when generating canonical URLs and the sitemap, so it should be the production domain rather than a local or preview address.
-
-For a site deployed at the domain root, use only `site`:
-
-```js
-export default defineConfig({
-  site: "https://example.com",
-  // integrations and other options...
-});
-```
-
-Set `base` only when the site is served from a subdirectory. Astro uses it as the root path for pages and assets in both local development and the production build.
-
-```js
-export default defineConfig({
-  site: "https://example.com",
-  base: "/portfolio",
-  // integrations and other options...
-});
-```
-
-With this configuration, the home page is deployed at `https://example.com/portfolio/`, and asset and route URLs include `/portfolio`. For a domain-root deployment, omit `base` rather than setting it to an empty string.
-
-### Deploying to GitHub Pages
-
-This repository includes a GitHub Pages workflow template at `.github/workflows/deploys.yml`. It builds the Astro site with `withastro/action` and publishes the generated artifact with `actions/deploy-pages`. The template is fully commented out, so enable it before its first deployment by removing the leading `#` from the workflow content.
-
-Before pushing the enabled workflow:
-
-1. Confirm the workflow’s deployment branch is correct. It is set to run on pushes to `main`; change `branches: [main]` if the repository uses another default branch.
-2. Set the GitHub Pages URL in `astro.config.mjs`. For a project repository, use your account or organization GitHub Pages domain as `site` and the repository name as `base`:
-
-   ```js
-   export default defineConfig({
-     site: "https://<account>.github.io",
-     base: "/<repository>",
-     // integrations and other options...
-   });
-   ```
-
-   The resulting site URL is `https://<account>.github.io/<repository>/`.
-
-3. If the repository is the special account site named `<account>.github.io`, omit `base` because it is deployed at the domain root.
-4. Commit `package-lock.json`. The Astro GitHub Action uses the lockfile to select npm and install the exact dependency versions.
-5. In the GitHub repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
-
-Push to the configured branch to deploy, or run the workflow manually from the repository’s **Actions** tab. When `base` is set, ensure root-relative internal links include the base path; for example, use `/&lt;repository&gt;/about` rather than `/about`.
-
 ## Project structure
 
 ```text
 /
-├── public/                 # Static files served as-is
+├── public/
+│   └── locales/                   # i18next translation files, see "Content sources" below
+│       ├── es-MX/                 # common.json, projects.json, services.json
+│       └── en-US/                 # same namespaces, English copy
 ├── src/
-│   ├── assets/             # Imported images and other bundled assets
-│   ├── components/         # Reusable Astro and React components
-│   ├── layouts/            # Shared page shells and document metadata
-│   ├── pages/              # File-based routes
-│   └── styles/             # Global CSS and Starwind/Tailwind theme tokens
-├── astro.config.mjs        # Astro integrations and Vite configuration
-├── starwind.config.json    # Starwind component and token settings
+│   ├── assets/                    # Imported images and other bundled assets
+│   ├── components/                # Reusable Astro/React components
+│   │   ├── work/                  # Case-study page sections (ProjectHeader, ProjectOverview, ...)
+│   │   ├── services/              # Service page sections (ServiceHero, ServiceFaq, ...)
+│   │   └── blog/                  # Blog listing/detail components
+│   ├── content/
+│   │   ├── projects.ts            # Case-study slug list + typed accessors over projects.json
+│   │   └── blog/                  # Markdown/MDX blog posts, one folder per locale
+│   ├── i18n/
+│   │   ├── t.ts                   # tList() helper for array-shaped translations
+│   │   ├── routing.ts             # Locale-aware path builders (homePath, servicePath, ...)
+│   │   └── locales.ts             # Locale display metadata (labels shown in the language toggle)
+│   ├── lib/
+│   │   ├── whatsapp.ts            # whatsappHref() — wa.me links with a prefilled message
+│   │   └── markdown.ts            # Markdown → HTML rendering for rich-text content fields
+│   ├── layouts/
+│   │   └── Layout.astro           # Document shell: meta tags, canonical URL, hreflang, OG tags
+│   ├── pages/
+│   │   ├── [...locale]/           # Every localized route lives here — see "Routing" below
+│   │   └── 404.astro
+│   └── styles/
+│       └── global.css             # Design tokens (color, type scale, spacing) and base styles
+├── astro.config.mjs                # Astro integrations, i18n locales/namespaces, Vite config
 └── package.json
 ```
 
-To add a page, create an `.astro` file in `src/pages`. For example, `src/pages/about.astro` is served at `/about`.
+## Content sources
 
-## Styling
+Two different places hold site copy, by design:
 
-Global styles are loaded from `src/layouts/Layout.astro`:
+- **`src/content/blog/`** — Astro content collections, one Markdown/MDX file per post per locale. Reserved for free-form long-form writing (the blog).
+- **`public/locales/<locale>/*.json`** — i18next namespaces, read with `i18n.t()` / `tList()`. Everything else: navigation labels, homepage sections, service page copy, project case-study text, buttons, meta titles/descriptions. This keeps short structured copy translatable and centrally reviewable without touching component code.
 
-- `src/styles/starwind.css` defines the Tailwind CSS imports, semantic color tokens, radius tokens, and light/dark theme values.
-- `src/styles/global.css` is the place for application-wide styles.
+Current namespaces (configured in `astro.config.mjs`):
 
-Use the `@/` import alias for files in `src`; for example, `@/components/Button`.
+| Namespace | File | Backs |
+| --- | --- | --- |
+| `common` | `common.json` | Nav, hero, homepage sections, contact, shared `cta.*` and `servicePage.*` labels |
+| `projects` | `projects.json` | Case-study content for `/work/[slug]` |
+| `services` | `services.json` | One object per service page (`landingPages`, `wordpressEcommerce`, `businessManagementTool`, `digitalMarketing`) |
+
+Every key added to an ES file must have a matching key in the EN file (and vice versa) — nothing falls back silently.
 
 ## Internationalization
 
-Localization is provided by [`astro-react-i18next`](https://github.com/yassinedoghri/astro-react-i18next). The current configuration in `astro.config.mjs` supports these languages:
+Localization is provided by [`astro-react-i18next`](https://github.com/yassinedoghri/astro-react-i18next).
 
 | Locale | Language | URL behavior |
 | --- | --- | --- |
 | `es-MX` | Spanish (Mexico) | Default language; served without a locale prefix. |
 | `en-US` | English (United States) | Served with the `/en-US` prefix. |
 
-Translations are organized by locale and namespace in `public/locales`. The `common` namespace is configured for this project:
+URL **slugs** (`/landing-pages`, `/work/some-project`, `/blog/some-post`) stay in English in both locales — only the locale prefix changes. Canonical URLs and hreflang alternates are generated automatically by `Layout.astro` for every page; you don't need to add them per page.
 
-```text
-public/locales/
-├── en-US/
-│   └── common.json
-└── es-MX/
-    └── common.json
-```
+### Routing helpers (`src/i18n/routing.ts`)
 
-Add matching keys to each language file. Then use the `i18next` instance in an Astro component:
+Never hand-build a localized `href`. Use the matching helper so links stay correct across locales:
 
-```astro
----
-import i18n from "i18next";
----
-
-<h1>{i18n.t("welcome-label")}</h1>
+```ts
+homePath();              // "/" or "/en-US"
+projectPath(slug);       // "/work/<slug>" (localized)
+blogPath();               // "/blog" (localized)
+blogPostPath(slug);      // "/blog/<slug>" (localized)
+servicePath(serviceKey); // "/<service-slug>" (localized) — serviceKey is a ServiceKey, not the URL slug
 ```
 
 ### Adding a language
 
 1. Add the locale code to `locales` in the `reactI18next()` integration in `astro.config.mjs`.
-2. Create `public/locales/<locale>/common.json` and provide every translation key used by the site.
-3. Run a production build to generate and check the new localized route.
+2. Create `public/locales/<locale>/` with a JSON file for every existing namespace (`common.json`, `projects.json`, `services.json`), translating every key.
+3. Restart the dev server (locale files are read once at startup — see the note above) and check the new localized routes.
 
-For example, adding French (`fr-FR`) requires both `locales: ["en-US", "es-MX", "fr-FR"]` and `public/locales/fr-FR/common.json`.
+## Routing
 
-### Localized static routes
+Every localized page lives under `src/pages/[...locale]/`. Two patterns are used, depending on whether the page is one of a fixed set or one of a content-driven catalogue:
 
-Localized pages live under `src/pages/[...locale]/`. The catch-all route lets Astro handle both the default route (such as `/`) and locale-prefixed routes (such as `/en-US`). Put additional localized pages in the same directory; `src/pages/[...locale]/about.astro`, for example, creates localized versions of the About page.
-
-This project uses static site generation, so each localized route exports `getStaticPaths()`:
+**Fixed pages** (homepage, each service page) — `getStaticPaths()` returns one entry per locale:
 
 ```astro
 ---
@@ -157,18 +138,89 @@ export function getStaticPaths() {
 ---
 ```
 
-`buildStaticPaths()` reads the configured locales and gives Astro a path for each one at build time. This is why localized pages are generated in the production output without manually listing each language.
+**Catalogue pages** (`work/[slug].astro`, `blog/[slug].astro`) — `getStaticPaths()` crosses `buildStaticPaths()` with the list of slugs:
+
+```astro
+export function getStaticPaths() {
+  return buildStaticPaths().flatMap(({ params }) =>
+    someSlugList.map((slug) => ({ params: { ...params, slug } })),
+  );
+}
+```
+
+## Creating a new homepage section
+
+Homepage sections are composed in `src/pages/[...locale]/index.astro`. Each section is its own component in `src/components/`, following the pattern already used by `Hero.astro`, `Work.astro`, `Services.astro`, `Process.astro`, and `Stack.astro`:
+
+1. Create `src/components/YourSection.astro`.
+2. Add its copy to `common.json` in both locale files.
+3. Read a section title/eyebrow with `<SectionHead title={...} meta={...} />` (`src/components/SectionHead.astro`) — every section on the site uses this for a consistent masthead.
+4. Add a decorative background with `<OrganicField variant="..." />` (`src/components/OrganicField.astro`). Pick an unused variant, or add a new one to the `VARIANTS` map in that file — reuse an existing variant's colors/blend rather than inventing a new palette.
+5. Import and render the component in `index.astro`, and add an entry to the `links` array in `SiteHeader.astro` if it needs a nav link.
+
+Background colors on the homepage alternate deliberately (`bg-paper` → `bg-substrate` → `bg-pine` → …) so consecutive sections never share the same tone — check the sections immediately above and below before choosing one.
+
+## Creating a new service page
+
+Service pages follow one shared template. To add a new one:
+
+1. **Add the service to `src/i18n/routing.ts`**: extend `ServiceKey` and add its entry to `SERVICE_SLUGS`.
+2. **Add its content** to `services.json` in both locale files, matching the existing shape (`title`, `intro`, `problem`, `whyItMatters`, `benefits[]`, `deliverables[]`, `process[]` with 4 steps, `faq[]`, `seoKeywords[]`, `meta.title`/`meta.description`, `whatsappMessage`).
+3. **Add a glyph** for it in `src/components/ServiceGlyph.astro` (`GlyphName` union + a hand-drawn `<path>`/`<rect>` block — hairline strokes, square corners, no curves other than the existing diagonal style).
+4. **Add the route file** at `src/pages/[...locale]/<slug>.astro`, copying an existing one (e.g. `landing-pages.astro`) and swapping the `serviceKey`.
+5. **Link to it** from the homepage `Services.astro` cards (`common.json`'s `services.items[]`).
+
+The page itself is assembled by `src/components/services/ServicePage.astro`, which composes one component per section (`ServiceHero`, `ServiceProblem`, `ServiceBenefits`, `ServiceDeliverables`, `ServiceProcess`, `ServiceFaq`, `ServiceFinalCta`) plus a `ServiceSchema` JSON-LD block. Add or reorder sections there, not in the route files.
+
+## Creating a case study (`/work/[slug]`)
+
+Case studies are catalogue pages driven by `src/content/projects.ts` (slug list, screenshot lookups) and `projects.json` (title, descriptions, technologies, links). Add a project by adding its slug and content in both places; `work/[slug].astro` handles routing automatically via `getStaticPaths()`.
+
+## Writing a blog post
+
+Blog posts are Astro content collection entries under `src/content/blog/<locale>/<slug>/index.md(x)`. Create the same slug folder in both `es-MX/` and `en-US/` so the post exists in both languages.
+
+## CTAs and contact
+
+Every "talk to us" call to action on the site reuses the same two targets, via shared helpers rather than hardcoded links:
+
+- **Email** — `mailto:${i18n.t("contact.email")}`.
+- **WhatsApp** — `whatsappHref(message)` from `src/lib/whatsapp.ts`, which builds a `wa.me` link with an optional prefilled, localized message. Omit the argument to use the generic `whatsapp.message` key.
+
+Shared button copy lives under the `cta` key in `common.json` (`cta.requestProposal`, `cta.scheduleCall`) — reuse these keys instead of writing new button labels per page.
+
+## Styling and design tokens
+
+- `src/styles/global.css` defines the full design system as CSS custom properties under `@theme`: the color ramp (`--color-paper` through `--color-pine-deep`), type scale (`--text-display` down to `--text-micro`), and spacing scale (`--spacing-section`, `--spacing-heading`, etc.), all consumed as Tailwind utilities (`text-display`, `py-section`, ...).
+- Border radii are forced to `0` globally — the site has no rounded corners. Don't add `rounded-*` utilities.
+- `OrganicField.astro` draws the decorative blob backgrounds behind sections; everything a visitor can interact with stays square and flat.
+- Use the `@/` import alias for files in `src`; for example, `@/components/Button`.
 
 ## Included integrations
 
 - [React](https://docs.astro.build/en/guides/integrations-guide/react/) for interactive client components
 - [Tailwind CSS](https://tailwindcss.com/) v4 for utility-first styling
-- [Sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) for generated sitemap support
+- [MDX](https://docs.astro.build/en/guides/integrations-guide/mdx/) for rich blog content
+- [Sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — generated automatically from every static route, no per-page configuration needed
 - [Partytown](https://docs.astro.build/en/guides/integrations-guide/partytown/) for moving supported third-party scripts off the main thread
-- [`astro-react-i18next`](https://github.com/yassinedoghri/astro-react-i18next) for localization with React
+- [`astro-react-i18next`](https://github.com/yassinedoghri/astro-react-i18next) for localized routing
+
+## Deployment
+
+Before deploying, set `site` in `astro.config.mjs` to the final public URL of the project. Astro uses this URL when generating canonical URLs and the sitemap.
+
+```js
+export default defineConfig({
+  site: "https://rs-studio.dev",
+  // integrations and other options...
+});
+```
+
+Set `base` only if the site is served from a subdirectory rather than the domain root.
 
 ## Documentation
 
 - [Astro documentation](https://docs.astro.build)
 - [Astro routing guide](https://docs.astro.build/en/guides/routing/)
 - [Astro styling guide](https://docs.astro.build/en/guides/styling/)
+- [astro-react-i18next](https://github.com/yassinedoghri/astro-react-i18next)
