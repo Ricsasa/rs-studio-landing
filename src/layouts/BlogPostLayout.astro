@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import BlogPostingSchema from "@/components/BlogPostingSchema.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -13,5 +14,6 @@ const ogImage = cover && Astro.site ? new URL(cover.src, Astro.site).href : unde
 ---
 
 <Layout title={title} description={description} ogType="article" ogImage={ogImage} ogImageAlt={coverAlt}>
+  <BlogPostingSchema post={post} />
   <slot />
 </Layout>

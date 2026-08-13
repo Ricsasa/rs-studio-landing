@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, cover } = post.data;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  ...(cover && {
+    image: {
+      "@type": "ImageObject",
+      url: Astro.site ? new URL(cover.src, Astro.site).href : cover.src,
+    },
+  }),
+  author: {
+    "@type": "Organization",
+    name: "RS Studio",
+    url: "https://rs-studio.dev",
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
