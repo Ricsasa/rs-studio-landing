@@ -2,6 +2,7 @@
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
 import OrganicField from "@/components/OrganicField.astro";
+import FAQSchema from "@/components/FAQSchema.astro";
 
 interface Props {
   faq: { question: string; answer: string }[];
@@ -9,6 +10,8 @@ interface Props {
 
 const { faq } = Astro.props;
 ---
+
+<FAQSchema faq={faq} />
 
 <section class="relative isolate bg-paper px-gutter py-section">
   <OrganicField variant="work" />
