@@ -13,6 +13,8 @@ export type Project = {
   technologies?: string[];
   /** Folder under `public/projects/` whose images make up the gallery. */
   "screenshots-prefix"?: string;
+  /** Alt text for each screenshot, in display order. Falls back to generic if not provided. */
+  "screenshot-alts"?: string[];
 };
 
 export function slugify(value: string): string {
@@ -44,6 +46,16 @@ export const projectSlugs: string[] = catalogue.map((project) => slugify(project
 export const projectScreenshots: string[][] = catalogue.map((project) =>
   readScreenshots(project["screenshots-prefix"]),
 );
+
+/**
+ * Alt text for each screenshot. Indexed to match `projectScreenshots`.
+ * Inner arrays contain alt text in display order, or undefined for generic fallback.
+ */
+export const projectScreenshotAlts: (string | undefined)[][] = catalogue.map((project) => {
+  const alts = project["screenshot-alts"] || [];
+  const screenshots = projectScreenshots[catalogue.indexOf(project)] || [];
+  return screenshots.map((_, index) => alts[index]);
+});
 
 export function isCaseStudy(project: Project): boolean {
   return Boolean(project.full_description);

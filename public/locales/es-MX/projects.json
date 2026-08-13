@@ -15,7 +15,17 @@
                 "GSAP",
                 "Github Actions"
             ],
-            "screenshots-prefix": "lumina-landing"
+            "screenshots-prefix": "lumina-landing",
+            "screenshot-alts": [
+                "Página principal de Lumina con sección hero",
+                "Sección de servicios mostrando tratamientos de eliminación",
+                "Testimonios de clientes",
+                "Información de reservas y detalles de contacto",
+                "Vista responsive de la página principal en móvil",
+                "Detalles de servicios en vista móvil",
+                "Sección de preguntas frecuentes",
+                "Pie de página con enlaces de contacto"
+            ]
         },
         {
             "title": "Lumina Estudio Láser (Sistema de Administración)",

@@ -136,7 +136,7 @@ const controlPosition =
                                 >
                                     <img
                                         src={slide.src}
-                                        alt={slide.alt ?? ""}
+                                        alt={slide.alt ?? `Slide ${position + 1} of ${slides.length}`}
                                         loading="lazy"
                                         decoding="async"
                                         class="max-h-full max-w-full object-contain"
@@ -145,7 +145,7 @@ const controlPosition =
                             ) : (
                                 <img
                                     src={slide.src}
-                                    alt={slide.alt ?? ""}
+                                    alt={slide.alt ?? `Slide ${position + 1} of ${slides.length}`}
                                     loading="lazy"
                                     decoding="async"
                                     class="max-h-full max-w-full object-contain"
@@ -238,7 +238,7 @@ const controlPosition =
                                       <span class:list={["block h-full w-full overflow-hidden border-2 bg-substrate transition-colors", thumbnailClass]}>
                                           <img
                                               src={slide.src}
-                                              alt=""
+                                              alt={`Thumbnail for slide ${position + 1}`}
                                               loading="lazy"
                                               decoding="async"
                                               class="h-full w-full object-cover"
@@ -277,7 +277,7 @@ const controlPosition =
                         <img
                             data-carousel-dialog-image
                             src=""
-                            alt=""
+                            alt="Full size image"
                             class="max-h-[92vh] max-w-[95vw] object-contain"
                         />
                     </div>

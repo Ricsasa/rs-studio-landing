@@ -4,7 +4,7 @@ import { tList } from "@/i18n/t";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
 import OrganicField from "./OrganicField.astro";
 import { whatsappHref } from "@/lib/whatsapp";
-import { projectScreenshots } from "@/content/projects";
+import { projectScreenshots, projectScreenshotAlts } from "@/content/projects";
 import { readImageSize } from "@/lib/imageSize";
 
 type Stat = { label: string; value: string };
@@ -14,6 +14,7 @@ type Shot = {
   project: number;
   width: number;
   height: number;
+  alt?: string;
 };
 
 const stats = tList<Stat>("hero.stats");
@@ -40,10 +41,11 @@ const SCREEN_FRAMES = 4;
 const PHONE_FRAMES = 3;
 
 const measured: Shot[] = projectScreenshots.flatMap((shots, project) =>
-  shots.flatMap((src) => {
+  shots.flatMap((src, index) => {
     const size = readImageSize(src);
+    const alt = projectScreenshotAlts[project]?.[index];
     return size
-      ? [{ src, project, ratio: size.width / size.height, ...size }]
+      ? [{ src, project, ratio: size.width / size.height, ...size, alt }]
       : [];
   }),
 );
@@ -205,7 +207,7 @@ const phoneFrames = interleave(
                   <img
                     data-screen-frame
                     src={frame.src}
-                    alt=""
+                    alt={frame.alt || "Project work screenshot"}
                     width={frame.width}
                     height={frame.height}
                     decoding="async"
@@ -272,7 +274,7 @@ const phoneFrames = interleave(
                 <img
                   data-phone-frame
                   src={frame.src}
-                  alt=""
+                  alt={frame.alt || "Mobile project screenshot"}
                   width={frame.width}
                   height={frame.height}
                   decoding="async"

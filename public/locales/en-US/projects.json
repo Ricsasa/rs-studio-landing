@@ -15,7 +15,17 @@
                 "GSAP",
                 "Github Actions"
             ],
-            "screenshots-prefix": "lumina-landing"
+            "screenshots-prefix": "lumina-landing",
+            "screenshot-alts": [
+                "Lumina website homepage with hero section",
+                "Services section showing tattoo removal treatments",
+                "Client testimonials section",
+                "Booking information and contact details",
+                "Mobile responsive homepage view",
+                "Services detail on mobile",
+                "FAQs and information section",
+                "Footer with contact links"
+            ]
         },
         {
             "title": "Lumina Estudio Láser (Admin System)",

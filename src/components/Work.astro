@@ -4,7 +4,7 @@ import { tList } from "@/i18n/t";
 import { projectPath } from "@/i18n/routing";
 import SectionHead from "./SectionHead.astro";
 import OrganicField from "./OrganicField.astro";
-import { projectSlugs, projectScreenshots, isCaseStudy, type Project } from "@/content/projects";
+import { projectSlugs, projectScreenshots, projectScreenshotAlts, isCaseStudy, type Project } from "@/content/projects";
 
 const projects = tList<Project>("projects", "projects");
 
@@ -18,6 +18,7 @@ const cards = projects.map((project, index) => {
     external: !caseStudy && Boolean(project.href?.startsWith("http")),
     label: caseStudy ? i18n.t("work.viewCase") : project.cta,
     thumbnail: projectScreenshots[index]?.[0],
+    thumbnailAlt: projectScreenshotAlts[index]?.[0],
   };
 });
 
@@ -36,7 +37,7 @@ const total = String(projects.length).padStart(2, "0");
     */}
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-3">
       {
-        cards.map(({ project, href, external, label, thumbnail }) => (
+        cards.map(({ project, href, external, label, thumbnail, thumbnailAlt }) => (
           <a
             href={href}
             target={external ? "_blank" : undefined}
@@ -47,7 +48,7 @@ const total = String(projects.length).padStart(2, "0");
               <div class="relative overflow-hidden bg-substrate">
                 <img
                   src={thumbnail}
-                  alt={i18n.t("projectPage.screenshotAlt", { title: project.title, index: 1 })}
+                  alt={thumbnailAlt || i18n.t("projectPage.screenshotAlt", { title: project.title, index: 1 })}
                   loading="lazy"
                   decoding="async"
                   class="block aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
