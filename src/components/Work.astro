@@ -35,7 +35,7 @@ const total = String(projects.length).padStart(2, "0");
       No card containers: the screenshot is the object, and the type sits
       under it on open paper. Gaps do the separating that borders used to.
     */}
-    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-3">
+    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         cards.map(({ project, href, external, label, thumbnail, thumbnailAlt }) => (
           <a
