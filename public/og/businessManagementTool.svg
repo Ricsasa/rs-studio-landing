@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#ece8d9"/>
+  <rect x="0" y="0" width="60" height="630" fill="#4a5230"/>
+
+  <!-- Glyph: Business Tool (grid) -->
+  <g transform="translate(150, 200)" stroke="#4a5230" stroke-width="6" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <rect x="28" y="28" width="200" height="200"/>
+    <path d="M28 92h200M28 156h200M100 28v200M164 28v200"/>
+  </g>
+
+  <!-- Text -->
+  <text x="480" y="340" font-family="Archivo, sans-serif" font-size="64" font-weight="600" fill="#2d3d2a">
+    Business Management
+  </text>
+
+  <!-- Footer -->
+  <text x="80" y="600" font-family="Archivo, sans-serif" font-size="24" font-weight="500" fill="#5a6a55">
+    RS Studio
+  </text>
+</svg>

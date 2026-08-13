@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#ece8d9"/>
+  <rect x="0" y="0" width="60" height="630" fill="#3d5a4a"/>
+
+  <!-- Glyph: Ecommerce (bag) -->
+  <g transform="translate(150, 200)" stroke="#3d5a4a" stroke-width="6" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <rect x="36" y="92" width="184" height="128"/>
+    <path d="M92 92V64L128 36l64 28v28"/>
+  </g>
+
+  <!-- Text -->
+  <text x="480" y="340" font-family="Archivo, sans-serif" font-size="64" font-weight="600" fill="#2d3d2a">
+    WordPress Ecommerce
+  </text>
+
+  <!-- Footer -->
+  <text x="80" y="600" font-family="Archivo, sans-serif" font-size="24" font-weight="500" fill="#5a6a55">
+    RS Studio
+  </text>
+</svg>
