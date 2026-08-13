@@ -34,11 +34,9 @@ const canonical = Astro.site
     : new URL(Astro.url.pathname, Astro.site)
   : undefined;
 const usingDefaultOgImage = !ogImageProp;
-const ogImage = ogImageProp
-  ? new URL(ogImageProp)
-  : Astro.site
-    ? new URL("/monogram.png", Astro.site)
-    : undefined;
+const ogImage = Astro.site
+  ? new URL(ogImageProp || "/monogram.png", Astro.site)
+  : undefined;
 
 // Every locale this page also exists in, for hreflang. Crawlers ignore
 // relative hreflang hrefs, so these are only emitted once `site` gives us an

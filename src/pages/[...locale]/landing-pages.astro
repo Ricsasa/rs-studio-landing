@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
 import ServicePage from "@/components/services/ServicePage.astro";
 import { buildStaticPaths } from "astro-react-i18next/utils";
+import { getServiceOgImage } from "@/content/services";
 import i18n from "i18next";
 
 export function getStaticPaths() {
@@ -14,6 +15,7 @@ export function getStaticPaths() {
 <Layout
   title={i18n.t("landingPages.meta.title", { ns: "services" })}
   description={i18n.t("landingPages.meta.description", { ns: "services" })}
+  ogImage={getServiceOgImage("landingPages")}
 >
   <SiteHeader />
   <main id="main">

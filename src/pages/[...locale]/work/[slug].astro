@@ -38,11 +38,14 @@ const project = projects[index]!;
 const position = caseStudySlugs.indexOf(slug ?? "");
 const nextSlug = caseStudySlugs[(position + 1) % caseStudySlugs.length]!;
 const next = projects[projectSlugs.indexOf(nextSlug)]!;
+
+const ogImage = projectScreenshots[index]?.[0];
 ---
 
 <Layout
   title={i18n.t("projectPage.titleTemplate", { name: project.title })}
   description={project.brief_description}
+  ogImage={ogImage}
 >
   <SiteHeader />
   <main id="main">

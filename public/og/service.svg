@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&display=swap');
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="#ece8d9"/>
+
+  <!-- Accent blocks -->
+  <rect x="0" y="0" width="60" height="630" fill="#4a5b45"/>
+  <rect x="0" y="0" width="1200" height="60" fill="#4a5b45"/>
+
+  <!-- Text -->
+  <text x="120" y="320" font-family="Archivo, sans-serif" font-size="72" font-weight="600" fill="#2d3d2a">
+    Servicios
+  </text>
+  <text x="120" y="420" font-family="Archivo, sans-serif" font-size="32" font-weight="500" fill="#5a6a55">
+    RS Studio
+  </text>
+</svg>
