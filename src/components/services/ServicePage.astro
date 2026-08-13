@@ -41,7 +41,7 @@ const path = servicePath(serviceKey);
 const url = Astro.site ? new URL(path, Astro.site).href : path;
 ---
 
-<ServiceHero title={service.title} intro={service.intro} glyph={GLYPHS[serviceKey]} />
+<ServiceHero title={service.title} intro={service.intro} glyph={GLYPHS[serviceKey]} whatsappMessage={service.whatsappMessage} />
 <ServiceProblem problem={service.problem} whyItMatters={service.whyItMatters} />
 <ServiceBenefits benefits={service.benefits} />
 <ServiceDeliverables deliverables={service.deliverables} />
