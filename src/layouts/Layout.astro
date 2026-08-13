@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import i18n from "i18next";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import OrganizationSchema from "@/components/OrganizationSchema.astro";
 import { getLocaleOptions } from "@/i18n/locales";
 import { getLocalizedPathname } from "astro-react-i18next/utils";
 
@@ -82,10 +83,12 @@ const alternates = Astro.site
       <meta property="og:image:alt" content={ogImageAlt ?? i18n.t("hero.monogramAlt")} />
     )}
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage.href} />}
+
+    <OrganizationSchema />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

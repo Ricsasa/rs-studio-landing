@@ -1,0 +1,18 @@
+---
+const org = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RS Studio",
+  "url": "https://rs-studio.dev",
+  "logo": "https://rs-studio.dev/logo.svg",
+  "description": "A small software studio building scalable, performant products. We work as an embedded team or run projects end-to-end.",
+  "email": "hola@rs-studio.dev",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "hola@rs-studio.dev"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(org)} />
