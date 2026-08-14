@@ -1,7 +1,35 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+/**
+ * Pulls the mission band to the top of the viewport every time it crosses
+ * in, instead of letting it stop wherever the scroll happened to land —
+ * the "magnetic" snap.
+ */
+export function initHeroMissionMagnet() {
+  const section = document.querySelector<HTMLElement>("#hero-mission-band");
+
+  if (!section) return;
+
+  const header = document.querySelector<HTMLElement>("header");
+  const snap = () =>
+    gsap.to(window, {
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTo: { y: section, offsetY: header?.offsetHeight ?? 0 },
+    });
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top bottom",
+    end: "top top",
+    onEnter: snap,
+    onEnterBack: snap,
+  });
+}
 
 /**
  * Reveals the hero mission line and closing quote as the reader scrolls
