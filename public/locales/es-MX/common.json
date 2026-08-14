@@ -9,7 +9,7 @@
     "closeMenu": "Cerrar menú",
     "work": "Trabajo seleccionado",
     "services": "Servicios",
-    "manifesto": "Lo que construimos",
+    "manifesto": "Nuestra visión",
     "process": "Proceso",
     "blog": "Blog",
     "contact": "Contacto",
@@ -72,7 +72,7 @@
       {
         "key": "landingPages",
         "title": "Landing pages",
-        "body": "Páginas diseñadas para generar contactos, cotizaciones y ventas mediante una experiencia enfocada en conversión."
+        "body": "Sitios que presentan tus servicios con claridad, generan confianza desde el primer contacto y convierten visitantes en clientes reales."
       },
       {
         "key": "wordpressEcommerce",
@@ -105,6 +105,9 @@
     "whyItMattersLabel": "Por qué importa",
     "benefitsLabel": "Beneficios",
     "deliverablesLabel": "Qué construimos",
+    "domainOptionsLabel": "Opciones de dominio",
+    "trustLabel": "Confianza",
+    "designedForLabel": "Diseñado para",
     "processLabel": "Nuestro proceso",
     "processMeta": "Cuatro pasos",
     "faqLabel": "Preguntas frecuentes",
@@ -182,7 +185,7 @@
     ]
   },
   "manifesto": {
-    "title": "Lo que elegimos construir",
+    "title": "Nuestra visión",
     "intro": "RS Studio se asocia intencionalmente con negocios y organizaciones que generan valor local.",
     "items": [
       {

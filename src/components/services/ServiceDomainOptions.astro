@@ -1,0 +1,62 @@
+---
+import i18n from "i18next";
+import SectionHead from "@/components/SectionHead.astro";
+import Icon from "@/components/Icon.astro";
+import OrganicField from "@/components/OrganicField.astro";
+
+interface Props {
+  title: string;
+  intro: string;
+  custom: { heading: string; items: string[]; example: string };
+  subdomain: { heading: string; items: string[]; examples: string[] };
+}
+
+const { title, intro, custom, subdomain } = Astro.props;
+---
+
+<section class="relative isolate bg-paper px-gutter py-section">
+  <OrganicField variant="services" />
+
+  <div class="relative mx-auto w-full max-w-content">
+    <SectionHead title={i18n.t("servicePage.domainOptionsLabel")} />
+
+    <h3 class="mt-heading max-w-[28ch] text-step display-face text-balance">{title}</h3>
+    <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">{intro}</p>
+
+    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2">
+      <div class="border-t border-rule pt-8">
+        <h4 class="text-lead font-medium text-ink">{custom.heading}</h4>
+
+        <ul class="m-0 mt-6 list-none space-y-2 p-0">
+          {
+            custom.items.map((item) => (
+              <li class="flex items-start gap-3 text-lead-sm text-ink-soft">
+                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-moss" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-6 text-lead-sm text-mute">{custom.example}</p>
+      </div>
+
+      <div class="border-t border-rule pt-8">
+        <h4 class="text-lead font-medium text-ink">{subdomain.heading}</h4>
+
+        <ul class="m-0 mt-6 list-none space-y-2 p-0">
+          {
+            subdomain.items.map((item) => (
+              <li class="flex items-start gap-3 text-lead-sm text-ink-soft">
+                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-moss" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-6 text-lead-sm text-mute">{subdomain.examples.join(" · ")}</p>
+      </div>
+    </div>
+  </div>
+</section>

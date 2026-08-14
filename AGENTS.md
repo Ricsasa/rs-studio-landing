@@ -22,3 +22,10 @@ Consult these guides before working on related tasks:
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
 - Before each session, run `nvm use 22` to make sure we don't spend extra tokens on this issue
+
+## Section Background Rhythm
+* Every page begins with `bg-paper`.
+* Sections alternate between `bg-paper` and `bg-substrate`.
+* Never use the same background twice consecutively.
+* Footer (Contact) always uses `bg-pine-deep`.
+* Pattern: page starts paper → substrate → paper → substrate → ... → pine-deep (end).

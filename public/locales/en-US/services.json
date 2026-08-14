@@ -1,23 +1,76 @@
 {
   "landingPages": {
-    "title": "Landing pages that convert visitors into customers",
-    "intro": "Does your business still depend on word of mouth or your social media? A well-built landing page turns visitors into customers. We build it to generate leads, appointments, quotes or sales, with a fast experience focused on a single goal.",
-    "problem": "Many businesses lose customers because their page isn't built to sell: it's slow, confusing, or doesn't make clear what to do next. Visitors arrive, find no clear reason to act, and leave without leaving their details or completing a purchase.",
-    "whyItMatters": "Every visitor who reaches your site is a sales opportunity. Without a conversion-focused page, that traffic investment — from ads, social media or search — goes to waste. An optimized landing page turns that traffic into real customers and measurable growth for your business.",
+    "title": "Websites that help service businesses get more clients",
+    "intro": "For consultants, clinics, law offices, studios, and local service businesses. A well-built website explains what you do, builds trust before the first conversation, and turns visitors into real leads. Not just traffic.",
+    "problem": "Many service businesses depend on referrals and social media because their website doesn't do the work of selling. It doesn't clearly explain what they offer. It doesn't show why clients should trust them. And it doesn't give the visitor a clear reason to reach out.",
+    "whyItMatters": "A potential client decides whether they trust you in seconds. If your website doesn't communicate your services, your experience, and your results clearly, they leave. They probably contact your competition instead.",
     "benefits": [
-      "Higher conversion rates",
-      "Better campaign performance",
-      "Mobile optimization",
-      "Fast loading speed",
-      "Conversion tracking"
+      "Clearly present your services",
+      "Build trust before first contact",
+      "Filter leads better with visible pricing or packages",
+      "Answer the questions every client has",
+      "Optimized for mobile with fast load times",
+      "Lead and quote tracking"
     ],
     "deliverables": [
-      "Responsive design",
+      "Service descriptions and packages",
+      "Pricing or price ranges (to filter leads before they reach out)",
+      "Testimonials and case studies",
+      "Frequently asked questions",
       "WhatsApp integration",
+      "Contact or quote form",
+      "Responsive design",
       "Analytics integration",
-      "Basic SEO",
-      "Speed optimization"
+      "Basic SEO"
     ],
+    "domainOptions": {
+      "title": "You own your domain. Choose what works for your business.",
+      "intro": "Choose the domain that works for your business.",
+      "custom": {
+        "heading": "Custom Domain",
+        "items": [
+          "Full ownership, full control",
+          "You can move or transfer it anytime",
+          "Register your own domain (mirestaurante.com, myclinic.mx, yourname.services)"
+        ],
+        "example": "mirestaurante.com"
+      },
+      "subdomain": {
+        "heading": "Free Professional Subdomain",
+        "items": [
+          "Same professionalism, no extra cost",
+          "No setup time, start immediately",
+          "We help you decide which fits your business model during the discovery phase"
+        ],
+        "examples": ["mi-restaurante.rslink.mx", "super-gimnasio.rslink.mx"]
+      }
+    },
+    "trust": {
+      "title": "Build Trust Before the First Conversation",
+      "body": "A service business doesn't sell a product. It sells itself. Before reaching out, a potential client wants to know if you know what you're doing.",
+      "items": [
+        "Client testimonials",
+        "Years of experience or number of businesses served",
+        "Real cases or projects",
+        "Certifications or specialties",
+        "Response time",
+        "Your work process"
+      ],
+      "quote": "Most visitors decide whether they trust a business in seconds. Your website should make that decision easy."
+    },
+    "designedFor": {
+      "title": "Designed For Businesses That Sell Services",
+      "items": [
+        "Consultants",
+        "Law offices",
+        "Clinics and medical practices",
+        "Architects",
+        "Agencies and studios",
+        "Accountants",
+        "Contractors",
+        "Local service businesses"
+      ]
+    },
     "process": [
       {
         "title": "Discovery",
@@ -38,22 +91,38 @@
     ],
     "faq": [
       {
-        "question": "What is a landing page?",
-        "answer": "It's a page focused on one goal: getting the visitor to contact you, book an appointment, request a quote or buy. Unlike a full site, it doesn't distract with more options."
+        "question": "How do I build trust online before the first conversation?",
+        "answer": "Your website does most of this work for you. Show real testimonials from past clients, explain your experience, share case studies or examples of your work, and be clear about your process. Clients decide in seconds if they trust you. A professional website that answers their questions makes that decision easy."
       },
       {
-        "question": "How long does it take?",
-        "answer": "A landing page is usually ready in 1 to 2 weeks, depending on the content and adjustments you need."
+        "question": "What should I include on my website?",
+        "answer": "At minimum: what you do, who you serve, why clients should trust you (testimonials, experience, results), how to reach you, and a clear next step. Some businesses also benefit from pricing, FAQs, or a booking system. We recommend what makes sense for your business model."
       },
       {
-        "question": "Can it connect with Meta Ads or Google Ads?",
-        "answer": "Yes. We integrate conversion tracking and pixels so you can measure your campaign results directly on the landing page."
+        "question": "Can I show my pricing or packages?",
+        "answer": "Yes. Many service businesses prefer to show pricing or ranges upfront to filter for the right clients before the first conversation. This saves everyone time. We define this together based on your business model."
+      },
+      {
+        "question": "How do people find my website?",
+        "answer": "We build your site with basic SEO so it has a foundation. But getting found is an ongoing effort that usually involves: Google Business Profile (especially for local services), appearing in directories your clients use, referrals, and sometimes ads. We can discuss what makes sense for your type of business."
+      },
+      {
+        "question": "What happens after someone contacts me through the website?",
+        "answer": "That depends on your process. We integrate WhatsApp, email, contact forms, or booking systems depending on what works for you. The goal is to make it as easy as possible for someone to reach you. We also track these conversions so you know the site is working."
+      },
+      {
+        "question": "Can I update the content myself?",
+        "answer": "Yes. We build your site so you can update text and images directly. We will show you how, or we can handle updates for you on a retainer basis if you prefer."
+      },
+      {
+        "question": "Do I own my domain?",
+        "answer": "Yes. If you choose a custom domain, you own it fully. You can transfer it, move it, or use it elsewhere anytime. If you start with a free rslink.mx subdomain and later want your own domain, we can migrate it seamlessly."
       }
     ],
-    "seoKeywords": ["landing pages", "lead generation landing pages", "conversion-focused landing pages", "landing page design"],
+    "seoKeywords": ["landing pages", "websites for service businesses", "service business websites", "landing page design"],
     "meta": {
-      "title": "Landing pages that convert — RS Studio",
-      "description": "We design conversion-focused landing pages to generate leads, quotes and sales. Optimized, fast, and ready for your campaigns."
+      "title": "Landing pages and websites for service businesses | RS Studio",
+      "description": "We design websites and landing pages for service businesses. Present your services, build trust, and get more qualified leads. Fast, optimized, and ready to convert."
     },
     "whatsappMessage": "Hi! I'm interested in a landing page for my business."
   },

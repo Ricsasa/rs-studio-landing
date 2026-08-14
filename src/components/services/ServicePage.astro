@@ -4,6 +4,9 @@ import ServiceHero from "./ServiceHero.astro";
 import ServiceProblem from "./ServiceProblem.astro";
 import ServiceBenefits from "./ServiceBenefits.astro";
 import ServiceDeliverables from "./ServiceDeliverables.astro";
+import ServiceDomainOptions from "./ServiceDomainOptions.astro";
+import ServiceTrust from "./ServiceTrust.astro";
+import ServiceDesignedFor from "./ServiceDesignedFor.astro";
 import ServiceProcess from "./ServiceProcess.astro";
 import ServiceFaq from "./ServiceFaq.astro";
 import ServiceFinalCta from "./ServiceFinalCta.astro";
@@ -21,6 +24,14 @@ type Service = {
   whyItMatters: string;
   benefits: string[];
   deliverables: string[];
+  domainOptions?: {
+    title: string;
+    intro: string;
+    custom: { heading: string; items: string[]; example: string };
+    subdomain: { heading: string; items: string[]; examples: string[] };
+  };
+  trust?: { title: string; body: string; items: string[]; quote: string };
+  designedFor?: { title: string; items: string[] };
   process: { title: string; body: string }[];
   faq: { question: string; answer: string }[];
   meta: { title: string; description: string };
@@ -37,7 +48,17 @@ const url = Astro.site ? new URL(path, Astro.site).href : path;
 <ServiceProblem problem={service.problem} whyItMatters={service.whyItMatters} />
 <ServiceBenefits benefits={service.benefits} />
 <ServiceDeliverables deliverables={service.deliverables} />
-<ServiceProcess process={service.process} />
-<ServiceFaq faq={service.faq} />
-<ServiceFinalCta whatsappMessage={service.whatsappMessage} />
+{service.domainOptions && <ServiceDomainOptions {...service.domainOptions} />}
+{service.trust && (
+  <ServiceTrust {...service.trust} background={service.domainOptions ? "substrate" : "paper"} />
+)}
+{service.designedFor && (
+  <ServiceDesignedFor {...service.designedFor} background={service.domainOptions ? "paper" : "substrate"} />
+)}
+<ServiceProcess process={service.process} background={service.domainOptions ? "substrate" : "paper"} />
+<ServiceFaq faq={service.faq} background={service.domainOptions ? "paper" : "substrate"} />
+<ServiceFinalCta
+  whatsappMessage={service.whatsappMessage}
+  background={service.domainOptions ? "substrate" : "paper"}
+/>
 <ServiceSchema name={service.title} description={service.meta.description} url={url} />

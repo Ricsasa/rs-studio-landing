@@ -6,13 +6,15 @@ import { whatsappHref } from "@/lib/whatsapp";
 
 interface Props {
   whatsappMessage: string;
+  background?: "paper" | "substrate";
 }
 
-const { whatsappMessage } = Astro.props;
+const { whatsappMessage, background = "paper" } = Astro.props;
 const email = i18n.t("contact.email");
+const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
 ---
 
-<section class="relative isolate bg-paper px-gutter py-section">
+<section class={`relative isolate ${bgClass} px-gutter py-section`}>
   <OrganicField variant="hero" />
 
   <div class="relative mx-auto w-full max-w-content border-t border-rule pt-heading">

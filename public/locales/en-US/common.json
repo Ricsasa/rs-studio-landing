@@ -9,7 +9,7 @@
     "closeMenu": "Close menu",
     "work": "Selected Work",
     "services": "Services",
-    "manifesto": "What we build",
+    "manifesto": "Our vision",
     "process": "Process",
     "blog": "Blog",
     "contact": "Contact",
@@ -72,7 +72,7 @@
       {
         "key": "landingPages",
         "title": "Landing pages",
-        "body": "Pages designed to generate leads, quotes and sales through a conversion-focused experience."
+        "body": "Websites that clearly present your services, build trust from first contact, and turn visitors into qualified leads."
       },
       {
         "key": "wordpressEcommerce",
@@ -105,6 +105,9 @@
     "whyItMattersLabel": "Why it matters",
     "benefitsLabel": "Benefits",
     "deliverablesLabel": "What we build",
+    "domainOptionsLabel": "Domain options",
+    "trustLabel": "Trust",
+    "designedForLabel": "Designed for",
     "processLabel": "Our process",
     "processMeta": "Four steps",
     "faqLabel": "FAQ",
@@ -182,7 +185,7 @@
     ]
   },
   "manifesto": {
-    "title": "What we choose to build",
+    "title": "Our vision",
     "intro": "RS Studio intentionally partners with businesses and organizations that create local value.",
     "items": [
       {

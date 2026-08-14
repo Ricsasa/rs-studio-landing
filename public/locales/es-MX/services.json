@@ -1,23 +1,76 @@
 {
   "landingPages": {
-    "title": "Landing pages que convierten visitantes en clientes",
-    "intro": "¿Tu negocio aún depende de las recomendaciones o tus redes sociales? Una landing page bien diseñada convierte visitantes en clientes. La construimos para generar contactos, citas, cotizaciones o ventas, con una experiencia rápida y enfocada en un solo objetivo.",
-    "problem": "Muchos negocios pierden clientes porque su página no está diseñada para vender: es lenta, confusa o no deja claro qué hacer a continuación. El visitante llega, no encuentra una razón clara para actuar, y se va sin dejar sus datos ni completar una compra.",
-    "whyItMatters": "Cada visitante que llega a tu sitio representa una oportunidad de venta. Sin una página enfocada en conversión, esa inversión en tráfico —ya sea de publicidad, redes sociales o buscadores— se desperdicia. Una landing page optimizada convierte ese tráfico en clientes reales y en crecimiento medible para tu negocio.",
+    "title": "Sitios web que ayudan a negocios de servicios a conseguir más clientes",
+    "intro": "Para consultores, clínicas, despachos legales, estudios y negocios de servicios locales. Un sitio bien construido explica qué haces, genera confianza antes de la primera conversación y convierte visitantes en contactos reales. No solo tráfico.",
+    "problem": "Muchos negocios de servicios dependen de las recomendaciones y las redes sociales porque su sitio no hace el trabajo de vender. No explica con claridad qué ofrecen. No muestra por qué los clientes deberían confiar en ellos. Y no le da al visitante una razón clara para contactarlos.",
+    "whyItMatters": "Un cliente potencial decide si confía en ti en cuestión de segundos. Si tu sitio no comunica tus servicios, tu experiencia y tus resultados con claridad, se va. Probablemente contacta a tu competencia.",
     "benefits": [
-      "Mayor tasa de conversión",
-      "Mejor rendimiento de tus campañas",
-      "Optimizada para dispositivos móviles",
-      "Carga rápida",
-      "Seguimiento de conversiones"
+      "Presenta tus servicios con claridad",
+      "Genera confianza antes del primer contacto",
+      "Filtra mejor tus contactos mostrando precios o paquetes",
+      "Responde las preguntas que todo cliente tiene",
+      "Optimizado para móvil con carga rápida",
+      "Seguimiento de contactos y cotizaciones"
     ],
     "deliverables": [
-      "Diseño responsivo",
+      "Descripción de servicios y paquetes",
+      "Precios o rangos de precio (para filtrar contactos antes de que te escriban)",
+      "Testimonios y casos de éxito",
+      "Preguntas frecuentes",
       "Integración con WhatsApp",
+      "Formulario de contacto o cotización",
+      "Diseño responsivo",
       "Integración con Analytics",
-      "SEO básico",
-      "Optimización de velocidad"
+      "SEO básico"
     ],
+    "domainOptions": {
+      "title": "Tu dominio te pertenece. Elige lo que funcione para tu negocio.",
+      "intro": "Elige el dominio que funcione para tu negocio.",
+      "custom": {
+        "heading": "Dominio Personalizado",
+        "items": [
+          "Propiedad total, control total",
+          "Puedes moverlo o transferirlo cuando quieras",
+          "Registra tu propio dominio (mirestaurante.com, miclínica.mx, tu-nombre.services)"
+        ],
+        "example": "mirestaurante.com"
+      },
+      "subdomain": {
+        "heading": "Subdominio Profesional Gratis",
+        "items": [
+          "La misma profesionalidad, sin costo extra",
+          "Sin tiempo de espera, comienza de inmediato",
+          "Te ayudamos a decidir cuál se adapta mejor a tu modelo de negocio durante la fase de descubrimiento"
+        ],
+        "examples": ["mi-restaurante.rslink.mx", "super-gimnasio.rslink.mx"]
+      }
+    },
+    "trust": {
+      "title": "Genera confianza antes de la primera conversación",
+      "body": "Un negocio de servicios no vende un producto. Se vende a sí mismo. Antes de contactarte, un cliente potencial quiere saber si sabes lo que haces.",
+      "items": [
+        "Testimonios de clientes",
+        "Años de experiencia o número de negocios atendidos",
+        "Casos o proyectos reales",
+        "Certificaciones o especialidades",
+        "Tiempo de respuesta",
+        "Tu proceso de trabajo"
+      ],
+      "quote": "La mayoría de los visitantes decide si confía en un negocio en cuestión de segundos. Tu sitio debe facilitar esa decisión."
+    },
+    "designedFor": {
+      "title": "Diseñado para negocios que venden servicios",
+      "items": [
+        "Consultores",
+        "Despachos legales",
+        "Clínicas y consultorios médicos",
+        "Arquitectos",
+        "Agencias y estudios",
+        "Contadores",
+        "Contratistas",
+        "Negocios de servicios locales"
+      ]
+    },
     "process": [
       {
         "title": "Descubrimiento",
@@ -38,22 +91,38 @@
     ],
     "faq": [
       {
-        "question": "¿Qué es una landing page?",
-        "answer": "Es una página enfocada en un solo objetivo: que el visitante te contacte, agende una cita, pida una cotización o compre. A diferencia de un sitio completo, no distrae con más opciones."
+        "question": "¿Cómo genero confianza en línea antes de la primera conversación?",
+        "answer": "Tu sitio web hace la mayor parte de este trabajo por ti. Muestra testimonios reales de clientes anteriores, explica tu experiencia, comparte casos de éxito o ejemplos de tu trabajo, y sé claro sobre tu proceso. Los clientes deciden en segundos si confían en ti. Un sitio profesional que responde sus preguntas facilita esa decisión."
       },
       {
-        "question": "¿Cuánto tiempo toma?",
-        "answer": "Una landing page suele estar lista entre 1 y 2 semanas, dependiendo del contenido y los ajustes que necesites."
+        "question": "¿Qué debo incluir en mi sitio web?",
+        "answer": "Como mínimo: qué haces, a quién atiendes, por qué los clientes deberían confiar en ti (testimonios, experiencia, resultados), cómo contactarte y un siguiente paso claro. Algunos negocios también se benefician de mostrar precios, preguntas frecuentes o un sistema de citas. Te recomendamos lo que tenga sentido para tu modelo de negocio."
       },
       {
-        "question": "¿Se puede conectar con Meta Ads o Google Ads?",
-        "answer": "Sí. Integramos seguimiento de conversiones y píxeles para que puedas medir el resultado de tus campañas directamente en la landing page."
+        "question": "¿Puedo mostrar mis precios o paquetes?",
+        "answer": "Sí. Muchos negocios de servicios prefieren mostrar precios o rangos desde el inicio para filtrar a los clientes correctos antes de la primera conversación. Esto ahorra tiempo a todos. Definimos esto juntos según tu modelo de negocio."
+      },
+      {
+        "question": "¿Cómo encuentran mi sitio web?",
+        "answer": "Construimos tu sitio con SEO básico para que tenga una base. Pero conseguir visibilidad es un esfuerzo continuo que suele incluir: Perfil de Negocio de Google (sobre todo para servicios locales), aparecer en directorios que usan tus clientes, recomendaciones y a veces publicidad. Podemos platicar qué tiene sentido para tu tipo de negocio."
+      },
+      {
+        "question": "¿Qué pasa después de que alguien me contacta por el sitio web?",
+        "answer": "Depende de tu proceso. Integramos WhatsApp, correo, formularios de contacto o sistemas de citas según lo que funcione para ti. El objetivo es que sea lo más fácil posible para que alguien te contacte. También damos seguimiento a estos contactos para que sepas que el sitio está funcionando."
+      },
+      {
+        "question": "¿Puedo actualizar el contenido yo mismo?",
+        "answer": "Sí. Construimos tu sitio para que puedas actualizar textos e imágenes directamente. Te mostramos cómo hacerlo, o podemos encargarnos de las actualizaciones por una tarifa mensual si lo prefieres."
+      },
+      {
+        "question": "¿Soy dueño de mi dominio?",
+        "answer": "Sí. Si eliges un dominio personalizado, lo posees completamente. Puedes transferirlo, moverlo, o usarlo en otro lugar cuando quieras. Si comienzas con un subdominio rslink.mx gratis y luego quieres tu propio dominio, podemos migrarlo sin problemas."
       }
     ],
-    "seoKeywords": ["landing pages", "landing page para negocios", "diseño de landing pages", "generación de leads"],
+    "seoKeywords": ["landing pages", "sitios web para negocios de servicios", "diseño de landing pages", "generación de contactos"],
     "meta": {
-      "title": "Landing pages que convierten — RS Studio",
-      "description": "Diseñamos landing pages enfocadas en conversión para generar contactos, cotizaciones y ventas. Optimizadas, rápidas y listas para tus campañas."
+      "title": "Landing pages y sitios web para negocios de servicios | RS Studio",
+      "description": "Diseñamos sitios web y landing pages para negocios de servicios. Presenta tus servicios, genera confianza y consigue más contactos calificados. Rápidos, optimizados y listos para convertir."
     },
     "whatsappMessage": "¡Hola! Me interesa una landing page para mi negocio."
   },

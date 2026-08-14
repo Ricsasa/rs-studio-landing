@@ -6,14 +6,16 @@ import FAQSchema from "@/components/FAQSchema.astro";
 
 interface Props {
   faq: { question: string; answer: string }[];
+  background?: "paper" | "substrate";
 }
 
-const { faq } = Astro.props;
+const { faq, background = "substrate" } = Astro.props;
+const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
 ---
 
 <FAQSchema faq={faq} />
 
-<section class="relative isolate bg-paper px-gutter py-section">
+<section class={`relative isolate ${bgClass} px-gutter py-section`}>
   <OrganicField variant="work" />
 
   <div class="relative mx-auto w-full max-w-content">
