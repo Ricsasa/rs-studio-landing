@@ -27,8 +27,8 @@ type Service = {
   domainOptions?: {
     title: string;
     intro: string;
-    custom: { heading: string; items: string[]; example: string };
-    subdomain: { heading: string; items: string[]; examples: string[] };
+    custom: { heading: string; items: string[]; examples: DomainExample[] };
+    subdomain: { heading: string; items: string[]; examples: DomainExample[] };
   };
   trust?: { title: string; body: string; items: string[]; quote: string };
   designedFor?: { title: string; items: string[] };
@@ -37,6 +37,8 @@ type Service = {
   meta: { title: string; description: string };
   whatsappMessage: string;
 };
+
+type DomainExample = { label: string; href: string };
 
 const { serviceKey } = Astro.props;
 const service = i18n.t(serviceKey, { ns: "services", returnObjects: true }) as unknown as Service;

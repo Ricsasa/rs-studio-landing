@@ -7,9 +7,11 @@ import OrganicField from "@/components/OrganicField.astro";
 interface Props {
   title: string;
   intro: string;
-  custom: { heading: string; items: string[]; examples: string[] };
-  subdomain: { heading: string; items: string[]; examples: string[] };
+  custom: { heading: string; items: string[]; examples: DomainExample[] };
+  subdomain: { heading: string; items: string[]; examples: DomainExample[] };
 }
+
+type DomainExample = { label: string; href: string };
 
 const { title, intro, custom, subdomain } = Astro.props;
 ---
@@ -32,9 +34,14 @@ const { title, intro, custom, subdomain } = Astro.props;
         {i18n.t("servicePage.example")}
         {
           custom.examples.map((example) => (
-            <span class="block font-mono text-lead-sm text-mute">
-              {example}
-            </span>
+            <a
+              class="block font-mono text-lead-sm text-mute transition-colors hover:text-pine-deep hover:underline"
+              href={example.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {example.label}
+            </a>
           ))
         }
       </HoverCard>
@@ -44,9 +51,14 @@ const { title, intro, custom, subdomain } = Astro.props;
           {i18n.t("servicePage.example")}
           {
             subdomain.examples.map((example) => (
-              <span class="block font-mono text-lead-sm text-mute">
-                {example}
-              </span>
+              <a
+                class="block font-mono text-lead-sm text-mute transition-colors hover:text-pine-deep hover:underline"
+                href={example.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {example.label}
+              </a>
             ))
           }
         </div>

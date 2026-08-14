@@ -32,7 +32,10 @@
           "Puedes moverlo o transferirlo cuando quieras",
           "Registra tu propio dominio (mirestaurante.com, miclínica.mx, tu-nombre.services)"
         ],
-        "examples": ["mi-restaurante.com", "super-gimnasio.mx"]
+        "examples": [
+          { "label": "mi-restaurante.com", "href": "https://mi-restaurante.com" },
+          { "label": "super-gimnasio.mx", "href": "https://super-gimnasio.mx" }
+        ]
       },
       "subdomain": {
         "heading": "Subdominio Profesional Gratis",
@@ -41,7 +44,10 @@
           "Sin tiempo de espera, comienza de inmediato",
           "Te ayudamos a decidir cuál se adapta mejor a tu modelo de negocio durante la fase de descubrimiento"
         ],
-        "examples": ["mi-restaurante.rslink.mx", "super-gimnasio.rslink.mx"]
+        "examples": [
+          { "label": "mi-restaurante.rslink.mx", "href": "https://mi-restaurante.rslink.mx" },
+          { "label": "super-gimnasio.rslink.mx", "href": "https://rsstudiodev.github.io/super-gimnasio/" }
+        ]
       }
     },
     "trust": {
