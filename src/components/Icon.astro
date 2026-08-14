@@ -11,6 +11,9 @@ import {
   Monitor,
   ShoppingCart,
   BarChart3,
+  Globe,
+  Zap,
+  ArrowRight,
 } from '@lucide/astro';
 
 export type IconName =
@@ -25,7 +28,10 @@ export type IconName =
   | "landing-pages"
   | "ecommerce"
   | "business-tool"
-  | "marketing";
+  | "marketing"
+  | "globe"
+  | "zap"
+  | "arrow-right";
 
 interface Props {
   name: IconName;
@@ -47,6 +53,9 @@ const icons: Record<IconName, any> = {
   ecommerce: ShoppingCart,
   "business-tool": BarChart3,
   marketing: TrendingUp,
+  globe: Globe,
+  zap: Zap,
+  "arrow-right": ArrowRight,
 };
 
 const IconComponent = icons[name];

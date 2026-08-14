@@ -1,10 +1,16 @@
 ---
-// Full-screen intro overlay: the monogram on a blank sheet with a hairline
-// progress rule, ~1.5s, then wipes away to reveal the hero.
+import mountains from "@/assets/mountains.avif";
+
 ---
 
-<div id="intro-overlay" data-intro-overlay aria-hidden="true">
-  <div id="intro-plate">
+<div
+  id="intro-overlay"
+  data-intro-overlay
+  aria-hidden="true"
+  class="fixed inset-0 z-[var(--z-intro)] grid grid-rows-[1fr_auto] rounded-none bg-[var(--color-paper)] [will-change:transform] [html[data-intro-done='true']_&]:hidden motion-reduce:hidden"
+>
+  <img id="intro-bg" class="absolute inset-0 h-full w-full object-cover sepia-50" src={mountains.src} alt="" />
+  <div id="intro-plate" class="relative grid place-items-center p-[clamp(18px,4vw,32px)]">
     <img
       id="intro-monogram"
       src="/monogram.png"
@@ -13,70 +19,19 @@
       height="320"
       decoding="sync"
       fetchpriority="high"
+      class="h-auto w-[clamp(120px,18vw,200px)] rounded-none"
     />
   </div>
 
-  <div id="intro-bar"><span id="intro-bar-fill"></span></div>
+  <div id="intro-bar" class="mx-[var(--spacing-gutter)] mb-[clamp(24px,5vw,40px)] h-px bg-[var(--color-rule)]">
+    <span id="intro-bar-fill" class="block h-full w-full origin-left scale-x-0 bg-[var(--color-moss)]"></span>
+  </div>
 </div>
 
 <style is:global>
-  #intro-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-intro);
-    display: grid;
-    grid-template-rows: 1fr auto;
-    background: var(--color-paper);
-    border-radius: 0;
-    will-change: transform;
-  }
-
-  #intro-plate {
-    position: relative;
-    display: grid;
-    place-items: center;
-    padding: clamp(18px, 4vw, 32px);
-  }
-
-  #intro-monogram {
-    width: clamp(120px, 18vw, 200px);
-    height: auto;
-    border-radius: 0;
-  }
-
-  /*
-   * Progress rule. A hairline rather than a bar: it is the only accent on an
-   * otherwise blank sheet, and at 6px it read as a loading UI.
-   */
-  #intro-bar {
-    height: 1px;
-    margin: 0 var(--spacing-gutter) clamp(24px, 5vw, 40px);
-    background: var(--color-rule);
-  }
-
-  #intro-bar-fill {
-    display: block;
-    height: 100%;
-    width: 100%;
-    background: var(--color-moss);
-    transform: scaleX(0);
-    transform-origin: left center;
-  }
-
   html.intro-active,
   html.intro-active body {
     overflow: hidden;
-  }
-
-  /* Skipped intro: hidden before first paint, then removed by the script. */
-  html[data-intro-done="true"] #intro-overlay {
-    display: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #intro-overlay {
-      display: none;
-    }
   }
 </style>
 

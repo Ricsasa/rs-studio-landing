@@ -21,8 +21,10 @@
   },
   "hero": {
     "greeting": "Hi!",
-    "title": "We're RS Studio",
-    "intro": "A small software studio building scalable, performant products. We work as an embedded team or run projects end‑to‑end — from architecture to the release you actually ship.",
+    "title": "Software that strengthens local businesses and communities",
+    "intro": "RS Studio builds websites, digital products, automation systems, and custom software that help small businesses grow, operate more efficiently, and reach more customers.",
+    "introMission": "We believe great technology should not be reserved for large companies. Our mission is to build practical digital solutions that strengthen local economies, support community-driven projects, and give independent businesses access to the same quality of tools used by larger organizations.",
+    "closing": "When local businesses grow, everyone grows.",
     "ctaSecondary": "See selected work",
     "monogramAlt": "RS Studio monogram",
     "screenAlt": "A client site built by the studio, shown on a desktop screen",

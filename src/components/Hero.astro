@@ -137,14 +137,17 @@ const phoneFrames = interleave(
       class="grid grid-cols-1 items-center gap-split wide:grid-cols-[1fr_1.05fr]"
     >
       <div id="hero-copy" class="max-w-prose">
-        <h1 class="mt-5 max-w-[13ch] text-display display-face text-balance">
+        <h1 class="mt-5 max-w-[15ch] text-headline display-face text-balance">
           {i18n.t("hero.title")}
         </h1>
 
-        <div class="mt-cta flex flex-wrap items-center gap-3">
+        <div class="mt-cta grid gap-4">
           <p class="text-lead text-pretty text-graphite">
             {i18n.t("hero.intro")}
           </p>
+        </div>
+
+        <div class="mt-cta flex flex-wrap items-center gap-3">
           <a
             href={whatsappHref()}
             target="_blank"
@@ -172,6 +175,10 @@ const phoneFrames = interleave(
             </span>
           </a>
         </div>
+
+        <p class="mt-cta text-lead-sm text-pretty text-graphite italic">
+          {i18n.t("hero.closing")}
+        </p>
       </div>
 
       {

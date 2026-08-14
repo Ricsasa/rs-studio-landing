@@ -1,7 +1,7 @@
 ---
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
-import Icon from "@/components/Icon.astro";
+import HoverCard from "@/components/HoverCard.astro";
 import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
@@ -24,39 +24,19 @@ const { title, intro, custom, subdomain } = Astro.props;
     <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">{intro}</p>
 
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2">
-      <div class="border-t border-rule pt-8">
-        <h4 class="text-lead font-medium text-ink">{custom.heading}</h4>
+      <HoverCard icon="globe" heading={custom.heading} items={custom.items}>
+        <p class="font-mono text-lead-sm text-mute">{custom.example}</p>
+      </HoverCard>
 
-        <ul class="m-0 mt-6 list-none space-y-2 p-0">
+      <HoverCard icon="zap" heading={subdomain.heading} items={subdomain.items}>
+        <div class="space-y-1">
           {
-            custom.items.map((item) => (
-              <li class="flex items-start gap-3 text-lead-sm text-ink-soft">
-                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-moss" />
-                {item}
-              </li>
+            subdomain.examples.map((example) => (
+              <span class="block font-mono text-lead-sm text-mute">{example}</span>
             ))
           }
-        </ul>
-
-        <p class="mt-6 text-lead-sm text-mute">{custom.example}</p>
-      </div>
-
-      <div class="border-t border-rule pt-8">
-        <h4 class="text-lead font-medium text-ink">{subdomain.heading}</h4>
-
-        <ul class="m-0 mt-6 list-none space-y-2 p-0">
-          {
-            subdomain.items.map((item) => (
-              <li class="flex items-start gap-3 text-lead-sm text-ink-soft">
-                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-moss" />
-                {item}
-              </li>
-            ))
-          }
-        </ul>
-
-        <p class="mt-6 text-lead-sm text-mute">{subdomain.examples.join(" · ")}</p>
-      </div>
+        </div>
+      </HoverCard>
     </div>
   </div>
 </section>
