@@ -12,10 +12,6 @@ import { postSlug } from "@/content.config";
 export async function getStaticPaths() {
   const posts = await getCollection("blog", (p) => !p.data.draft);
 
-  // Mirrors `defaultLocale` in astro.config.mjs — `buildStaticPaths()` leaves
-  // `params.locale` undefined for the default locale, same as `homePath()`.
-  // Astro extracts `getStaticPaths` into its own scope at build time, so this
-  // constant has to live inside the function rather than above it.
   const DEFAULT_LOCALE = "es-MX";
 
   return buildStaticPaths().flatMap(({ params }) => {

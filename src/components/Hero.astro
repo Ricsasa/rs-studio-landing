@@ -43,7 +43,6 @@ function median(values: number[]): number {
     : sorted[middle]!;
 }
 
-/** The frames that share a shape with the bulk of their group. */
 function sameShape(shots: Shot[]): Shot[] {
   if (shots.length === 0) return [];
 
@@ -54,16 +53,6 @@ function sameShape(shots: Shot[]): Shot[] {
   );
 }
 
-/**
- * Round-robin across projects, so consecutive slides are different clients
- * rather than four views of one site.
- *
- * `rotate` deals from the second project first. The screen wants that — the
- * first project's opening capture already leads the work grid a screen below,
- * and opening the hero with the same image made this look like a duplicate of
- * it. The phone does not: the work grid only ever shows desktop captures, so
- * there is nothing for it to collide with.
- */
 function interleave(shots: Shot[], limit: number, rotate: boolean): Shot[] {
   const queues = [...Map.groupBy(shots, (shot) => shot.project).values()];
 
@@ -96,17 +85,6 @@ const phoneFrames = interleave(
 );
 ---
 
-{
-  /*
-  Two heights, doing two different jobs. The inner frame is exactly the space
-  left under the sticky header, and the split is centred in it — so the
-  composition sits on the viewport's centre line, not on the section's. The
-  section itself then runs `--hero-lag` past that — the room the parallax
-  travels into on the way out. Same token the script reads, so strengthening
-  the effect grows the run-out with it; without that the composition would be
-  dragged over the section boundary.
-  */
-}
 <section
   id="top"
   class="relative isolate grid min-h-[calc((100svh-var(--size-header))*(1+var(--hero-lag)))] content-start bg-paper px-gutter py-hero-top"
@@ -175,7 +153,6 @@ const phoneFrames = interleave(
           >
             {
               screenFrames.length > 0 ? (
-                /* `opacity:0` inline: without script only the first frame paints. */
                 screenFrames.map((frame, index) => (
                   <img
                     data-screen-frame
@@ -199,18 +176,11 @@ const phoneFrames = interleave(
               )
             }
 
-            {/* The same screen the work grid prints its thumbnails through. */}
             <span
               aria-hidden="true"
               class="halftone-fine absolute inset-0 opacity-8"></span>
           </div>
 
-          {
-            /*
-            Neck and foot, drawn the way the rest of the system draws
-            structure: a filled riser and a single hairline on the floor.
-          */
-          }
           <span
             aria-hidden="true"
             class="absolute top-full left-1/2 h-[5%] w-[9%] -translate-x-1/2 bg-substrate"
@@ -221,12 +191,6 @@ const phoneFrames = interleave(
           ></span>
         </div>
 
-        {
-          /*
-          Overlaps the screen's frame edge only — far enough left that it never
-          sits on the work being shown.
-        */
-        }
         <div
           id="hero-phone"
           class="absolute bottom-0 left-0 w-[21%] border border-rule-strong bg-substrate px-1.5 pt-2.5 pb-1.5 wide:w-[19%]"

@@ -35,7 +35,7 @@
     "title": "Selected Work",
     "head": "Examples",
     "viewCase": "View case",
-    "shotPlaceholder": "No screenshot yet"
+    "shotPlaceholder": "Your brand here"
   },
   "projectPage": {
     "back": "All work",
@@ -43,7 +43,6 @@
     "overviewLabel": "Overview",
     "stackLabel": "Built with",
     "galleryLabel": "Screens",
-    "nextLabel": "Next project",
     "categoryLabel": "Category",
     "yearLabel": "Year",
     "galleryRegion": "Project screenshots",

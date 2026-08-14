@@ -3,20 +3,10 @@ import { join } from "node:path";
 
 export type ImageSize = { width: number; height: number };
 
-/**
- * Reads pixel dimensions straight out of an image header, at build time.
- *
- * Deliberately not a dependency: the hero only needs to know whether a capture
- * is a desktop or a phone shot, which is four bytes in each of the three
- * formats this project actually ships. Anything it cannot parse returns
- * `null`, and callers are expected to drop those rather than guess a shape.
- */
 export function readImageSize(publicPath: string): ImageSize | null {
   let buffer: Buffer;
 
   try {
-    // `publicPath` is a site-absolute URL ("/projects/x/1.avif"), which maps
-    // onto `public/` on disk.
     buffer = readFileSync(join(process.cwd(), "public", publicPath.replace(/^\//, "")));
   } catch {
     return null;
@@ -25,12 +15,6 @@ export function readImageSize(publicPath: string): ImageSize | null {
   return avifSize(buffer) ?? pngSize(buffer) ?? jpegSize(buffer);
 }
 
-/**
- * AVIF/HEIF are ISOBMFF: the dimensions live in an `ispe` (image spatial
- * extent) box as two big-endian 32-bit ints, after the box's 4 version/flags
- * bytes. A file with thumbnails carries several `ispe` boxes, so this takes
- * the largest rather than the first — the thumbnail would otherwise win.
- */
 function avifSize(buffer: Buffer): ImageSize | null {
   if (buffer.length < 12 || buffer.toString("ascii", 4, 8) !== "ftyp") return null;
 
@@ -56,11 +40,6 @@ function pngSize(buffer: Buffer): ImageSize | null {
   return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
 }
 
-/**
- * JPEG: walk the marker segments to the start-of-frame (SOFn), skipping the
- * ones that carry no frame header. SOF4 (0xC4), SOF8 (0xC8) and SOF12 (0xCC)
- * are Huffman/arithmetic tables, not frames.
- */
 function jpegSize(buffer: Buffer): ImageSize | null {
   if (buffer.length < 4 || buffer.readUInt16BE(0) !== 0xffd8) return null;
 

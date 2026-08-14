@@ -7,7 +7,6 @@ vi.mock("node:fs", () => ({
 
 const mockedReadFileSync = vi.mocked(readFileSync);
 
-/** Minimal valid PNG header: signature + IHDR chunk with width/height. */
 function buildPngBuffer(width: number, height: number): Buffer {
   const buffer = Buffer.alloc(24);
   buffer.write("IHDR", 12, "ascii");
@@ -16,20 +15,18 @@ function buildPngBuffer(width: number, height: number): Buffer {
   return buffer;
 }
 
-/** Minimal JPEG: SOI marker + one SOF0 segment carrying height/width. */
 function buildJpegBuffer(width: number, height: number): Buffer {
   const buffer = Buffer.alloc(12);
-  buffer.writeUInt16BE(0xffd8, 0); // SOI
+  buffer.writeUInt16BE(0xffd8, 0);
   buffer[2] = 0xff;
-  buffer[3] = 0xc0; // SOF0
-  buffer.writeUInt16BE(8, 4); // segment length (2 length bytes + 6 payload bytes)
-  buffer[6] = 0x08; // precision byte
+  buffer[3] = 0xc0;
+  buffer.writeUInt16BE(8, 4);
+  buffer[6] = 0x08;
   buffer.writeUInt16BE(height, 7);
   buffer.writeUInt16BE(width, 9);
   return buffer;
 }
 
-/** Minimal ISOBMFF container with one "ispe" box carrying width/height. */
 function buildAvifBuffer(width: number, height: number): Buffer {
   const buffer = Buffer.alloc(24);
   buffer.write("ftyp", 4, "ascii");
@@ -65,7 +62,6 @@ describe("readImageSize", () => {
   });
 
   it("picks the largest ispe box in an AVIF file, ignoring thumbnail boxes", async () => {
-    // Simulates a file with a small thumbnail ispe box followed by the real one.
     const thumbnail = buildAvifBuffer(64, 64);
     const full = buildAvifBuffer(1920, 1080);
     const combined = Buffer.concat([thumbnail, full]);

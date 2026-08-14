@@ -6,9 +6,6 @@ import { blogPath, homePath, isHome, sectionHref } from "@/i18n/routing";
 const pathname = Astro.url.pathname;
 const onHome = isHome(pathname);
 
-// `blog` is a real route, not an in-page hash, so it skips `sectionHref` and
-// carries its own `href` — everything else still scrolls on the landing page
-// and routes home first anywhere else.
 const links = [
   { hash: "#manifesto", key: "nav.manifesto" },
   { hash: "#work", key: "nav.work" },
@@ -18,15 +15,9 @@ const links = [
   { hash: "#contact", key: "nav.contact" },
 ].map((link) => ({ ...link, href: link.href ?? sectionHref(pathname, link.hash!) }));
 
-// On the landing page this is an in-page scroll; elsewhere it routes home.
 const logoHref = onHome ? "#top" : homePath();
 ---
 
-{/*
-  A hairline and a wash of paper, nothing else: the cell borders that used to
-  divide the logo, nav and controls are gone, so the header reads as a margin
-  rather than as a toolbar.
-*/}
 <header class="sticky top-0 z-(--z-header) border-b border-rule bg-paper/92 backdrop-blur-sm">
   <div class="mx-auto flex w-full max-w-content items-center justify-between gap-6 px-gutter py-4">
     <a href={logoHref} class="flex items-center transition-opacity duration-200 hover:opacity-70">
@@ -39,7 +30,6 @@ const logoHref = onHome ? "#top" : homePath();
       />
     </a>
 
-    {/* The accent underline marks the section you are actually in. */}
     <nav class="hidden items-center gap-[clamp(16px,2.2vw,32px)] md:flex">
       {
         links.map((link) => (
@@ -58,7 +48,6 @@ const logoHref = onHome ? "#top" : homePath();
     <div class="flex items-center gap-2">
       <LanguageToggle />
 
-      {/* Opens the drawer only. The drawer covers this row and closes itself. */}
       <button
         type="button"
         id="menu-toggle"
@@ -74,15 +63,7 @@ const logoHref = onHome ? "#top" : homePath();
   </div>
 </header>
 
-{/*
-  Sits *over* the sticky header rather than under it. Locking body scroll while
-  the page is scrolled down takes the sticky header with it on mobile, so a
-  control living up there — the old X — became unreachable exactly when it was
-  needed. The drawer now covers the header (and the floating WhatsApp button)
-  and carries its own close control, so it depends on nothing outside itself.
-*/}
 <div id="mobile-drawer" class="fixed inset-0 z-(--z-drawer) hidden flex-col bg-paper md:hidden">
-  {/* Restates the header row it is covering, with the X where the toggle was. */}
   <div class="flex items-center justify-between gap-6 px-gutter py-4">
     <a href={logoHref} class="flex items-center transition-opacity duration-200 hover:opacity-70">
       <img
@@ -95,7 +76,6 @@ const logoHref = onHome ? "#top" : homePath();
     </a>
 
     <div class="flex items-center gap-2">
-      {/* The header's copy is covered, so the drawer carries the switch itself. */}
       <LanguageToggle />
 
       <button
@@ -104,7 +84,6 @@ const logoHref = onHome ? "#top" : homePath();
         aria-label={i18n.t("nav.closeMenu")}
         class="-mr-2 flex h-11 w-11 items-center justify-center transition-opacity duration-200 hover:opacity-70"
       >
-        {/* Two hairlines crossed — the same 20px bar the toggle draws, rotated. */}
         <span aria-hidden="true" class="relative block h-5 w-5">
           <span class="absolute top-1/2 left-0 block h-px w-5 rotate-45 bg-ink"></span>
           <span class="absolute top-1/2 left-0 block h-px w-5 -rotate-45 bg-ink"></span>
@@ -137,8 +116,6 @@ const logoHref = onHome ? "#top" : homePath();
 
   if (toggle && drawer) {
     const setOpen = (open: boolean) => {
-      // Escape and the desktop breakpoint both close unconditionally; without
-      // this they would pull focus back to the toggle when nothing was open.
       if (open === !drawer.classList.contains("hidden")) return;
 
       toggle.setAttribute("aria-expanded", String(open));
@@ -146,8 +123,6 @@ const logoHref = onHome ? "#top" : homePath();
       drawer.classList.toggle("flex", open);
       document.body.classList.toggle("overflow-hidden", open);
 
-      // Focus follows the panel, so the close button is the next tab stop in
-      // and the toggle is where focus lands on the way back out.
       if (open) document.getElementById("menu-close")?.focus();
       else toggle.focus();
     };
@@ -163,14 +138,11 @@ const logoHref = onHome ? "#top" : homePath();
       if (event.key === "Escape") setOpen(false);
     });
 
-    // The drawer is md:hidden, so crossing into desktop must also drop the scroll lock.
     window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
       if (event.matches) setOpen(false);
     });
   }
 
-  // Mark the section currently in view. Only the landing page has the sections
-  // inline; elsewhere the nav links route home and nothing is current.
   const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
   const sections = [...navLinks]
     .map((link) => document.getElementById(link.dataset.section ?? ""))
@@ -193,13 +165,9 @@ const logoHref = onHome ? "#top" : homePath();
           else visible.delete(entry.target.id);
         });
 
-        // Several sections can straddle the band at once; the first in document
-        // order is the one the reader has arrived at.
         const current = sections.find((section) => visible.has(section.id));
         setCurrent(current?.id ?? null);
       },
-      // A band just under the sticky header, so "current" means "at the top of
-      // the viewport" rather than "anywhere on screen".
       { rootMargin: "-72px 0px -70% 0px" },
     );
 

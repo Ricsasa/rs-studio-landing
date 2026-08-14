@@ -20,7 +20,6 @@ const { name, class: className } = Astro.props;
   focusable="false"
   class:list={["block", className]}
 >
-  {/* Landing pages: a desktop screen and a phone, the two places they convert. */}
   {
     name === "landingPages" && (
       <>
@@ -32,7 +31,6 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/* WordPress ecommerce: a bag, the everyday shape of buying something. */}
   {
     name === "ecommerce" && (
       <>
@@ -42,7 +40,6 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/* Business management tool: a ledger grid — sales, purchases, records, one table. */}
   {
     name === "businessTool" && (
       <>
@@ -52,7 +49,6 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/* Digital marketing: a load curve climbing over a baseline. */}
   {
     name === "marketing" && (
       <>
@@ -64,7 +60,6 @@ const { name, class: className } = Astro.props;
     )
   }
 
-  {/* Shared benefit-card checkmark. */}
   {
     name === "check" && <path d="M4.5 17.5l7 7 16-16" />
   }

@@ -5,18 +5,11 @@ import Contact from "@/components/Contact.astro";
 import ProjectHeader from "@/components/work/ProjectHeader.astro";
 import ProjectOverview from "@/components/work/ProjectOverview.astro";
 import ProjectGallery from "@/components/work/ProjectGallery.astro";
-import ProjectNext from "@/components/work/ProjectNext.astro";
+import { render } from "astro:content";
 import { buildStaticPaths } from "astro-react-i18next/utils";
-import {
-  projectSlugs,
-  caseStudySlugs,
-  projectScreenshots,
-  type Project,
-} from "@/content/projects";
-import { tList } from "@/i18n/t";
+import { projectSlugs, caseStudySlugs, projectScreenshots, findProject } from "@/content/projects";
 import i18n from "i18next";
 
-/** Every locale crossed with the projects that have a write-up. */
 export function getStaticPaths() {
   return buildStaticPaths().flatMap(({ params }) =>
     caseStudySlugs.map((slug) => ({ params: { ...params, slug } })),
@@ -24,21 +17,17 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const projects = tList<Project>("projects", "projects");
+const lang = i18n.language as "en-US" | "es-MX";
+const entry = findProject(lang, slug ?? "");
 
-// Slugs come from en-US, so position — not the translated title — is the key.
-const index = projectSlugs.indexOf(slug ?? "");
-
-if (index === -1 || !projects[index]) {
+if (!entry) {
   throw new Error(`No project matches the slug "${slug}". Are the locale files out of sync?`);
 }
 
-const project = projects[index]!;
+const project = entry.data;
+const { Content } = await render(entry);
 
-const position = caseStudySlugs.indexOf(slug ?? "");
-const nextSlug = caseStudySlugs[(position + 1) % caseStudySlugs.length]!;
-const next = projects[projectSlugs.indexOf(nextSlug)]!;
-
+const index = projectSlugs.indexOf(slug ?? "");
 const ogImage = projectScreenshots[index]?.[0];
 ---
 
@@ -51,8 +40,9 @@ const ogImage = projectScreenshots[index]?.[0];
   <main id="main">
     <ProjectHeader project={project} />
     <ProjectGallery project={project} images={projectScreenshots[index]!} />
-    <ProjectOverview project={project} />
-    <ProjectNext next={next} nextSlug={nextSlug} />
+    <ProjectOverview project={project}>
+      <Content />
+    </ProjectOverview>
   </main>
   <Contact />
 </Layout>

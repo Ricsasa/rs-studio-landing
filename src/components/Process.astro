@@ -20,10 +20,6 @@ const steps = tList<Step>("process.steps");
         {i18n.t("process.intro")}
       </p>
 
-      {/*
-        One ruled row per step, read top to bottom. The numbers stay because
-        the order is the point here — this is a sequence, not a list.
-      */}
       <ol class="m-0 list-none p-0">
         {
           steps.map((step) => (

@@ -7,15 +7,10 @@ import { whatsappHref } from "@/lib/whatsapp";
 const email = i18n.t("contact.email");
 ---
 
-{/*
-  The closing plate. Deepest pine in the document — the bottom of the same green
-  ramp the paper sits at the top of — so the sheet ends darker than it started.
-*/}
 <section id="contact" class="relative isolate bg-pine-deep px-gutter parallax-plate [--plate-pad:var(--spacing-section-lg)] text-reverse">
   <OrganicField variant="contact" />
 
   <div class="relative mx-auto w-full max-w-content">
-    {/* `lichen` rather than `moss`: the accent needs more coverage to stay legible on a plate. */}
     <span class="eyebrow text-lichen">{i18n.t("nav.contact")}</span>
 
     <h2 class="mt-5 max-w-[18ch] text-headline display-face text-balance">

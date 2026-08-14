@@ -22,11 +22,6 @@ const ICONS: Record<ServiceKey, IconName> = {
 const email = i18n.t("contact.email");
 ---
 
-{/*
-  Was a full pine plate; moved to substrate after the copy read as hard to
-  scan reversed out of dark green on a section that is most of the site's
-  lead generation. Same weight-break from paper as before, just legible.
-*/}
 <section id="services" class="relative isolate bg-paper px-gutter parallax-plate">
   <OrganicField variant="caseStudy" />
 
@@ -37,7 +32,6 @@ const email = i18n.t("contact.email");
       {i18n.t("services.intro")}
     </p>
 
-    {/* Each card is a single link — the whole surface is the click target. */}
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         services.map((service) => (
@@ -63,7 +57,6 @@ const email = i18n.t("contact.email");
       }
     </div>
 
-    {/* The homepage-only "which one do I need?" prompt, closing this plate. */}
     <div class="mt-cta-lg border-t border-rule pt-heading">
       <h3 class="max-w-[20ch] text-section display-face text-balance">
         {i18n.t("services.cta.title")}

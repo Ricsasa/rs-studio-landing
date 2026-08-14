@@ -5,9 +5,6 @@ const blog = defineCollection({
   loader: glob({
     pattern: "**/index.mdx",
     base: "./src/content/blog",
-    // Default id (e.g. "es-MX/hola-mundo") kept as-is: it must stay unique per
-    // entry, and stripping the locale segment made the es-MX/en-US pair
-    // collide onto one id, so the glob loader silently dropped one of them.
   }),
   schema: ({ image }) =>
     z.object({
@@ -23,9 +20,28 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+  loader: glob({
+    pattern: "**/index.mdx",
+    base: "./src/content/projects",
+  }),
+  schema: z.object({
+    title: z.string(),
+    brief_description: z.string(),
+    category: z.string(),
+    year: z.string(),
+    project_id: z.number(),
+    lang: z.enum(["es-MX", "en-US"]),
+    href: z.string().optional(),
+    cta: z.string().optional(),
+    technologies: z.array(z.string()).optional(),
+    "screenshots-prefix": z.string().optional(),
+    "screenshot-alts": z.array(z.string()).optional(),
+  }),
+});
 
-/** The id minus its leading locale segment — the route param for a post. */
+export const collections = { blog, projects };
+
 export function postSlug(id: string): string {
   return id.split("/").slice(1).join("/");
 }

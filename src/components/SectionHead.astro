@@ -1,18 +1,7 @@
 ---
-/**
- * The standard section masthead: a hairline, the annotation that names the
- * section, then the title.
- *
- * Every section on the site uses this, so the page reads as one document
- * rather than as a stack of independently styled blocks. The rule sits above
- * the title rather than under it — with no borders around the content below,
- * the line is what tells you a new section has started.
- */
 interface Props {
   title: string;
-  /** Optional annotation printed above the title. */
   meta?: string;
-  /** `dark` reverses the rule and annotation out of a pine plate. */
   tone?: "paper" | "dark";
   id?: string;
   class?: string;

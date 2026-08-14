@@ -9,12 +9,9 @@ import { getLocalizedPathname } from "astro-react-i18next/utils";
 interface Props {
   title?: string;
   description?: string;
-  /** Absolute URL. Defaults to the site monogram. */
   ogImage?: string;
   ogImageAlt?: string;
-  /** "website" for every existing page, "article" for blog posts. */
   ogType?: string;
-  /** Defaults to the current page's own URL. */
   canonicalURL?: string;
 }
 
@@ -27,8 +24,6 @@ const {
   canonicalURL,
 } = Astro.props;
 
-// `Astro.site` is only set once the `site` option is configured; without it
-// these stay relative rather than emitting a broken absolute URL.
 const canonical = Astro.site
   ? canonicalURL
     ? new URL(canonicalURL)
@@ -39,9 +34,6 @@ const ogImage = Astro.site
   ? new URL(ogImageProp || "/monogram.png", Astro.site)
   : undefined;
 
-// Every locale this page also exists in, for hreflang. Crawlers ignore
-// relative hreflang hrefs, so these are only emitted once `site` gives us an
-// origin to resolve against.
 const alternates = Astro.site
   ? getLocaleOptions().map((locale) => ({
       code: locale.code,
@@ -105,12 +97,6 @@ const alternates = Astro.site
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    {/*
-      Archivo alone, at three weights: 400 for prose, 500 for titles and UI,
-      600 where a title needs a little more presence. The Archivo Black cut
-      the earlier design used is deliberately not loaded — nothing on the page
-      is set heavy enough to need it, and it was a request on every page load.
-    */}
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"

@@ -1,19 +1,24 @@
 ---
 import i18n from "i18next";
-import { tList } from "@/i18n/t";
 import { projectPath } from "@/i18n/routing";
 import SectionHead from "./SectionHead.astro";
 import OrganicField from "./OrganicField.astro";
-import { projectSlugs, projectScreenshots, projectScreenshotAlts, isCaseStudy, type Project } from "@/content/projects";
+import {
+  projectSlugs,
+  projectScreenshots,
+  projectScreenshotAlts,
+  isCaseStudy,
+  projectsForLocale,
+} from "@/content/projects";
 
-const projects = tList<Project>("projects", "projects");
+const localeEntries = projectsForLocale(i18n.language as "en-US" | "es-MX");
+const projects = localeEntries.map((entry) => entry.data);
 
 const cards = projects.map((project, index) => {
-  const caseStudy = isCaseStudy(project);
+  const caseStudy = isCaseStudy(localeEntries[index]!);
 
   return {
     project,
-    // Case studies route internally; everything else follows its own href.
     href: caseStudy ? projectPath(projectSlugs[index]!) : (project.href ?? "#contact"),
     external: !caseStudy && Boolean(project.href?.startsWith("http")),
     label: caseStudy ? i18n.t("work.viewCase") : project.cta,
@@ -31,10 +36,6 @@ const total = String(projects.length).padStart(2, "0");
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("work.title")} meta={i18n.t("work.head")} />
 
-    {/*
-      No card containers: the screenshot is the object, and the type sits
-      under it on open paper. Gaps do the separating that borders used to.
-    */}
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         cards.map(({ project, href, external, label, thumbnail, thumbnailAlt }) => (
@@ -45,7 +46,7 @@ const total = String(projects.length).padStart(2, "0");
             class="group flex flex-col"
           >
             {thumbnail ? (
-              <div class="relative overflow-hidden bg-substrate">
+              <div class="relative overflow-hidden border border-rule bg-substrate transition-colors duration-200 group-hover:border-moss">
                 <img
                   src={thumbnail}
                   alt={thumbnailAlt || i18n.t("projectPage.screenshotAlt", { title: project.title, index: 1 })}
@@ -53,11 +54,10 @@ const total = String(projects.length).padStart(2, "0");
                   decoding="async"
                   class="block aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                 />
-                {/* Screenshots are photographic; the dot matrix prints them onto the page. */}
                 <span aria-hidden="true" class="halftone-fine absolute inset-0 opacity-8" />
               </div>
             ) : (
-              <div class="flex aspect-16/10 items-center justify-center bg-substrate">
+              <div class="flex aspect-16/10 items-center justify-center border border-rule bg-substrate transition-colors duration-200 group-hover:border-moss">
                 <span class="label text-mute">{i18n.t("work.shotPlaceholder")}</span>
               </div>
             )}
@@ -78,7 +78,6 @@ const total = String(projects.length).padStart(2, "0");
               <p class="label mt-4 text-mute">{project.technologies.join(" · ")}</p>
             )}
 
-            {/* `mt-auto`: the call to action lines up across a row of uneven cards. */}
             <span class="mt-auto flex items-center gap-2 pt-5 text-lead-sm font-medium">
               {label}
               <span

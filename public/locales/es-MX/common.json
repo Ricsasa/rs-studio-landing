@@ -35,7 +35,7 @@
     "title": "Trabajo seleccionado",
     "head": "Ejemplos",
     "viewCase": "Ver caso",
-    "shotPlaceholder": "Aún sin captura"
+    "shotPlaceholder": "Tu marca aquí"
   },
   "projectPage": {
     "back": "Todo el trabajo",
@@ -43,7 +43,6 @@
     "overviewLabel": "Resumen",
     "stackLabel": "Construido con",
     "galleryLabel": "Pantallas",
-    "nextLabel": "Siguiente proyecto",
     "categoryLabel": "Categoría",
     "yearLabel": "Año",
     "galleryRegion": "Capturas del proyecto",

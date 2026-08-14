@@ -15,10 +15,6 @@ const groups = tList<StackGroup>("stack.groups");
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("stack.title")} meta={i18n.t("stack.caption")} />
 
-    {/*
-      Four plain columns. The tools are set at reading size rather than as
-      tags or manifest rows — they are names, and names do not need boxes.
-    */}
     <div class="mt-heading grid grid-cols-2 gap-x-grid gap-y-flow md:grid-cols-4">
       {
         groups.map((group) => (

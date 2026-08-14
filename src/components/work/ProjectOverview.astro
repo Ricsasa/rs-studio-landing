@@ -1,6 +1,5 @@
 ---
 import i18n from "i18next";
-import { renderRichText } from "@/lib/markdown";
 import type { Project } from "@/content/projects";
 
 interface Props {
@@ -25,7 +24,6 @@ const { project } = Astro.props;
                 {i18n.t("projectPage.stackLabel")}
               </h3>
 
-              {/* Plain names, matching the stack section on the landing page. */}
               <ul class="m-0 mt-4 list-none space-y-2 p-0">
                 {project.technologies.map((tech) => (
                   <li class="text-lead-sm text-ink-soft">{tech}</li>
@@ -36,11 +34,9 @@ const { project } = Astro.props;
         }
       </div>
 
-      {/* Rendered from markdown, so spacing and emphasis are styled from the parent. */}
-      <div
-        class="max-w-prose text-lead text-pretty text-graphite [&>p]:mt-6 [&>p:first-child]:mt-0 [&_em]:italic [&_strong]:font-medium [&_strong]:text-ink"
-        set:html={renderRichText(project.full_description ?? "")}
-      />
+      <div class="max-w-prose text-lead text-pretty text-graphite [&>p]:mt-6 [&>p:first-child]:mt-0 [&_em]:italic [&_strong]:font-medium [&_strong]:text-ink">
+        <slot />
+      </div>
     </div>
   </div>
 </section>

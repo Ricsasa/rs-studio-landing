@@ -1,7 +1,6 @@
 import i18n from "i18next";
 import { getLocalizedPathname } from "astro-react-i18next/utils";
 
-/** "/" for the default locale, "/en-US" otherwise. */
 export function homePath(): string {
   return getLocalizedPathname("/", i18n.language);
 }
@@ -39,10 +38,6 @@ export function isHome(pathname: string): boolean {
   return normalize(pathname) === normalize(homePath());
 }
 
-/**
- * Section links are plain hashes on the landing page so they scroll rather than
- * navigate. Anywhere else they have to route home first, in the current locale.
- */
 export function sectionHref(pathname: string, hash: string): string {
   if (isHome(pathname)) return hash;
 

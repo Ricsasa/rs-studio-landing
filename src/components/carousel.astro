@@ -1,22 +1,4 @@
 ---
-/**
- * Self-contained scroll-snap carousel.
- *
- * Markup, styling hooks and behaviour all live here. The default appearance
- * reads this project's design tokens, but every visual surface is exposed as
- * a class prop, so dropping the file into another project only means passing
- * `stageClass`, `controlClass`, `dotClass` and `screenClass`. The track
- * scrolls natively, so
- * touch swiping, trackpads and the scrollbar work even before the script
- * runs; the script only keeps the controls in sync and drives the full-size
- * dialog.
- *
- * Images may have different aspect ratios: every slide is a fixed-height stage
- * and the image is centred inside it with `object-contain`, so a phone
- * screenshot and a laptop screenshot can sit in the same carousel without the
- * layout shifting between slides.
- */
-
 export interface CarouselImage {
     src: string;
     alt?: string;
@@ -25,39 +7,23 @@ export interface CarouselImage {
 export interface CarouselLabels {
     previous: string;
     next: string;
-    /** A template containing `{{index}}`, or a function of the 1-based index. */
     goTo: string | ((index: number) => string);
     open: string;
     close: string;
 }
 
 interface Props {
-    /** Image sources, in display order. Aspect ratios may differ. */
     images: (string | CarouselImage)[];
-    /** Accessible name for the carousel region. */
     label?: string;
-    /** Unique id for the track, referenced by the controls' `aria-controls`. */
     id?: string;
-    /** Height of the slide stage. */
     heightClass?: string;
-    /** Backdrop behind each image, visible around non-filling aspect ratios. */
     stageClass?: string;
-    /** Appearance of the prev/next buttons. Positioning stays with the component. */
     controlClass?: string;
-    /** Appearance of the position dots. Ignored when `thumbnails` is true. */
     dotClass?: string;
-    /** Show slide thumbnails instead of position dots. */
     thumbnails?: boolean;
-    /** Appearance of each thumbnail button's border ring. */
     thumbnailClass?: string;
-    /**
-     * Texture printed over each slide. Pass "" to leave the images clean. The
-     * zoomed view is deliberately never screened.
-     */
     screenClass?: string;
-    /** Set false to disable the click-to-zoom dialog. */
     zoom?: boolean;
-    /** `{{index}}` is replaced with the slide number in `goTo`. */
     labels?: Partial<CarouselLabels>;
     class?: string;
 }
@@ -69,8 +35,6 @@ const {
     heightClass = "h-72 sm:h-96 lg:h-120",
     stageClass = "bg-substrate",
     controlClass = "bg-paper/90 p-2 text-graphite transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-current",
-    // Styles the dot span, not the button, so the state variant reads the
-    // `aria-current` the script sets on the button around it.
     dotClass = "h-px w-6 bg-rule-strong transition-colors group-hover/dot:bg-ink group-aria-current/dot:bg-moss",
     thumbnails = false,
     thumbnailClass = "border-rule-strong group-hover/dot:border-graphite group-aria-current/dot:border-moss",
@@ -152,13 +116,6 @@ const controlPosition =
                                 />
                             )}
 
-                            {/*
-                              Screens the whole stage rather than the image
-                              alone: slides are letterboxed, and a screen that
-                              stopped at the image edge would trace its aspect
-                              ratio. `pointer-events-none` keeps the zoom
-                              trigger underneath clickable.
-                            */}
                             {screenClass && (
                                 <span
                                     aria-hidden="true"
@@ -221,10 +178,6 @@ const controlPosition =
 
             {hasControls && (
                 <div class="mt-2 flex items-center justify-between gap-4">
-                    {/*
-                      The dot itself stays small, but the button around it is a
-                      24px target — an 8px hit area is unusable on touch.
-                    */}
                     <div class:list={thumbnails ? "flex gap-3" : "-ml-2 flex"}>
                         {thumbnails
                             ? slides.map((slide, position) => (
@@ -333,7 +286,6 @@ const controlPosition =
             },
         );
 
-        // Anything outside the image itself dismisses the dialog.
         dialog.addEventListener("click", (event) => {
             const clicked = event.target as HTMLElement;
 

@@ -2,17 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import i18n from "i18next";
 import { getLocalizedPathname } from "astro-react-i18next/utils";
 
-// `routing.ts` calls `getLocalizedPathname` from a third-party package, and
-// reads `i18n.language`. Both are mocked so the test controls the current
-// locale directly, instead of depending on the real i18next runtime state
-// (which normally gets set by an Astro page request).
 vi.mock("i18next", () => ({
   default: { language: "es-MX" },
 }));
 
 vi.mock("astro-react-i18next/utils", () => ({
-  // Real behavior: default locale ("es-MX") returns the bare path,
-  // any other locale gets prefixed with "/<locale>".
   getLocalizedPathname: vi.fn((path: string, language: string) =>
     language === "es-MX" ? path : `/${language}${path}`,
   ),

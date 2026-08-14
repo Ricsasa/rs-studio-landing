@@ -1,9 +1,5 @@
 import { getLocaleConfig } from "astro-react-i18next/utils";
 
-/**
- * Display metadata only. The list of locales itself, and the routing rules for
- * them, come from the `reactI18next` config in astro.config.mjs.
- */
 const LOCALE_LABELS: Record<string, { short: string; label: string }> = {
   "en-US": { short: "EN", label: "English" },
   "es-MX": { short: "ES", label: "Español" },

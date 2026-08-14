@@ -5,7 +5,6 @@ import type { Project } from "@/content/projects";
 
 interface Props {
   project: Project;
-  /** Resolved from disk by the page, since screenshots are not locale data. */
   images: string[];
 }
 
@@ -21,8 +20,6 @@ const labels = {
   next: i18n.t("carousel.next"),
   open: i18n.t("carousel.open"),
   close: i18n.t("carousel.close"),
-  // A function, so i18next does the interpolation rather than the component
-  // string-replacing a `{{index}}` that i18next would already have consumed.
   goTo: (index: number) => i18n.t("carousel.goTo", { index }),
 };
 ---

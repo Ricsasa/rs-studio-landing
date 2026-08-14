@@ -5,8 +5,6 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
 import { homePath, sectionHref } from "@/i18n/routing";
 
-// A 404 is served for unknown paths in any locale, so it can't be built per
-// locale the way the routed pages are. It renders in the default locale.
 const home = homePath();
 const workHref = sectionHref("/404", "#work");
 ---

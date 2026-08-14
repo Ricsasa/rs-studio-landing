@@ -7,9 +7,6 @@ export function initIntro() {
   const monogram = overlay.querySelector<HTMLImageElement>("#intro-monogram");
   const barFill = overlay.querySelector<HTMLElement>("#intro-bar-fill");
 
-  // The hero animation waits on this rather than on a guessed delay, so the two
-  // stay in step if the intro's timing ever changes. The flag covers the
-  // reduced-motion path, where `finish` runs before the hero can subscribe.
   const finish = () => {
     document.documentElement.classList.remove("intro-active");
     document.documentElement.dataset.introDone = "true";
@@ -17,8 +14,6 @@ export function initIntro() {
     window.dispatchEvent(new CustomEvent("intro:complete"));
   };
 
-  // The inline pre-paint script already decided to skip (reduced motion, or an
-  // in-session navigation back to this page); just clear the markup away.
   if (document.documentElement.dataset.introDone === "true") {
     overlay.remove();
     return;
@@ -30,19 +25,15 @@ export function initIntro() {
   }
 
   const tl = gsap.timeline({
-    // The same curve the scroll reveals use, so the site has one motion voice.
     defaults: { ease: "expo.out" },
     onComplete: finish,
   });
 
-  // A rise into place rather than a scale-up: nothing on this site zooms.
   tl.from(monogram, {
     autoAlpha: 0,
     y: 12,
     duration: 0.7,
   })
-    // The progress rule is the only motion carrying the accent colour, so it
-    // runs the full length of the hold rather than easing out early.
     .to(
       barFill,
       {
