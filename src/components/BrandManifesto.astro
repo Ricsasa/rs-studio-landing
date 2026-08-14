@@ -1,0 +1,45 @@
+---
+import i18n from "i18next";
+import { tList } from "@/i18n/t";
+import SectionHead from "./SectionHead.astro";
+import OrganicField from "./OrganicField.astro";
+import Icon, { type IconName } from "./Icon.astro";
+
+type ManifestoItem = { key: string; title: string; body: string };
+
+const items = tList<ManifestoItem>("manifesto.items");
+
+const ICONS: Record<string, IconName> = {
+  localEconomies: "store",
+  sustainability: "leaf",
+  community: "users",
+  accessibility: "accessibility",
+};
+---
+
+<section id="manifesto" class="relative isolate bg-substrate px-gutter parallax-plate">
+  <OrganicField variant="process" />
+
+  <div class="relative mx-auto w-full max-w-content">
+    <SectionHead
+      title={i18n.t("manifesto.title")}
+      meta={i18n.t("manifesto.title")}
+    />
+
+    <p class="mt-heading max-w-prose text-lead text-pretty text-graphite">
+      {i18n.t("manifesto.intro")}
+    </p>
+
+    <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
+      {
+        items.map((item) => (
+          <div class="border-t border-rule pt-8 transition-colors duration-200 hover:border-moss">
+            <Icon name={ICONS[item.key]} class="h-14 w-14 text-moss" />
+            <h3 class="mt-6 text-section display-face">{item.title}</h3>
+            <p class="mt-4 text-lead text-pretty text-graphite">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

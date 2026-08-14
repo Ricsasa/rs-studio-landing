@@ -1,18 +1,16 @@
 ---
 import i18n from "i18next";
 import OrganicField from "@/components/OrganicField.astro";
-import ServiceGlyph, { type GlyphName } from "@/components/ServiceGlyph.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 
 interface Props {
   title: string;
   intro: string;
-  glyph: GlyphName;
   whatsappMessage: string;
 }
 
-const { title, intro, glyph, whatsappMessage } = Astro.props;
+const { title, intro, whatsappMessage } = Astro.props;
 const email = i18n.t("contact.email");
 ---
 
@@ -20,8 +18,7 @@ const email = i18n.t("contact.email");
   <OrganicField variant="caseStudy" />
 
   <div class="relative mx-auto w-full max-w-content">
-    <span class="eyebrow flex items-center gap-2 text-moss">
-      <ServiceGlyph name={glyph} class="h-4 w-4" />
+    <span class="eyebrow text-moss">
       {i18n.t("nav.services")}
     </span>
 

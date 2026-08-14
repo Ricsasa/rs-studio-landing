@@ -9,8 +9,8 @@
     "closeMenu": "Cerrar menú",
     "work": "Trabajo seleccionado",
     "services": "Servicios",
+    "manifesto": "Lo que construimos",
     "process": "Proceso",
-    "stack": "Stack",
     "blog": "Blog",
     "contact": "Contacto",
     "skipToContent": "Saltar al contenido"
@@ -178,6 +178,32 @@
           "Docker",
           "GitHub Actions"
         ]
+      }
+    ]
+  },
+  "manifesto": {
+    "title": "Lo que elegimos construir",
+    "intro": "RS Studio se asocia intencionalmente con negocios y organizaciones que generan valor local.",
+    "items": [
+      {
+        "key": "localEconomies",
+        "title": "Economía local",
+        "body": "Priorizamos proyectos que fortalecen el comercio local, el emprendimiento y el crecimiento económico regional."
+      },
+      {
+        "key": "sustainability",
+        "title": "Sostenibilidad",
+        "body": "Buscamos activamente trabajar con negocios que se preocupan por su impacto ambiental y social."
+      },
+      {
+        "key": "community",
+        "title": "Comunidad",
+        "body": "Creemos que las relaciones a largo plazo crean negocios más fuertes y comunidades más fuertes."
+      },
+      {
+        "key": "accessibility",
+        "title": "Accesibilidad",
+        "body": "Construimos soluciones tecnológicas prácticas y escalables, accesibles para negocios pequeños, no solo grandes presupuestos."
       }
     ]
   },

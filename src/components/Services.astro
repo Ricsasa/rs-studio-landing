@@ -3,7 +3,7 @@ import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
 import OrganicField from "./OrganicField.astro";
-import ServiceGlyph, { type GlyphName } from "./ServiceGlyph.astro";
+import Icon, { type IconName } from "./Icon.astro";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
 import { servicePath, type ServiceKey } from "@/i18n/routing";
 import { whatsappHref } from "@/lib/whatsapp";
@@ -12,10 +12,10 @@ type Service = { key: ServiceKey; title: string; body: string };
 
 const services = tList<Service>("services.items");
 
-const GLYPHS: Record<ServiceKey, GlyphName> = {
-  landingPages: "landingPages",
+const ICONS: Record<ServiceKey, IconName> = {
+  landingPages: "landing-pages",
   wordpressEcommerce: "ecommerce",
-  businessManagementTool: "businessTool",
+  businessManagementTool: "business-tool",
   digitalMarketing: "marketing",
 };
 
@@ -45,8 +45,7 @@ const email = i18n.t("contact.email");
             href={servicePath(service.key)}
             class="group block border-t border-rule pt-8 transition-colors duration-200 hover:border-moss"
           >
-            <ServiceGlyph name={GLYPHS[service.key]} class="h-14 w-14 text-moss" />
-
+            <Icon name={ICONS[service.key]} class="h-14 w-14 text-moss" />
             <h3 class="mt-6 text-section display-face">{service.title}</h3>
             <p class="mt-4 text-lead text-pretty text-graphite">{service.body}</p>
 

@@ -1,0 +1,55 @@
+---
+import {
+  Building2,
+  Leaf,
+  Users,
+  Rocket,
+  Check,
+  ShoppingBag,
+  TrendingUp,
+  LayoutGrid,
+  Monitor,
+  ShoppingCart,
+  BarChart3,
+} from '@lucide/astro';
+
+export type IconName =
+  | "store"
+  | "leaf"
+  | "users"
+  | "accessibility"
+  | "check"
+  | "shopping-bag"
+  | "trending-up"
+  | "layout"
+  | "landing-pages"
+  | "ecommerce"
+  | "business-tool"
+  | "marketing";
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+const icons: Record<IconName, any> = {
+  store: Building2,
+  leaf: Leaf,
+  users: Users,
+  accessibility: Rocket,
+  check: Check,
+  "shopping-bag": ShoppingBag,
+  "trending-up": TrendingUp,
+  layout: LayoutGrid,
+  "landing-pages": Monitor,
+  ecommerce: ShoppingCart,
+  "business-tool": BarChart3,
+  marketing: TrendingUp,
+};
+
+const IconComponent = icons[name];
+---
+
+{IconComponent && <IconComponent class:list={["block", className]} />}

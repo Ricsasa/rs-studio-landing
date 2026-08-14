@@ -8,7 +8,6 @@ import ServiceProcess from "./ServiceProcess.astro";
 import ServiceFaq from "./ServiceFaq.astro";
 import ServiceFinalCta from "./ServiceFinalCta.astro";
 import ServiceSchema from "./ServiceSchema.astro";
-import type { GlyphName } from "@/components/ServiceGlyph.astro";
 import { servicePath, type ServiceKey } from "@/i18n/routing";
 
 interface Props {
@@ -28,20 +27,13 @@ type Service = {
   whatsappMessage: string;
 };
 
-const GLYPHS: Record<ServiceKey, GlyphName> = {
-  landingPages: "landingPages",
-  wordpressEcommerce: "ecommerce",
-  businessManagementTool: "businessTool",
-  digitalMarketing: "marketing",
-};
-
 const { serviceKey } = Astro.props;
 const service = i18n.t(serviceKey, { ns: "services", returnObjects: true }) as unknown as Service;
 const path = servicePath(serviceKey);
 const url = Astro.site ? new URL(path, Astro.site).href : path;
 ---
 
-<ServiceHero title={service.title} intro={service.intro} glyph={GLYPHS[serviceKey]} whatsappMessage={service.whatsappMessage} />
+<ServiceHero title={service.title} intro={service.intro} whatsappMessage={service.whatsappMessage} />
 <ServiceProblem problem={service.problem} whyItMatters={service.whyItMatters} />
 <ServiceBenefits benefits={service.benefits} />
 <ServiceDeliverables deliverables={service.deliverables} />

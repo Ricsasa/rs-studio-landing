@@ -12,8 +12,8 @@ const onHome = isHome(pathname);
 const links = [
   { hash: "#work", key: "nav.work" },
   { hash: "#services", key: "nav.services" },
+  { hash: "#manifesto", key: "nav.manifesto" },
   { hash: "#process", key: "nav.process" },
-  { hash: "#stack", key: "nav.stack" },
   { hash: undefined, key: "nav.blog", href: blogPath() },
   { hash: "#contact", key: "nav.contact" },
 ].map((link) => ({ ...link, href: link.href ?? sectionHref(pathname, link.hash!) }));
