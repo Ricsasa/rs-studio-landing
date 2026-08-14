@@ -1,0 +1,16 @@
+---
+import i18n from "i18next";
+import { homePath } from "@/i18n/routing";
+---
+
+<div class="border-t border-rule bg-paper px-gutter py-5">
+  <div class="mx-auto flex w-full max-w-content justify-center">
+    <a
+      href={homePath()}
+      class="rule-wipe inline-flex items-center gap-2 text-lead-sm text-graphite transition-colors duration-200 hover:text-ink hover:rule-wipe-on"
+    >
+      <span aria-hidden="true">&larr;</span>
+      {i18n.t("backToHome.label")}
+    </a>
+  </div>
+</div>

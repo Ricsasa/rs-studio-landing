@@ -19,6 +19,9 @@
     "label": "Idioma",
     "switchTo": "Cambiar a {{language}}"
   },
+  "backToHome": {
+    "label": "Volver al inicio"
+  },
   "hero": {
     "greeting": "¡Hola!",
     "title": "Software que fortalece a los negocios locales y las comunidades",

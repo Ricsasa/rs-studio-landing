@@ -4,6 +4,7 @@ import { buildStaticPaths } from "astro-react-i18next/utils";
 import BlogPostLayout from "@/layouts/BlogPostLayout.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
+import BackToHome from "@/components/BackToHome.astro";
 import BlogHeader from "@/components/blog/BlogHeader.astro";
 import Callout from "@/components/blog/Callout.astro";
 import Figure from "@/components/blog/Figure.astro";
@@ -37,5 +38,6 @@ const { Content } = await render(post);
       </div>
     </article>
   </main>
+  <BackToHome />
   <Contact />
 </BlogPostLayout>

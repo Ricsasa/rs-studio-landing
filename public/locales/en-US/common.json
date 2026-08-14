@@ -19,6 +19,9 @@
     "label": "Language",
     "switchTo": "Switch to {{language}}"
   },
+  "backToHome": {
+    "label": "Back to home"
+  },
   "hero": {
     "greeting": "Hi!",
     "title": "Software that strengthens local businesses and communities",

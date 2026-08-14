@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
+import BackToHome from "@/components/BackToHome.astro";
 import ProjectHeader from "@/components/work/ProjectHeader.astro";
 import ProjectOverview from "@/components/work/ProjectOverview.astro";
 import ProjectGallery from "@/components/work/ProjectGallery.astro";
@@ -44,5 +45,6 @@ const ogImage = projectScreenshots[index]?.[0];
       <Content />
     </ProjectOverview>
   </main>
+  <BackToHome />
   <Contact />
 </Layout>

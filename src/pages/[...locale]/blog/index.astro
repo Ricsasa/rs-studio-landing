@@ -5,6 +5,7 @@ import { buildStaticPaths } from "astro-react-i18next/utils";
 import Layout from "@/layouts/Layout.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
+import BackToHome from "@/components/BackToHome.astro";
 import SectionHead from "@/components/SectionHead.astro";
 import OrganicField from "@/components/OrganicField.astro";
 import { blogPath, blogPostPath } from "@/i18n/routing";
@@ -131,6 +132,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
       </div>
     </section>
   </main>
+  <BackToHome />
   <Contact />
 </Layout>
 

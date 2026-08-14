@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
+import BackToHome from "@/components/BackToHome.astro";
 import ServicePage from "@/components/services/ServicePage.astro";
 import { buildStaticPaths } from "astro-react-i18next/utils";
 import { getServiceOgImage } from "@/content/services";
@@ -21,5 +22,6 @@ export function getStaticPaths() {
   <main id="main">
     <ServicePage serviceKey="landingPages" />
   </main>
+  <BackToHome />
   <Contact />
 </Layout>
