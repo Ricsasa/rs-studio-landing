@@ -114,7 +114,8 @@
     "processMeta": "Four steps",
     "faqLabel": "FAQ",
     "ctaTitle": "Ready to get started?",
-    "ctaIntro": "Tell us about your project and we'll reply with a clear proposal and an honest estimate."
+    "ctaIntro": "Tell us about your project and we'll reply with a clear proposal and an honest estimate.",
+    "example": "Examples:"
   },
   "process": {
     "title": "How we work",

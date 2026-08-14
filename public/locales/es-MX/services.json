@@ -18,7 +18,6 @@
       "Testimonios y casos de éxito",
       "Preguntas frecuentes",
       "Integración con WhatsApp",
-      "Formulario de contacto o cotización",
       "Diseño responsivo",
       "Integración con Analytics",
       "SEO básico"
@@ -33,7 +32,7 @@
           "Puedes moverlo o transferirlo cuando quieras",
           "Registra tu propio dominio (mirestaurante.com, miclínica.mx, tu-nombre.services)"
         ],
-        "example": "mirestaurante.com"
+        "examples": ["mi-restaurante.com", "super-gimnasio.mx"]
       },
       "subdomain": {
         "heading": "Subdominio Profesional Gratis",
@@ -108,7 +107,7 @@
       },
       {
         "question": "¿Qué pasa después de que alguien me contacta por el sitio web?",
-        "answer": "Depende de tu proceso. Integramos WhatsApp, correo, formularios de contacto o sistemas de citas según lo que funcione para ti. El objetivo es que sea lo más fácil posible para que alguien te contacte. También damos seguimiento a estos contactos para que sepas que el sitio está funcionando."
+        "answer": "Depende de tu proceso. Integramos WhatsApp, correo o sistemas de citas según lo que funcione para ti. El objetivo es que sea lo más fácil posible para que alguien te contacte. También damos seguimiento a estos contactos para que sepas que el sitio está funcionando."
       },
       {
         "question": "¿Puedo actualizar el contenido yo mismo?",

@@ -114,7 +114,8 @@
     "processMeta": "Cuatro pasos",
     "faqLabel": "Preguntas frecuentes",
     "ctaTitle": "¿Listo para empezar?",
-    "ctaIntro": "Cuéntanos tu proyecto y te respondemos con una propuesta clara y un estimado honesto."
+    "ctaIntro": "Cuéntanos tu proyecto y te respondemos con una propuesta clara y un estimado honesto.",
+    "example": "Ejemplos:"
   },
   "process": {
     "title": "Cómo trabajamos",
