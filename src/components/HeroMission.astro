@@ -1,0 +1,32 @@
+---
+import i18n from "i18next";
+import { renderRichText } from "@/lib/markdown";
+---
+
+<section
+  id="hero-mission-band"
+  class="relative isolate grid min-h-[50svh] content-center bg-substrate px-gutter py-section"
+>
+  <div class="mx-auto grid w-full  justify-items-center gap-6 text-center">
+    <div
+      id="hero-mission"
+      class="max-w-[70ch] text-lead font-normal text-pretty leading-relaxed text-graphite [&_p+p]:mt-4 [&_strong]:font-semibold [&_strong]:text-pine"
+      style="opacity:0"
+      set:html={renderRichText(i18n.t("hero.introMission"))}
+    />
+
+    <p
+      id="hero-closing"
+      class="max-w-[32ch] text-service text-pretty text-mute italic"
+      style="opacity:0"
+    >
+      {i18n.t("hero.closing")}
+    </p>
+  </div>
+</section>
+
+<script>
+  import { initHeroCopyReveal } from "@/scripts/heroCopyReveal";
+
+  initHeroCopyReveal();
+</script>

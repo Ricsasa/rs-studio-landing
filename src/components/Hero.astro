@@ -19,24 +19,8 @@ type Shot = {
 
 const stats = tList<Stat>("hero.stats");
 
-/*
- * Both devices cycle through real client work, measured at build time so each
- * frame can only ever land in a device it actually fits.
- *
- * The catalogue holds two shapes: desktop captures at 2236x1654 and phone
- * captures at 1206x~2300. Sorting by orientation is not enough on its own —
- * a couple of the phone shots are noticeably shorter than the rest — so each
- * group is then narrowed to the frames within `RATIO_TOLERANCE` of its own
- * median. A frame that sits outside that is simply left out rather than
- * stretched or cropped to fit.
- */
 const RATIO_TOLERANCE = 0.06;
 
-/*
- * Capped: every frame is a network request sitting in front of the fold. Seven
- * frames of AVIF is ~275KB; the fifth screen frame alone would have added
- * another 120KB for a slide most readers would never wait around to see.
- */
 const SCREEN_FRAMES = 4;
 const PHONE_FRAMES = 3;
 
@@ -175,32 +159,14 @@ const phoneFrames = interleave(
             </span>
           </a>
         </div>
-
-        <p class="mt-cta text-lead-sm text-pretty text-graphite italic">
-          {i18n.t("hero.closing")}
-        </p>
       </div>
 
-      {
-        /*
-        What the studio actually ships: the same build on a desktop screen and
-        on a phone. Both devices are drawn as hairline geometry — no window
-        dots, no address bar, no notch — so the work inside them is the only
-        thing with any detail.
-      */
-      }
       <div id="hero-devices" class="relative pb-[14%] wide:pb-[11%]">
         <div
           id="hero-screen"
           class="relative ml-auto w-[80%] border border-rule-strong bg-substrate p-2 wide:w-[82%]"
         >
-          {
-            /*
-            One composite image as far as assistive tech is concerned: the
-            frames are a rotating showcase, not a dozen separate figures, so
-            the window carries the description and the images carry none.
-          */
-          }
+
           <div
             id="hero-screen-window"
             role="img"
