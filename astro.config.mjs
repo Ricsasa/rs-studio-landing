@@ -7,6 +7,8 @@ import mdx from "@astrojs/mdx";
 import reactI18next from 'astro-react-i18next';
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://rs-studio.dev',
 
@@ -27,5 +29,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+
+  adapter: cloudflare({
+    prerenderEnvironment: 'node' 
+  })
 });
