@@ -12,7 +12,7 @@ const allProjects = await getCollection("projects");
 
 function byLocale(lang: Project["lang"]): ProjectEntry[] {
   return allProjects
-    .filter((entry) => entry.data.lang === lang)
+    .filter((entry) => entry.data.lang === lang && !projectSlug(entry.id).startsWith("__"))
     .sort((a, b) => a.data.project_id - b.data.project_id);
 }
 
