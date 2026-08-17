@@ -29,7 +29,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
 <Layout title={i18n.t("blog.title")} description={i18n.t("blog.description")}>
   <SiteHeader />
   <main id="main">
-    <section class="relative isolate bg-paper px-gutter pt-10 pb-hero-bottom">
+    <section data-reveal class="relative isolate bg-paper px-gutter pt-10 pb-hero-bottom">
       <OrganicField variant="work" />
 
       <div class="relative mx-auto w-full max-w-content">
