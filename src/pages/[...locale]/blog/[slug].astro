@@ -32,7 +32,7 @@ const { Content } = await render(post);
   <SiteHeader />
   <main id="main">
     <BlogHeader post={post} />
-    <article class="bg-paper px-gutter pb-hero-bottom">
+    <article data-reveal class="bg-paper px-gutter pb-hero-bottom">
       <div class="prose-blog mx-auto w-full max-w-prose">
         <Content components={{ blockquote: Callout, Figure, Callout }} />
       </div>

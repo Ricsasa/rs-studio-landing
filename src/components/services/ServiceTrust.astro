@@ -16,7 +16,7 @@ const { title, body, items, quote, background = "paper" } = Astro.props;
 const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
 ---
 
-<section class={`relative isolate ${bgClass} px-gutter py-section`}>
+<section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
   <OrganicField variant="hero" />
 
   <div class="relative mx-auto w-full max-w-content">

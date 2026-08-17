@@ -106,5 +106,11 @@ const alternates = Astro.site
     <a class="skip-link" href="#main">{i18n.t("nav.skipToContent")}</a>
     <slot />
     <WhatsAppButton />
+
+    <script>
+      import { initSectionReveal } from "@/scripts/sectionReveal";
+
+      initSectionReveal();
+    </script>
   </body>
 </html>
