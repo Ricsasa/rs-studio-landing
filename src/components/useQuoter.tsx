@@ -43,7 +43,7 @@ const DEFAULT_LABELS: Required<QuoterLabels> = {
   back: "Atrás",
   step: "Pregunta {current} de {total}",
   summaryTitle: "Resumen",
-  sendToWhatsApp: "Enviar a WhatsApp",
+  sendToWhatsApp: "Enviar",
   otherLabel: "Otro",
   unspecified: "sin especificar",
   extraNotesTitle: "¿Algo más que quieras decirnos?",
