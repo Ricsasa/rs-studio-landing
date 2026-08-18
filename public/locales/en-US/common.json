@@ -236,5 +236,20 @@
     "intro": "The link may be out of date, or the page moved. Here's the way back.",
     "home": "Back to home",
     "work": "See selected work"
+  },
+  "quoter": {
+    "next": "Next",
+    "back": "Back",
+    "step": "Question {current} of {total}",
+    "summaryTitle": "Summary",
+    "sendToWhatsApp": "Send to WhatsApp",
+    "otherLabel": "Other",
+    "unspecified": "not specified",
+    "extraNotesTitle": "Anything else you'd like to share?",
+    "extraNotesPlaceholder": "Tell us any additional detail",
+    "extraNotesLabel": "Additional comments",
+    "charactersLeft": "{count}/{max} characters",
+    "singleSelectHint": "Select one option",
+    "multiSelectHint": "You can select more than one option"
   }
 }

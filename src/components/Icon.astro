@@ -14,6 +14,11 @@ import {
   Globe,
   Zap,
   ArrowRight,
+  Wallet,
+  Package,
+  Clock,
+  LineChart,
+  UserX,
 } from '@lucide/astro';
 
 export type IconName =
@@ -31,7 +36,12 @@ export type IconName =
   | "marketing"
   | "globe"
   | "zap"
-  | "arrow-right";
+  | "arrow-right"
+  | "wallet"
+  | "package"
+  | "clock"
+  | "line-chart"
+  | "user-x";
 
 interface Props {
   name: IconName;
@@ -56,6 +66,11 @@ const icons: Record<IconName, any> = {
   globe: Globe,
   zap: Zap,
   "arrow-right": ArrowRight,
+  wallet: Wallet,
+  package: Package,
+  clock: Clock,
+  "line-chart": LineChart,
+  "user-x": UserX,
 };
 
 const IconComponent = icons[name];

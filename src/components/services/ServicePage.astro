@@ -4,6 +4,7 @@ import ServiceHero from "./ServiceHero.astro";
 import ServiceProblem from "./ServiceProblem.astro";
 import ServiceBenefits from "./ServiceBenefits.astro";
 import ServiceDeliverables from "./ServiceDeliverables.astro";
+import ServicePainPoints from "./ServicePainPoints.astro";
 import ServiceDomainOptions from "./ServiceDomainOptions.astro";
 import ServiceTrust from "./ServiceTrust.astro";
 import ServiceDesignedFor from "./ServiceDesignedFor.astro";
@@ -11,7 +12,9 @@ import ServiceProcess from "./ServiceProcess.astro";
 import ServiceFaq from "./ServiceFaq.astro";
 import ServiceFinalCta from "./ServiceFinalCta.astro";
 import ServiceSchema from "./ServiceSchema.astro";
+import ServiceQuoter from "./ServiceQuoter.astro";
 import { servicePath, type ServiceKey } from "@/i18n/routing";
+import type { QuoterQuestion } from "@/lib/quoter";
 
 interface Props {
   serviceKey: ServiceKey;
@@ -24,11 +27,24 @@ type Service = {
   whyItMatters: string;
   benefits: string[];
   deliverables: string[];
+  painPoints?: {
+    title: string;
+    intro?: string;
+    categories: { category: string; icon: string; title: string; description: string; outcome: string }[];
+  };
   domainOptions?: {
     title: string;
     intro: string;
     custom: { heading: string; items: string[]; examples: DomainExample[] };
     subdomain: { heading: string; items: string[]; examples: DomainExample[] };
+  };
+  quoter?: {
+    instanceId: string;
+    sectionTitle: string;
+    heading: string;
+    subheading: string;
+    whatsappTemplate: string;
+    questions: QuoterQuestion[];
   };
   trust?: { title: string; body: string; items: string[]; quote: string };
   designedFor?: { title: string; items: string[] };
@@ -44,23 +60,44 @@ const { serviceKey } = Astro.props;
 const service = i18n.t(serviceKey, { ns: "services", returnObjects: true }) as unknown as Service;
 const path = servicePath(serviceKey);
 const url = Astro.site ? new URL(path, Astro.site).href : path;
+
+// landingPages hides Deliverables and DesignedFor; other services keep them.
+const isLandingPages = serviceKey === "landingPages";
+const showDeliverables = !isLandingPages;
+const showDesignedFor = !isLandingPages && !!service.designedFor;
+
+// Benefits (paper) is always the last fixed-background section before this
+// point. A running toggle advances only when a section actually renders, so
+// every section stays correctly alternated regardless of which optional
+// sections are present.
+const nextBg = (bg: "paper" | "substrate") => (bg === "paper" ? "substrate" : "paper");
+let bg: "paper" | "substrate" = "substrate";
+const quoterBg = bg;
+if (service.quoter) bg = nextBg(bg);
+const deliverablesBg = bg;
+if (showDeliverables) bg = nextBg(bg);
+const domainOptionsBg = bg;
+if (service.domainOptions) bg = nextBg(bg);
+const trustBg = bg;
+if (service.trust) bg = nextBg(bg);
+const designedForBg = bg;
+if (showDesignedFor) bg = nextBg(bg);
+const processBg = bg;
+bg = nextBg(bg);
+const faqBg = bg;
+bg = nextBg(bg);
+const finalCtaBg = bg;
 ---
 
 <ServiceHero title={service.title} intro={service.intro} whatsappMessage={service.whatsappMessage} />
 <ServiceProblem problem={service.problem} whyItMatters={service.whyItMatters} />
-<ServiceBenefits benefits={service.benefits} />
-<ServiceDeliverables deliverables={service.deliverables} />
-{service.domainOptions && <ServiceDomainOptions {...service.domainOptions} />}
-{service.trust && (
-  <ServiceTrust {...service.trust} background={service.domainOptions ? "substrate" : "paper"} />
-)}
-{service.designedFor && (
-  <ServiceDesignedFor {...service.designedFor} background={service.domainOptions ? "paper" : "substrate"} />
-)}
-<ServiceProcess process={service.process} background={service.domainOptions ? "substrate" : "paper"} />
-<ServiceFaq faq={service.faq} background={service.domainOptions ? "paper" : "substrate"} />
-<ServiceFinalCta
-  whatsappMessage={service.whatsappMessage}
-  background={service.domainOptions ? "substrate" : "paper"}
-/>
+{service.painPoints ? <ServicePainPoints {...service.painPoints} /> : <ServiceBenefits benefits={service.benefits} />}
+{service.quoter && <ServiceQuoter {...service.quoter} background={quoterBg} />}
+{showDeliverables && <ServiceDeliverables deliverables={service.deliverables} background={deliverablesBg} />}
+{service.domainOptions && <ServiceDomainOptions {...service.domainOptions} background={domainOptionsBg} />}
+{service.trust && <ServiceTrust {...service.trust} background={trustBg} />}
+{showDesignedFor && <ServiceDesignedFor {...service.designedFor} background={designedForBg} />}
+<ServiceProcess process={service.process} background={processBg} />
+<ServiceFaq faq={service.faq} background={faqBg} />
+<ServiceFinalCta whatsappMessage={service.whatsappMessage} background={finalCtaBg} />
 <ServiceSchema name={service.title} description={service.meta.description} url={url} />

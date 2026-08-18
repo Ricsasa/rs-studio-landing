@@ -12,6 +12,72 @@
       "Optimized for mobile with fast load times",
       "Lead and quote tracking"
     ],
+    "quoter": {
+      "instanceId": "landing-pages-quoter",
+      "sectionTitle": "Landing Pages",
+      "heading": "Quick Diagnostic",
+      "subheading": "Answer 3 questions and get a personalized proposal on WhatsApp, at no cost.",
+      "whatsappTemplate": "Hi, I completed the quick diagnostic:\n{answers_json}\n\nI'd like to receive a personalized proposal.",
+      "questions": [
+        {
+          "id": "business-type",
+          "type": "single",
+          "required": true,
+          "label": "What type of business do you have?",
+          "options": [
+            { "id": "salon", "label": "Salon" },
+            { "id": "barbershop", "label": "Barbershop" },
+            { "id": "spa", "label": "Spa" },
+            { "id": "aesthetics", "label": "Aesthetics" },
+            { "id": "workshop", "label": "Workshop (auto, electrical, etc)" },
+            { "id": "consulting", "label": "Consulting (Legal, Financial, Real estate)" },
+            { "id": "medical", "label": "Medical services (Private practice, Nutrition, Dental, Psychological care)" },
+            { "id": "fitness", "label": "Fitness (Gym, Crossfit, Pilates, Personal training)" },
+            { "id": "other-services", "label": "Other service business" },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe your business"
+            }
+          ]
+        },
+        {
+          "id": "main-challenge",
+          "type": "multi",
+          "required": true,
+          "label": "What are your main challenges?",
+          "options": [
+            { "id": "customers", "label": "Get more customers" },
+            { "id": "trust", "label": "Build trust" },
+            { "id": "filter", "label": "Filter leads" },
+            { "id": "schedule", "label": "Schedule appointments" },
+            { "id": "prices", "label": "Show pricing" }
+          ]
+        },
+        {
+          "id": "digital-assets",
+          "type": "multi",
+          "required": true,
+          "label": "What digital assets do you already have?",
+          "options": [
+            { "id": "logo", "label": "Logo" },
+            { "id": "photos", "label": "Quality photos" },
+            { "id": "instagram", "label": "Instagram account" },
+            { "id": "gmaps", "label": "Google Maps profile" },
+            { "id": "menu", "label": "Menu/Catalog" },
+            { "id": "testimonials", "label": "Testimonials" },
+            { "id": "none", "label": "None", "exclusive": true },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Specify what you have"
+            }
+          ]
+        }
+      ]
+    },
     "deliverables": [
       "Service descriptions and packages",
       "Pricing or price ranges (to filter leads before they reach out)",
@@ -203,6 +269,74 @@
       "Better reporting",
       "A business that can scale"
     ],
+    "quoter": {
+      "instanceId": "business-management-tool-quoter",
+      "sectionTitle": "Business Management Tool",
+      "heading": "Quick Diagnostic",
+      "subheading": "Answer 3 questions and get a personalized proposal on WhatsApp, at no cost.",
+      "whatsappTemplate": "Hi, I completed the quick diagnostic:\n{answers_json}\n\nI'd like to learn more about how this tool can help my business.",
+      "questions": [
+        {
+          "id": "business-type",
+          "type": "single",
+          "required": true,
+          "label": "What type of business do you have?",
+          "options": [
+            { "id": "salon", "label": "Salon" },
+            { "id": "barbershop", "label": "Barbershop" },
+            { "id": "spa", "label": "Spa" },
+            { "id": "aesthetics", "label": "Aesthetics" },
+            { "id": "workshop", "label": "Workshop (auto, electrical, etc)" },
+            { "id": "consulting", "label": "Consulting (Legal, Financial, Real estate)" },
+            { "id": "medical", "label": "Medical services (Private practice, Nutrition, Dental, Psychological care)" },
+            { "id": "fitness", "label": "Fitness (Gym, Crossfit, Pilates, Personal training)" },
+            { "id": "other-services", "label": "Other service business" },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe your business"
+            }
+          ]
+        },
+        {
+          "id": "main-pain-point",
+          "type": "single",
+          "required": true,
+          "label": "What's your biggest operational headache?",
+          "options": [
+            { "id": "financial", "label": "Financial control (income, expenses, collections)" },
+            { "id": "inventory", "label": "Inventory and purchasing" },
+            { "id": "staff", "label": "Staff management and payroll" },
+            { "id": "reporting", "label": "Reports and data for decisions" },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe your main problem"
+            }
+          ]
+        },
+        {
+          "id": "current-tracking",
+          "type": "multi",
+          "required": true,
+          "label": "How do you currently track your business?",
+          "options": [
+            { "id": "spreadsheets", "label": "Spreadsheets" },
+            { "id": "notebooks", "label": "Notebooks or paper" },
+            { "id": "multiple-apps", "label": "Several separate apps" },
+            { "id": "none", "label": "Nothing, I keep it in my head", "exclusive": true },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Specify how you track it"
+            }
+          ]
+        }
+      ]
+    },
     "deliverables": [
       "Sales",
       "Purchases",
@@ -212,6 +346,47 @@
       "Follow-ups",
       "Appointment scheduling"
     ],
+    "painPoints": {
+      "title": "Problems we solve",
+      "intro": "This is what our clients tell us before working with us. And this is what we build so your business can grow.",
+      "categories": [
+        {
+          "category": "Finance and cash flow",
+          "icon": "wallet",
+          "title": "Blind cash flow",
+          "description": "You don't see pending income or real margins until it's too late to act.",
+          "outcome": "Clear, up-to-date reports on income and margins."
+        },
+        {
+          "category": "Inventory and purchasing",
+          "icon": "package",
+          "title": "Emergency purchases",
+          "description": "You don't know what's in stock until it runs out, so you buy in a rush with no margin.",
+          "outcome": "Visible stock and planned purchases, not emergencies."
+        },
+        {
+          "category": "Team management",
+          "icon": "clock",
+          "title": "Manual payroll",
+          "description": "You calculate hours and pay by hand, with errors and delays every pay period.",
+          "outcome": "Automated payroll, no errors or delays."
+        },
+        {
+          "category": "Data and decisions",
+          "icon": "line-chart",
+          "title": "Decisions in the dark",
+          "description": "You don't know which services are profitable because reports are manual or don't exist.",
+          "outcome": "Automatic reports for decisions based on real data."
+        },
+        {
+          "category": "Retention and customers",
+          "icon": "user-x",
+          "title": "Customers who vanish",
+          "description": "Customers stop coming back and nobody notices until they're already gone.",
+          "outcome": "Automatic follow-up that doesn't let a customer slip away."
+        }
+      ]
+    },
     "process": [
       {
         "title": "Discovery",

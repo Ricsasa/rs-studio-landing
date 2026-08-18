@@ -12,6 +12,72 @@
       "Optimizado para móvil con carga rápida",
       "Seguimiento de contactos y cotizaciones"
     ],
+    "quoter": {
+      "instanceId": "landing-pages-quoter",
+      "sectionTitle": "Landing Pages",
+      "heading": "Diagnóstico Rápido",
+      "subheading": "Responde 3 preguntas y recibe una propuesta personalizada por WhatsApp, sin costo.",
+      "whatsappTemplate": "Hola, completé mi diagnóstico rápido:\n{answers_json}\n\nMe gustaría recibir una propuesta personalizada.",
+      "questions": [
+        {
+          "id": "business-type",
+          "type": "single",
+          "required": true,
+          "label": "¿Qué tipo de negocio tienes?",
+          "options": [
+            { "id": "salon", "label": "Salón" },
+            { "id": "barbershop", "label": "Barbería" },
+            { "id": "spa", "label": "Spa" },
+            { "id": "aesthetics", "label": "Estética" },
+            { "id": "workshop", "label": "Taller (mecánico, eléctrico, etc)" },
+            { "id": "consulting", "label": "Consultoría (Legal, Financiera, Bienes raíces)" },
+            { "id": "medical", "label": "Servicios médicos (Consulta privada, Nutrición, Dentista, Atención psicológica)" },
+            { "id": "fitness", "label": "Fitness (Gimnasio, Crossfit, Pilates, Entrenamientos personalizados)" },
+            { "id": "other-services", "label": "Otro negocio de servicios" },
+            {
+              "id": "other",
+              "label": "Otro",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe tu negocio"
+            }
+          ]
+        },
+        {
+          "id": "main-challenge",
+          "type": "multi",
+          "required": true,
+          "label": "¿Cuáles son tus principales desafíos?",
+          "options": [
+            { "id": "customers", "label": "Conseguir más clientes" },
+            { "id": "trust", "label": "Mostrar confianza" },
+            { "id": "filter", "label": "Filtrar clientes" },
+            { "id": "schedule", "label": "Agendar citas" },
+            { "id": "prices", "label": "Mostrar precios" }
+          ]
+        },
+        {
+          "id": "digital-assets",
+          "type": "multi",
+          "required": true,
+          "label": "¿Qué activos digitales ya tienes?",
+          "options": [
+            { "id": "logo", "label": "Logo" },
+            { "id": "photos", "label": "Fotos de calidad" },
+            { "id": "instagram", "label": "Cuenta Instagram" },
+            { "id": "gmaps", "label": "Perfil Google Maps" },
+            { "id": "menu", "label": "Menús/Catálogo" },
+            { "id": "testimonials", "label": "Testimonios" },
+            { "id": "none", "label": "Ninguno", "exclusive": true },
+            {
+              "id": "other",
+              "label": "Otros",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Especifica qué tienes"
+            }
+          ]
+        }
+      ]
+    },
     "deliverables": [
       "Descripción de servicios y paquetes",
       "Precios o rangos de precio (para filtrar contactos antes de que te escriban)",
@@ -203,6 +269,74 @@
       "Mejores reportes",
       "Un negocio que puede crecer"
     ],
+    "quoter": {
+      "instanceId": "business-management-tool-quoter",
+      "sectionTitle": "Herramienta de Control Empresarial",
+      "heading": "Diagnóstico Rápido",
+      "subheading": "Responde 3 preguntas y recibe una propuesta personalizada por WhatsApp, sin costo.",
+      "whatsappTemplate": "Hola, completé mi diagnóstico rápido:\n{answers_json}\n\nMe interesa saber más sobre cómo esta herramienta puede ayudar mi negocio.",
+      "questions": [
+        {
+          "id": "business-type",
+          "type": "single",
+          "required": true,
+          "label": "¿Qué tipo de negocio tienes?",
+          "options": [
+            { "id": "salon", "label": "Salón" },
+            { "id": "barbershop", "label": "Barbería" },
+            { "id": "spa", "label": "Spa" },
+            { "id": "aesthetics", "label": "Estética" },
+            { "id": "workshop", "label": "Taller (mecánico, eléctrico, etc)" },
+            { "id": "consulting", "label": "Consultoría (Legal, Financiera, Bienes raíces)" },
+            { "id": "medical", "label": "Servicios médicos (Consulta privada, Nutrición, Dentista, Atención psicológica)" },
+            { "id": "fitness", "label": "Fitness (Gimnasio, Crossfit, Pilates, Entrenamientos personalizados)" },
+            { "id": "other-services", "label": "Otro negocio de servicios" },
+            {
+              "id": "other",
+              "label": "Otro",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe tu negocio"
+            }
+          ]
+        },
+        {
+          "id": "main-pain-point",
+          "type": "single",
+          "required": true,
+          "label": "¿Cuál es tu mayor dolor de cabeza operativo?",
+          "options": [
+            { "id": "financial", "label": "Control financiero (ingresos, gastos, cobros)" },
+            { "id": "inventory", "label": "Inventario y compras" },
+            { "id": "staff", "label": "Gestión de equipo y nómina" },
+            { "id": "reporting", "label": "Reportes y datos para decidir" },
+            {
+              "id": "other",
+              "label": "Otro",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Describe tu principal problema"
+            }
+          ]
+        },
+        {
+          "id": "current-tracking",
+          "type": "multi",
+          "required": true,
+          "label": "¿Cómo llevas el control de tu negocio hoy?",
+          "options": [
+            { "id": "spreadsheets", "label": "Hojas de cálculo" },
+            { "id": "notebooks", "label": "Cuadernos o papel" },
+            { "id": "multiple-apps", "label": "Varias aplicaciones sueltas" },
+            { "id": "none", "label": "Nada, lo llevo de memoria", "exclusive": true },
+            {
+              "id": "other",
+              "label": "Otro",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Especifica cómo lo llevas"
+            }
+          ]
+        }
+      ]
+    },
     "deliverables": [
       "Ventas",
       "Compras",
@@ -212,6 +346,47 @@
       "Seguimientos",
       "Agenda de citas"
     ],
+    "painPoints": {
+      "title": "Problemas que resolvemos",
+      "intro": "Esto es lo que nos dicen nuestros clientes antes de trabajar con nosotros. Y esto es lo que construimos para que tu negocio pueda crecer.",
+      "categories": [
+        {
+          "category": "Financiero y tesorería",
+          "icon": "wallet",
+          "title": "Cash flow ciego",
+          "description": "No ves ingresos pendientes ni márgenes reales hasta que ya es tarde para actuar.",
+          "outcome": "Reportes claros de ingresos y márgenes, al día."
+        },
+        {
+          "category": "Inventario y compras",
+          "icon": "package",
+          "title": "Compras de emergencia",
+          "description": "No sabes qué tienes en stock hasta que se te acaba y compras corriendo, sin margen.",
+          "outcome": "Stock visible y compras planeadas, no de emergencia."
+        },
+        {
+          "category": "Gestión de equipo",
+          "icon": "clock",
+          "title": "Nómina manual",
+          "description": "Calculas horas y pagos a mano, con errores y retrasos cada quincena.",
+          "outcome": "Nómina automatizada, sin errores ni retrasos."
+        },
+        {
+          "category": "Datos y decisiones",
+          "icon": "line-chart",
+          "title": "Decisiones a ciegas",
+          "description": "No sabes qué servicios son rentables porque los reportes son manuales o no existen.",
+          "outcome": "Reportes automáticos para decidir con datos reales."
+        },
+        {
+          "category": "Retención y clientes",
+          "icon": "user-x",
+          "title": "Clientes que desaparecen",
+          "description": "Los clientes dejan de venir y nadie se entera hasta que ya se fueron.",
+          "outcome": "Seguimiento automático que no deja ir a un cliente."
+        }
+      ]
+    },
     "process": [
       {
         "title": "Descubrimiento",
