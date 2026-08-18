@@ -4,12 +4,14 @@ import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
   deliverables: string[];
+  background?: "paper" | "substrate";
 }
 
-const { deliverables } = Astro.props;
+const { deliverables, background = "substrate" } = Astro.props;
+const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
 ---
 
-<section data-reveal class="relative isolate bg-substrate px-gutter py-section">
+<section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
   <OrganicField variant="stack" />
 
   <div class="relative mx-auto w-full max-w-content">

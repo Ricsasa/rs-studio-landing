@@ -1,0 +1,36 @@
+---
+import i18n from "i18next";
+import QuoterIsland, { type QuoterProps } from "./Quoter";
+
+type Props = Omit<QuoterProps, "labels" | "onSubmit">;
+
+const { instanceId, sectionTitle, questions, whatsappNumber, whatsappTemplate, className } =
+  Astro.props;
+
+const labels = {
+  next: i18n.t("quoter.next"),
+  back: i18n.t("quoter.back"),
+  step: i18n.t("quoter.step"),
+  summaryTitle: i18n.t("quoter.summaryTitle"),
+  sendToWhatsApp: i18n.t("quoter.sendToWhatsApp"),
+  otherLabel: i18n.t("quoter.otherLabel"),
+  unspecified: i18n.t("quoter.unspecified"),
+  extraNotesTitle: i18n.t("quoter.extraNotesTitle"),
+  extraNotesPlaceholder: i18n.t("quoter.extraNotesPlaceholder"),
+  extraNotesLabel: i18n.t("quoter.extraNotesLabel"),
+  charactersLeft: i18n.t("quoter.charactersLeft"),
+  singleSelectHint: i18n.t("quoter.singleSelectHint"),
+  multiSelectHint: i18n.t("quoter.multiSelectHint"),
+};
+---
+
+<QuoterIsland
+  client:load
+  instanceId={instanceId}
+  sectionTitle={sectionTitle}
+  questions={questions}
+  whatsappNumber={whatsappNumber}
+  whatsappTemplate={whatsappTemplate}
+  className={className}
+  labels={labels}
+/>

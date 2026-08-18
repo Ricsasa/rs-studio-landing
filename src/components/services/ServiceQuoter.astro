@@ -1,0 +1,48 @@
+---
+import SectionHead from "@/components/SectionHead.astro";
+import OrganicField from "@/components/OrganicField.astro";
+import Quoter from "@/components/Quoter.astro";
+import { WHATSAPP_PHONE } from "@/lib/whatsapp";
+import type { QuoterQuestion } from "@/lib/quoter";
+
+interface Props {
+  instanceId: string;
+  sectionTitle: string;
+  heading: string;
+  subheading: string;
+  whatsappTemplate: string;
+  questions: QuoterQuestion[];
+  background?: "paper" | "substrate";
+}
+
+const {
+  instanceId,
+  sectionTitle,
+  heading,
+  subheading,
+  whatsappTemplate,
+  questions,
+  background = "substrate",
+} = Astro.props;
+
+const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
+---
+
+<section id="diagnostico-rapido" data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
+  <OrganicField variant="stack" />
+
+  <div class="relative mx-auto w-full max-w-content">
+    <SectionHead title={heading} />
+    <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">{subheading}</p>
+
+    <div class="mt-heading max-w-5xl">
+      <Quoter
+        instanceId={instanceId}
+        sectionTitle={sectionTitle}
+        whatsappNumber={WHATSAPP_PHONE}
+        whatsappTemplate={whatsappTemplate}
+        questions={questions}
+      />
+    </div>
+  </div>
+</section>

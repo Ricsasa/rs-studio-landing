@@ -236,5 +236,20 @@
     "intro": "Puede que el enlace esté desactualizado o que la página se haya movido. Por aquí regresas.",
     "home": "Volver al inicio",
     "work": "Ver trabajo seleccionado"
+  },
+  "quoter": {
+    "next": "Siguiente",
+    "back": "Atrás",
+    "step": "Pregunta {current} de {total}",
+    "summaryTitle": "Resumen",
+    "sendToWhatsApp": "Enviar a WhatsApp",
+    "otherLabel": "Otro",
+    "unspecified": "sin especificar",
+    "extraNotesTitle": "¿Algo más que quieras decirnos?",
+    "extraNotesPlaceholder": "Cuéntanos cualquier detalle adicional",
+    "extraNotesLabel": "Comentarios adicionales",
+    "charactersLeft": "{count}/{max} caracteres",
+    "singleSelectHint": "Selecciona una opción",
+    "multiSelectHint": "Puedes seleccionar varias opciones"
   }
 }

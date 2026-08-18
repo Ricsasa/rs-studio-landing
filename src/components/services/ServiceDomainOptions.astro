@@ -9,14 +9,16 @@ interface Props {
   intro: string;
   custom: { heading: string; items: string[]; examples: DomainExample[] };
   subdomain: { heading: string; items: string[]; examples: DomainExample[] };
+  background?: "paper" | "substrate";
 }
 
 type DomainExample = { label: string; href: string };
 
-const { title, intro, custom, subdomain } = Astro.props;
+const { title, intro, custom, subdomain, background = "paper" } = Astro.props;
+const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
 ---
 
-<section data-reveal class="relative isolate bg-paper px-gutter py-section">
+<section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
   <OrganicField variant="services" />
 
   <div class="relative mx-auto w-full max-w-content">
