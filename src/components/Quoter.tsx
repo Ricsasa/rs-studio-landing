@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useQuoter, type QuoterLabels } from "./useQuoter";
 import type { QuoterAnswerRecord, QuoterQuestion } from "@/lib/quoter";
 
@@ -31,10 +32,19 @@ export default function Quoter({
 }: QuoterProps) {
   const q = useQuoter({ questions, sectionTitle, whatsappNumber, whatsappTemplate, labels, onSubmit });
   const t = q.labels;
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, [q.stepIndex, q.showSummary]);
 
   if (q.showSummary) {
     return (
       <div
+        ref={rootRef}
         data-quoter-instance={instanceId}
         className={`relative border border-rule-strong bg-paper ${className ?? ""}`}
       >
@@ -97,6 +107,7 @@ export default function Quoter({
 
   return (
     <div
+      ref={rootRef}
       data-quoter-instance={instanceId}
       className={`relative border border-rule-strong bg-paper ${className ?? ""}`}
     >
