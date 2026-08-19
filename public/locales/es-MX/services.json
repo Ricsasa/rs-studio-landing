@@ -58,7 +58,7 @@
           "required": true,
           "label": "¿Qué activos digitales ya tienes?",
           "options": [
-            { "id": "logo", "label": "Logo" },
+            { "id": "logo", "label": "Logo, colores, identidad gráfica" },
             { "id": "photos", "label": "Fotos de calidad" },
             { "id": "instagram", "label": "Cuenta Instagram" },
             { "id": "gmaps", "label": "Perfil Google Maps" },

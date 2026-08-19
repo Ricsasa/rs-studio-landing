@@ -58,7 +58,7 @@
           "required": true,
           "label": "What digital assets do you already have?",
           "options": [
-            { "id": "logo", "label": "Logo" },
+            { "id": "logo", "label": "Logo, colors, brand identity" },
             { "id": "photos", "label": "Quality photos" },
             { "id": "instagram", "label": "Instagram account" },
             { "id": "gmaps", "label": "Google Maps profile" },
