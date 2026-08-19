@@ -71,6 +71,22 @@ export function truncateExtraNotes(value: string): string {
   return value.slice(0, EXTRA_NOTES_MAX_LENGTH);
 }
 
+export interface QuoterContactInfo {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface QuoterContactLabels {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
+
+export function isContactAnswered(contact: QuoterContactInfo): boolean {
+  return Boolean(contact.name?.trim()) && Boolean(contact.email?.trim() || contact.phone?.trim());
+}
+
 export function formatAnswersMessage(
   questions: QuoterQuestion[],
   answers: QuoterAnswerRecord,
@@ -78,8 +94,20 @@ export function formatAnswersMessage(
   unspecifiedLabel: string,
   extraNotes?: string,
   extraNotesLabel?: string,
+  contact?: QuoterContactInfo,
+  contactLabels?: QuoterContactLabels,
 ): string {
   const lines: string[] = [];
+
+  if (contact?.name?.trim()) {
+    lines.push(`- ${contactLabels?.name ?? "Nombre"}: ${contact.name.trim()}`);
+  }
+  if (contact?.email?.trim()) {
+    lines.push(`- ${contactLabels?.email ?? "Email"}: ${contact.email.trim()}`);
+  }
+  if (contact?.phone?.trim()) {
+    lines.push(`- ${contactLabels?.phone ?? "Teléfono"}: ${contact.phone.trim()}`);
+  }
 
   for (const question of questions) {
     const answer = answers[question.id];

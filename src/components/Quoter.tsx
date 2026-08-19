@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useQuoter, type QuoterLabels } from "./useQuoter";
-import type { QuoterAnswerRecord, QuoterQuestion } from "@/lib/quoter";
+import { formatAnswersMessage, type QuoterAnswerRecord, type QuoterQuestion } from "@/lib/quoter";
+import CalWidget from "./CalWidget";
+
+export interface QuoterSecondaryCta {
+  label: string;
+  eventSlug: string;
+}
 
 export interface QuoterProps {
   instanceId: string;
@@ -11,6 +17,9 @@ export interface QuoterProps {
   className?: string;
   onSubmit?: (answers: QuoterAnswerRecord) => void;
   labels?: QuoterLabels;
+  secondaryCta?: QuoterSecondaryCta;
+  collectContact?: boolean;
+  introText?: string;
 }
 
 const optionButtonClass = (checked: boolean) =>
@@ -29,8 +38,19 @@ export default function Quoter({
   className,
   onSubmit,
   labels,
+  secondaryCta,
+  collectContact,
+  introText,
 }: QuoterProps) {
-  const q = useQuoter({ questions, sectionTitle, whatsappNumber, whatsappTemplate, labels, onSubmit });
+  const q = useQuoter({
+    questions,
+    sectionTitle,
+    whatsappNumber,
+    whatsappTemplate,
+    labels,
+    onSubmit,
+    collectContact,
+  });
   const t = q.labels;
   const rootRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
@@ -44,10 +64,110 @@ export default function Quoter({
     if (!el) return;
     const top = el.getBoundingClientRect().top + window.scrollY - 96;
     window.scrollTo({ top, behavior: "smooth" });
-  }, [q.stepIndex, q.showSummary]);
+  }, [q.stepIndex, q.showContact, q.showSummary, q.showThankYou]);
+
+  if (q.showThankYou) {
+    return (
+      <div
+        ref={rootRef}
+        data-quoter-instance={instanceId}
+        className={`relative border border-rule-strong bg-paper ${className ?? ""}`}
+      >
+        <div className="h-1.5 w-full bg-fern" />
+        <div className="p-6 sm:p-10">
+          <p className="font-display text-xl text-ink">{t.thankYouMessage}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const introBlock = introText && (
+    <p className="mb-6 max-w-2xl text-lead-sm text-graphite">{introText}</p>
+  );
+
+  if (q.showContact) {
+    return (
+      <>
+      {introBlock}
+      <div
+        ref={rootRef}
+        data-quoter-instance={instanceId}
+        className={`relative border border-rule-strong bg-paper ${className ?? ""}`}
+      >
+        <div className="h-1.5 w-full bg-fern" />
+        <div className="p-6 sm:p-10">
+          <h3 className="font-display text-xl text-ink">{t.contactStepTitle}</h3>
+          <p className="mt-1.5 text-sm text-mute">{t.contactHint}</p>
+
+          <div className="mt-5 flex flex-col gap-4">
+            <div>
+              <label htmlFor={`${instanceId}-contact-name`} className="text-sm font-medium text-ink">
+                {t.contactNameLabel}
+              </label>
+              <input
+                id={`${instanceId}-contact-name`}
+                type="text"
+                value={q.contactName}
+                onChange={(e) => q.setContactName(e.target.value)}
+                placeholder={t.contactNamePlaceholder}
+                className="mt-1.5 w-full border border-rule px-4 py-3 text-lead text-ink placeholder:text-mute focus:border-moss focus:outline-none"
+              />
+            </div>
+            <div>
+              <label htmlFor={`${instanceId}-contact-email`} className="text-sm font-medium text-ink">
+                {t.contactEmailLabel}
+              </label>
+              <input
+                id={`${instanceId}-contact-email`}
+                type="email"
+                value={q.contactEmail}
+                onChange={(e) => q.setContactEmail(e.target.value)}
+                placeholder={t.contactEmailPlaceholder}
+                className="mt-1.5 w-full border border-rule px-4 py-3 text-lead text-ink placeholder:text-mute focus:border-moss focus:outline-none"
+              />
+            </div>
+            <div>
+              <label htmlFor={`${instanceId}-contact-phone`} className="text-sm font-medium text-ink">
+                {t.contactPhoneLabel}
+              </label>
+              <input
+                id={`${instanceId}-contact-phone`}
+                type="tel"
+                value={q.contactPhone}
+                onChange={(e) => q.setContactPhone(e.target.value)}
+                placeholder={t.contactPhonePlaceholder}
+                className="mt-1.5 w-full border border-rule px-4 py-3 text-lead text-ink placeholder:text-mute focus:border-moss focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="mt-8 flex gap-3">
+            <button
+              type="button"
+              onClick={q.goBack}
+              className="border border-rule px-6 py-3 text-left text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
+            >
+              {t.back}
+            </button>
+            <button
+              type="button"
+              disabled={!q.contactAnswered}
+              onClick={q.goNext}
+              className="bg-moss px-6 py-3 text-left text-sm font-medium text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {t.next}
+            </button>
+          </div>
+        </div>
+      </div>
+      </>
+    );
+  }
 
   if (q.showSummary) {
     return (
+      <>
+      {introBlock}
       <div
         ref={rootRef}
         data-quoter-instance={instanceId}
@@ -81,23 +201,23 @@ export default function Quoter({
               value={q.extraNotes}
               onChange={(e) => q.setExtraNotes(e.target.value)}
               placeholder={t.extraNotesPlaceholder}
-              className="mt-3 w-full resize-none border border-rule px-4 py-3 text-sm text-ink placeholder:text-mute focus:border-moss focus:outline-none"
+              className="mt-3 w-full resize-none border border-rule px-4 py-3 text-lead text-ink placeholder:text-mute focus:border-moss focus:outline-none"
             />
             <p className="mt-1 text-right text-xs text-mute">{q.charactersLeftText}</p>
           </div>
 
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
               onClick={q.goBack}
-              className="border border-rule px-6 py-3 text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
+              className="border border-rule px-6 py-3 text-left text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
             >
               {t.back}
             </button>
             <button
               type="button"
               onClick={q.handleSend}
-              className="flex items-center gap-2.5 bg-moss px-6 py-3 text-sm font-medium text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
+              className="flex items-center gap-2.5 bg-moss px-6 py-3 text-left text-sm font-medium text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4.5 w-4.5">
                 <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z" />
@@ -105,9 +225,30 @@ export default function Quoter({
               </svg>
               {t.sendToWhatsApp}
             </button>
+            {secondaryCta && (
+              <CalWidget
+                eventSlug={secondaryCta.eventSlug}
+                triggerLabel={secondaryCta.label}
+                mode="popup"
+                theme={{ brandColor: "#000000", borderRadius: 0 }}
+                prefillName={q.contactName || undefined}
+                prefillEmail={q.contactEmail || undefined}
+                prefillNotes={formatAnswersMessage(
+                  q.questions,
+                  q.answers,
+                  t.otherLabel,
+                  t.unspecified,
+                  q.extraNotes,
+                  t.extraNotesLabel,
+                )}
+                onBookingSuccess={q.handleBookingSuccess}
+                className="border border-rule px-6 py-3 text-left text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
+              />
+            )}
           </div>
         </div>
       </div>
+      </>
     );
   }
 
@@ -115,6 +256,8 @@ export default function Quoter({
   if (!question) return null;
 
   return (
+    <>
+    {introBlock}
     <div
       ref={rootRef}
       data-quoter-instance={instanceId}
@@ -157,7 +300,7 @@ export default function Quoter({
                       value={q.answer?.otherValue ?? ""}
                       onChange={(e) => q.setOtherValue(e.target.value)}
                       placeholder={option.otherFieldPlaceholder}
-                      className="mt-2 w-full border border-rule px-4 py-3 text-sm text-ink placeholder:text-mute focus:border-moss focus:outline-none"
+                      className="mt-2 w-full border border-rule px-4 py-3 text-lead text-ink placeholder:text-mute focus:border-moss focus:outline-none"
                     />
                   )}
                 </div>
@@ -170,7 +313,7 @@ export default function Quoter({
             <button
               type="button"
               onClick={q.goBack}
-              className="border border-rule px-6 py-3 text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
+              className="border border-rule px-6 py-3 text-left text-sm font-medium text-graphite transition-colors duration-200 hover:border-moss hover:text-moss"
             >
               {t.back}
             </button>
@@ -179,12 +322,13 @@ export default function Quoter({
             type="button"
             disabled={!q.answered}
             onClick={q.goNext}
-            className="bg-moss px-6 py-3 text-sm font-medium text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
+            className="bg-moss px-6 py-3 text-left text-sm font-medium text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
           >
             {t.next}
           </button>
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -117,7 +117,46 @@
   },
   "getStarted": {
     "title": "¡Comencemos!",
-    "meta": "Primeros pasos"
+    "meta": "Primeros pasos",
+    "introText": "We want to get to know you better! Answer these quick questions so we can book a discovery call, or send us a message for personalized follow-up",
+    "quoter": {
+      "instanceId": "homepage-quoter",
+      "sectionTitle": "Let's Get Started",
+      "whatsappTemplate": "Hi, I filled out the form on your site:\n{answers_json}\n\nI'd like to talk about my project.",
+      "questions": [
+        {
+          "id": "project-type",
+          "type": "single",
+          "required": true,
+          "label": "What kind of project do you have in mind?",
+          "options": [
+            { "id": "landing-page", "label": "Landing page" },
+            { "id": "online-store", "label": "Online store" },
+            { "id": "management-tool", "label": "Business management tool" },
+            { "id": "digital-marketing", "label": "Digital marketing" },
+            { "id": "not-sure", "label": "Not sure yet" }
+          ]
+        },
+        {
+          "id": "main-goal",
+          "type": "single",
+          "required": true,
+          "label": "What's your main goal?",
+          "options": [
+            { "id": "more-customers", "label": "Get more customers" },
+            { "id": "automate", "label": "Automate internal processes" },
+            { "id": "modernize", "label": "Modernize my online presence" },
+            { "id": "sell-online", "label": "Sell online" },
+            {
+              "id": "other",
+              "label": "Other",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Tell us more"
+            }
+          ]
+        }
+      ]
+    }
   },
   "manifesto": {
     "title": "Our vision",
@@ -179,6 +218,16 @@
     "extraNotesLabel": "Additional comments",
     "charactersLeft": "{count}/{max} characters",
     "singleSelectHint": "Select one option",
-    "multiSelectHint": "You can select more than one option"
+    "multiSelectHint": "You can select more than one option",
+    "scheduleCall": "Book a discovery call",
+    "thankYouMessage": "Thank you! Your message matters to us — we'll be in touch soon.",
+    "contactStepTitle": "Your contact details",
+    "contactHint": "Share your name and at least one contact method (email or phone).",
+    "contactNameLabel": "Name",
+    "contactNamePlaceholder": "Your name",
+    "contactEmailLabel": "Email",
+    "contactEmailPlaceholder": "you@email.com",
+    "contactPhoneLabel": "Phone",
+    "contactPhonePlaceholder": "Your phone number"
   }
 }

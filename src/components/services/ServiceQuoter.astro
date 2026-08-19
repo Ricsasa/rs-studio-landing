@@ -1,4 +1,5 @@
 ---
+import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
 import OrganicField from "@/components/OrganicField.astro";
 import Quoter from "@/components/Quoter.astro";
@@ -26,6 +27,11 @@ const {
 } = Astro.props;
 
 const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
+
+const secondaryCta = {
+  label: i18n.t("quoter.scheduleCall"),
+  eventSlug: "rs-studio/descubrimiento",
+};
 ---
 
 <section id="diagnostico-rapido" data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
@@ -42,6 +48,8 @@ const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
         whatsappNumber={WHATSAPP_PHONE}
         whatsappTemplate={whatsappTemplate}
         questions={questions}
+        secondaryCta={secondaryCta}
+        collectContact
       />
     </div>
   </div>

@@ -21,6 +21,7 @@
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/react": "^6.0.2",
     "@astrojs/sitemap": "^3.7.3",
+    "@calcom/embed-react": "^1.5.3",
     "@gsap/react": "^2.1.2",
     "@lucide/astro": "^1.31.0",
     "@tabler/icons": "^3.45.0",
@@ -40,7 +41,10 @@
     "wrangler": "^4.123.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
     "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^29.1.1",
     "vitest": "^4.1.10"
   }
 }

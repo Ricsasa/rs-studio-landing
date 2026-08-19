@@ -117,7 +117,46 @@
   },
   "getStarted": {
     "title": "¡Comencemos!",
-    "meta": "Primeros pasos"
+    "meta": "Primeros pasos",
+    "introText": "¡Queremos conocerte mejor!, contesta estas sencillas preguntas para poder agendar una llamada de descubrimiento, o enviarnos un mensaje para obtener seguimiento personalizado",
+    "quoter": {
+      "instanceId": "homepage-quoter",
+      "sectionTitle": "Comencemos",
+      "whatsappTemplate": "Hola, completé el formulario en su página:\n{answers_json}\n\nMe gustaría platicar sobre mi proyecto.",
+      "questions": [
+        {
+          "id": "project-type",
+          "type": "single",
+          "required": true,
+          "label": "¿Qué tipo de proyecto tienes en mente?",
+          "options": [
+            { "id": "landing-page", "label": "Landing page" },
+            { "id": "online-store", "label": "Tienda online" },
+            { "id": "management-tool", "label": "Herramienta de control empresarial" },
+            { "id": "digital-marketing", "label": "Marketing digital" },
+            { "id": "not-sure", "label": "No estoy seguro" }
+          ]
+        },
+        {
+          "id": "main-goal",
+          "type": "single",
+          "required": true,
+          "label": "¿Cuál es tu objetivo principal?",
+          "options": [
+            { "id": "more-customers", "label": "Conseguir más clientes" },
+            { "id": "automate", "label": "Automatizar procesos internos" },
+            { "id": "modernize", "label": "Modernizar mi presencia online" },
+            { "id": "sell-online", "label": "Vender en línea" },
+            {
+              "id": "other",
+              "label": "Otro",
+              "includeOtherField": true,
+              "otherFieldPlaceholder": "Cuéntanos más"
+            }
+          ]
+        }
+      ]
+    }
   },
   "manifesto": {
     "title": "Nuestra visión",
@@ -179,6 +218,16 @@
     "extraNotesLabel": "Comentarios adicionales",
     "charactersLeft": "{count}/{max} caracteres",
     "singleSelectHint": "Selecciona una opción",
-    "multiSelectHint": "Puedes seleccionar varias opciones"
+    "multiSelectHint": "Puedes seleccionar varias opciones",
+    "scheduleCall": "Agendar una charla de descubrimiento",
+    "thankYouMessage": "¡Gracias! Tu mensaje es muy importante para nosotros, seguiremos en contacto contigo.",
+    "contactStepTitle": "Tus datos de contacto",
+    "contactHint": "Comparte tu nombre y al menos un dato de contacto (email o teléfono).",
+    "contactNameLabel": "Nombre",
+    "contactNamePlaceholder": "Tu nombre",
+    "contactEmailLabel": "Correo electrónico",
+    "contactEmailPlaceholder": "tu@email.com",
+    "contactPhoneLabel": "Teléfono",
+    "contactPhonePlaceholder": "Tu número de teléfono"
   }
 }

@@ -4,8 +4,17 @@ import QuoterIsland, { type QuoterProps } from "./Quoter";
 
 type Props = Omit<QuoterProps, "labels" | "onSubmit">;
 
-const { instanceId, sectionTitle, questions, whatsappNumber, whatsappTemplate, className } =
-  Astro.props;
+const {
+  instanceId,
+  sectionTitle,
+  questions,
+  whatsappNumber,
+  whatsappTemplate,
+  className,
+  secondaryCta,
+  collectContact,
+  introText,
+} = Astro.props;
 
 const labels = {
   next: i18n.t("quoter.next"),
@@ -21,6 +30,15 @@ const labels = {
   charactersLeft: i18n.t("quoter.charactersLeft"),
   singleSelectHint: i18n.t("quoter.singleSelectHint"),
   multiSelectHint: i18n.t("quoter.multiSelectHint"),
+  contactStepTitle: i18n.t("quoter.contactStepTitle"),
+  contactHint: i18n.t("quoter.contactHint"),
+  contactNameLabel: i18n.t("quoter.contactNameLabel"),
+  contactNamePlaceholder: i18n.t("quoter.contactNamePlaceholder"),
+  contactEmailLabel: i18n.t("quoter.contactEmailLabel"),
+  contactEmailPlaceholder: i18n.t("quoter.contactEmailPlaceholder"),
+  contactPhoneLabel: i18n.t("quoter.contactPhoneLabel"),
+  contactPhonePlaceholder: i18n.t("quoter.contactPhonePlaceholder"),
+  thankYouMessage: i18n.t("quoter.thankYouMessage"),
 };
 ---
 
@@ -33,4 +51,7 @@ const labels = {
   whatsappTemplate={whatsappTemplate}
   className={className}
   labels={labels}
+  secondaryCta={secondaryCta}
+  collectContact={collectContact}
+  introText={introText}
 />

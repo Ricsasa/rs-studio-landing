@@ -4,6 +4,7 @@ import {
   buildWhatsAppUrl,
   EXTRA_NOTES_MAX_LENGTH,
   formatAnswersMessage,
+  isContactAnswered,
   isQuestionAnswered,
   toggleMultiSelect,
   truncateExtraNotes,
@@ -27,6 +28,15 @@ export interface QuoterLabels {
   charactersLeft?: string;
   singleSelectHint?: string;
   multiSelectHint?: string;
+  contactStepTitle?: string;
+  contactHint?: string;
+  contactNameLabel?: string;
+  contactNamePlaceholder?: string;
+  contactEmailLabel?: string;
+  contactEmailPlaceholder?: string;
+  contactPhoneLabel?: string;
+  contactPhonePlaceholder?: string;
+  thankYouMessage?: string;
 }
 
 export interface UseQuoterOptions {
@@ -36,6 +46,7 @@ export interface UseQuoterOptions {
   whatsappTemplate: string;
   labels?: QuoterLabels;
   onSubmit?: (answers: QuoterAnswerRecord) => void;
+  collectContact?: boolean;
 }
 
 const DEFAULT_LABELS: Required<QuoterLabels> = {
@@ -52,6 +63,15 @@ const DEFAULT_LABELS: Required<QuoterLabels> = {
   charactersLeft: "{count}/{max} caracteres",
   singleSelectHint: "Selecciona una opción",
   multiSelectHint: "Puedes seleccionar varias opciones",
+  contactStepTitle: "Tus datos de contacto",
+  contactHint: "Comparte tu nombre y al menos un dato de contacto (email o teléfono).",
+  contactNameLabel: "Nombre",
+  contactNamePlaceholder: "Tu nombre",
+  contactEmailLabel: "Correo electrónico",
+  contactEmailPlaceholder: "tu@email.com",
+  contactPhoneLabel: "Teléfono",
+  contactPhonePlaceholder: "Tu número de teléfono",
+  thankYouMessage: "¡Gracias! Tu mensaje es muy importante para nosotros, seguiremos en contacto contigo.",
 };
 
 /**
@@ -66,12 +86,21 @@ export function useQuoter({
   whatsappTemplate,
   labels,
   onSubmit,
+  collectContact = false,
 }: UseQuoterOptions) {
   const t: Required<QuoterLabels> = { ...DEFAULT_LABELS, ...labels };
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState<QuoterAnswerRecord>({});
   const [extraNotes, setExtraNotes] = useState("");
+  const [showContact, setShowContact] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+
+  const contact = { name: contactName, email: contactEmail, phone: contactPhone };
+  const contactAnswered = !collectContact || isContactAnswered(contact);
 
   const total = questions.length;
   const question = questions[stepIndex];
@@ -87,6 +116,8 @@ export function useQuoter({
       t.unspecified,
       extraNotes,
       t.extraNotesLabel,
+      collectContact ? contact : undefined,
+      { name: t.contactNameLabel, email: t.contactEmailLabel, phone: t.contactPhoneLabel },
     );
     const message = buildWhatsAppMessage(whatsappTemplate, sectionTitle, answersText);
     return buildWhatsAppUrl(whatsappNumber, message);
@@ -100,6 +131,13 @@ export function useQuoter({
     t.otherLabel,
     t.unspecified,
     t.extraNotesLabel,
+    collectContact,
+    contactName,
+    contactEmail,
+    contactPhone,
+    t.contactNameLabel,
+    t.contactEmailLabel,
+    t.contactPhoneLabel,
   ]);
 
   function selectSingle(optionId: string) {
@@ -136,14 +174,24 @@ export function useQuoter({
   function goNext() {
     if (stepIndex + 1 < total) {
       setStepIndex(stepIndex + 1);
-    } else {
-      setShowSummary(true);
+      return;
     }
+    if (collectContact && !showContact) {
+      setShowContact(true);
+      return;
+    }
+    setShowContact(false);
+    setShowSummary(true);
   }
 
   function goBack() {
     if (showSummary) {
       setShowSummary(false);
+      if (collectContact) setShowContact(true);
+      return;
+    }
+    if (showContact) {
+      setShowContact(false);
       return;
     }
     setStepIndex((i) => Math.max(0, i - 1));
@@ -152,6 +200,11 @@ export function useQuoter({
   function handleSend() {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     onSubmit?.(answers);
+    setShowThankYou(true);
+  }
+
+  function handleBookingSuccess() {
+    setShowThankYou(true);
   }
 
   function isOptionSelected(optionId: string): boolean {
@@ -194,12 +247,21 @@ export function useQuoter({
     answered,
     progress,
     showSummary,
+    showContact,
+    showThankYou,
+    contactName,
+    contactEmail,
+    contactPhone,
+    contactAnswered,
     answers,
     extraNotes,
     extraNotesMaxLength: EXTRA_NOTES_MAX_LENGTH,
     charactersLeftText,
     whatsappUrl,
     setExtraNotes: (value: string) => setExtraNotes(truncateExtraNotes(value)),
+    setContactName,
+    setContactEmail,
+    setContactPhone,
     selectOption,
     setOtherValue,
     isOptionSelected,
@@ -208,6 +270,7 @@ export function useQuoter({
     goNext,
     goBack,
     handleSend,
+    handleBookingSuccess,
   };
 }
 
