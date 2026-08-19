@@ -7,12 +7,11 @@ const pathname = Astro.url.pathname;
 const onHome = isHome(pathname);
 
 const links = [
-  { hash: "#manifesto", key: "nav.manifesto" },
   { hash: "#work", key: "nav.work" },
   { hash: "#services", key: "nav.services" },
-  { hash: "#process", key: "nav.process" },
+  { hash: "#get-started", key: "nav.getStarted" },
+  { hash: "#manifesto", key: "nav.manifesto" },
   { hash: undefined, key: "nav.blog", href: blogPath() },
-  { hash: "#contact", key: "nav.contact" },
 ].map((link) => ({ ...link, href: link.href ?? sectionHref(pathname, link.hash!) }));
 
 const logoHref = onHome ? "#top" : homePath();

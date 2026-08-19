@@ -22,7 +22,7 @@ const ICONS: Record<ServiceKey, IconName> = {
 const email = i18n.t("contact.email");
 ---
 
-<section id="services" data-reveal class="relative isolate bg-paper px-gutter parallax-plate">
+<section id="services" data-reveal class="relative isolate bg-substrate px-gutter parallax-plate">
   <OrganicField variant="caseStudy" />
 
   <div class="relative mx-auto w-full max-w-content">
@@ -55,35 +55,6 @@ const email = i18n.t("contact.email");
           </a>
         ))
       }
-    </div>
-
-    <div class="mt-cta-lg border-t border-rule pt-heading">
-      <h3 class="max-w-[20ch] text-section display-face text-balance">
-        {i18n.t("services.cta.title")}
-      </h3>
-
-      <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">
-        {i18n.t("services.cta.intro")}
-      </p>
-
-      <div class="mt-cta flex flex-wrap items-center gap-3">
-        <a
-          href={whatsappHref(i18n.t("services.cta.whatsappMessage"))}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex min-h-13 items-center gap-2.5 bg-moss px-6 py-4 text-paper transition-colors duration-200 hover:bg-pine active:scale-[0.99]"
-        >
-          <WhatsAppIcon class="h-4.5 w-4.5" />
-          <span class="text-lead-sm font-medium">{i18n.t("cta.requestProposal")}</span>
-        </a>
-
-        <a
-          href={`mailto:${email}`}
-          class="inline-flex min-h-13 items-center border border-rule px-6 py-4 transition-colors duration-200 hover:border-moss hover:text-moss"
-        >
-          <span class="text-lead-sm font-medium">Email</span>
-        </a>
-      </div>
     </div>
   </div>
 </section>

@@ -10,7 +10,7 @@
     "work": "Selected Work",
     "services": "Services",
     "manifesto": "Our vision",
-    "process": "Process",
+    "getStarted": "Let's start!",
     "blog": "Blog",
     "contact": "Contact",
     "skipToContent": "Skip to content"
@@ -94,12 +94,7 @@
         "title": "Digital marketing",
         "body": "We manage Meta Ads and Google Ads campaigns to generate leads and increase your return on investment."
       }
-    ],
-    "cta": {
-      "title": "Not sure which solution your business needs?",
-      "intro": "We'll help you identify the best strategy for your goals and budget.",
-      "whatsappMessage": "Hi! I'd like to talk about which solution fits my business best."
-    }
+    ]
   },
   "cta": {
     "requestProposal": "Request a proposal",
@@ -120,75 +115,9 @@
     "ctaIntro": "Tell us about your project and we'll reply with a clear proposal and an honest estimate.",
     "example": "Examples:"
   },
-  "process": {
-    "title": "How we work",
-    "intro": "Short cycles, visible progress, no surprises at the end. You get a working build every week.",
-    "steps": [
-      {
-        "num": "01",
-        "title": "Scope",
-        "body": "A short paid discovery: goals, constraints, and what we are not building."
-      },
-      {
-        "num": "02",
-        "title": "Shape",
-        "body": "Architecture, data model and a milestone plan you can hold us to."
-      },
-      {
-        "num": "03",
-        "title": "Build",
-        "body": "Weekly deploys to a staging URL. You see progress, not status reports."
-      },
-      {
-        "num": "04",
-        "title": "Hand over",
-        "body": "Documented code, CI, and a team that knows how to run it without us."
-      }
-    ],
-    "meta": "Weekly cycle"
-  },
-  "stack": {
-    "title": "Stack",
-    "caption": "Tools we reach for first",
-    "groups": [
-      {
-        "label": "Frontend",
-        "items": [
-          "React",
-          "React Native",
-          "Astro",
-          "TypeScript",
-          "Tailwind"
-        ]
-      },
-      {
-        "label": "Backend",
-        "items": [
-          "Node.js",
-          "Apollo GraphQL",
-          "PHP / Laravel",
-          "REST"
-        ]
-      },
-      {
-        "label": "Data",
-        "items": [
-          "PostgreSQL",
-          "MySQL",
-          "Elasticsearch",
-          "Redis"
-        ]
-      },
-      {
-        "label": "Infra",
-        "items": [
-          "AWS",
-          "GCP",
-          "Docker",
-          "GitHub Actions"
-        ]
-      }
-    ]
+  "getStarted": {
+    "title": "¡Comencemos!",
+    "meta": "Primeros pasos"
   },
   "manifesto": {
     "title": "Our vision",

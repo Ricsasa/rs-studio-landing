@@ -7,8 +7,7 @@ import HeroMission from "@/components/HeroMission.astro";
 import Work from "@/components/Work.astro";
 import Services from "@/components/Services.astro";
 import BrandManifesto from "@/components/BrandManifesto.astro";
-import Process from "@/components/Process.astro";
-import Stack from "@/components/Stack.astro";
+import GetStarted from "@/components/GetStarted.astro";
 import Contact from "@/components/Contact.astro";
 import { buildStaticPaths } from "astro-react-i18next/utils";
 
@@ -23,11 +22,10 @@ export function getStaticPaths() {
   <main id="main">
     <Hero />
     <HeroMission />
-    <BrandManifesto />
     <Work />
     <Services />
-    <Process />
-    <Stack />
+    <GetStarted />
+    <BrandManifesto />
   </main>
   <Contact />
 </Layout>
