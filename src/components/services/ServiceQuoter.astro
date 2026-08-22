@@ -1,7 +1,6 @@
 ---
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
-import OrganicField from "@/components/OrganicField.astro";
 import Quoter from "@/components/Quoter.astro";
 import { WHATSAPP_PHONE } from "@/lib/whatsapp";
 import type { QuoterQuestion } from "@/lib/quoter";
@@ -35,12 +34,9 @@ const secondaryCta = {
 ---
 
 <section id="diagnostico-rapido" data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
-  <OrganicField variant="stack" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={heading} />
     <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">{subheading}</p>
-
     <div class="mt-heading max-w-5xl">
       <Quoter
         instanceId={instanceId}

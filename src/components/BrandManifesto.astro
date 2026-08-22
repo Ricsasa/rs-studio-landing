@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import SectionHead from "./SectionHead.astro";
-import OrganicField from "./OrganicField.astro";
 import Icon, { type IconName } from "./Icon.astro";
 
 type ManifestoItem = { key: string; title: string; body: string };
@@ -18,18 +17,14 @@ const ICONS: Record<string, IconName> = {
 ---
 
 <section id="manifesto" data-reveal class="relative isolate bg-substrate px-gutter parallax-plate">
-  <OrganicField variant="getStarted" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead
       title={i18n.t("manifesto.title")}
       meta={i18n.t("manifesto.title")}
     />
-
     <p class="mt-heading max-w-prose text-lead text-pretty text-graphite">
       {i18n.t("manifesto.intro")}
     </p>
-
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         items.map((item) => (

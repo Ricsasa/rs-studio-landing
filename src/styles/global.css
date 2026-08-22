@@ -9,14 +9,17 @@
  *
  * What changed in this cut is how much area the colour is allowed to hold. The
  * earlier version kept green to hairlines and to the odd underline; here whole
- * sections are set on solid pine, and flat organic colour fields sit behind the
- * type on the paper sections (see OrganicField.astro). Those curves are the
- * only ones in the system — every element the reader can touch is square, on
- * hover and focus as much as at rest.
+ * sections are set on solid pine. The organic colour fields that used to drift
+ * behind the type on the paper sections are gone: they were the one soft,
+ * curved thing in a system whose whole argument is flat edges, and on paper
+ * they read as decoration rather than as structure. Nothing on the page curves
+ * now, and every element the reader can touch is square, on hover and focus as
+ * much as at rest.
  *
  * Structure is still carried by whitespace and single hairlines: type sits at
  * reading weight, sections are separated by air rather than by borders, and the
- * accent marks what is interactive or current.
+ * accent marks what is interactive or current. The air is measured, though, not
+ * generous - see the macro-whitespace block below.
  *
  * Everything above 16px is sized with clamp(), so type and rhythm stay fluid
  * and nothing snaps when a breakpoint trips. Those clamps live here as theme
@@ -109,29 +112,23 @@
   --color-lichen: #b3c98c;
 
   /*
-   * Veils. Moss and fern lifted for the organic background fields on paper.
-   * Those fields sit under body copy, and the accent weights above are dark
-   * enough that a drop multiplied onto paper pulled the ground down far enough
-   * to cost the text contrast. Same hue, higher value — the fields still read
-   * as the palette, they just no longer compete with what is set on top.
-   */
-  --color-moss-veil: #93b085;
-  --color-fern-veil: #b3c996;
-
-  /*
    * Titles. Large enough to open a section, small enough to still be read as
    * a sentence — the leading stays above 1 so descenders and accents (this
    * site is bilingual, and Spanish sets more of them) never collide.
+   *
+   * The top of each clamp came down with the whitespace: at 76px a Spanish
+   * title set to 18ch ran four lines and pushed everything under it off the
+   * first screen, which is the airiness this cut is correcting.
    */
-  --text-display: clamp(38px, 6vw, 76px);
+  --text-display: clamp(36px, 5.2vw, 64px);
   --text-display--line-height: 1.04;
   --text-display--letter-spacing: -0.03em;
 
-  --text-headline: clamp(32px, 5vw, 60px);
+  --text-headline: clamp(30px, 4.4vw, 54px);
   --text-headline--line-height: 1.06;
   --text-headline--letter-spacing: -0.028em;
 
-  --text-section: clamp(26px, 3.4vw, 40px);
+  --text-section: clamp(25px, 3.1vw, 36px);
   --text-section--line-height: 1.1;
   --text-section--letter-spacing: -0.024em;
 
@@ -179,24 +176,26 @@
   --radius-3xl: 0px;
 
   /*
-   * Macro-whitespace. The sections are roughly half again as tall as they
-   * were, because in this cut the space between blocks is the only thing
-   * separating them — there are no longer heavy rules doing that job.
+   * Macro-whitespace. Tightened one full step from the earlier cut. The space
+   * between blocks is still the only thing separating them, but at the old
+   * values the page read as a gallery wall: a single section could not be
+   * seen whole on a laptop, and the reader scrolled past empty paper between
+   * every idea. These values keep the rhythm and give back the density.
    */
   --spacing-gutter: clamp(24px, 5vw, 80px);
-  --spacing-section: clamp(80px, 9.5vw, 140px);
-  --spacing-section-lg: clamp(88px, 10.5vw, 156px);
-  --spacing-hero-top: clamp(56px, 7vw, 104px);
-  --spacing-hero-bottom: clamp(64px, 7.5vw, 112px);
-  --spacing-flow: clamp(40px, 6vw, 80px);
-  --spacing-split: clamp(40px, 5vw, 88px);
-  --spacing-grid: clamp(32px, 4vw, 56px);
-  --spacing-heading: clamp(40px, 6vw, 72px);
-  --spacing-card-pad: clamp(24px, 3vw, 40px);
-  --spacing-lead: clamp(24px, 3vw, 36px);
-  --spacing-cta: clamp(32px, 4vw, 48px);
-  --spacing-cta-lg: clamp(36px, 5vw, 56px);
-  --spacing-footer: clamp(72px, 9vw, 112px);
+  --spacing-section: clamp(56px, 6.5vw, 96px);
+  --spacing-section-lg: clamp(64px, 7.5vw, 108px);
+  --spacing-hero-top: clamp(40px, 4.5vw, 72px);
+  --spacing-hero-bottom: clamp(48px, 5vw, 80px);
+  --spacing-flow: clamp(32px, 4vw, 56px);
+  --spacing-split: clamp(32px, 3.6vw, 64px);
+  --spacing-grid: clamp(24px, 2.8vw, 44px);
+  --spacing-heading: clamp(28px, 3.4vw, 48px);
+  --spacing-card-pad: clamp(20px, 2.4vw, 32px);
+  --spacing-lead: clamp(18px, 2vw, 26px);
+  --spacing-cta: clamp(24px, 2.8vw, 36px);
+  --spacing-cta-lg: clamp(28px, 3.2vw, 40px);
+  --spacing-footer: clamp(52px, 6vw, 80px);
 
   /*
    * Height of the sticky header, so a full-height block below it can subtract

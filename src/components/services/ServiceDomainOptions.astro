@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
 import HoverCard from "@/components/HoverCard.astro";
-import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
   title: string;
@@ -19,16 +18,12 @@ const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
 ---
 
 <section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
-  <OrganicField variant="services" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("servicePage.domainOptionsLabel")} />
-
     <h3 class="mt-heading max-w-[28ch] text-step display-face text-balance">
       {title}
     </h3>
     <p class="mt-4 max-w-prose text-lead text-pretty text-graphite">{intro}</p>
-
     <div
       class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2"
     >
@@ -47,7 +42,6 @@ const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
           ))
         }
       </HoverCard>
-
       <HoverCard icon="zap" heading={subdomain.heading} items={subdomain.items}>
         <div class="space-y-1">
           {i18n.t("servicePage.example")}

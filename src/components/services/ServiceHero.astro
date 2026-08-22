@@ -1,6 +1,5 @@
 ---
 import i18n from "i18next";
-import OrganicField from "@/components/OrganicField.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 
@@ -15,19 +14,14 @@ const email = i18n.t("contact.email");
 ---
 
 <section class="relative isolate bg-paper px-gutter pt-10 pb-heading">
-  <OrganicField variant="caseStudy" />
-
   <div class="relative mx-auto w-full max-w-content">
     <span class="eyebrow text-moss">
       {i18n.t("nav.services")}
     </span>
-
     <h1 class="mt-5 max-w-[18ch] text-display display-face text-balance">{title}</h1>
-
     <p class="mt-lead max-w-prose text-lead text-pretty text-graphite">
       {intro}
     </p>
-
     <a
       href={whatsappHref(whatsappMessage)}
       target="_blank"

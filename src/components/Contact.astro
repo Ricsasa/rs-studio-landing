@@ -1,26 +1,20 @@
 ---
 import i18n from "i18next";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
-import OrganicField from "./OrganicField.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 
 const email = i18n.t("contact.email");
 ---
 
 <section id="contact" data-reveal class="relative isolate bg-pine-deep px-gutter parallax-plate [--plate-pad:var(--spacing-section-lg)] text-reverse">
-  <OrganicField variant="contact" />
-
   <div class="relative mx-auto w-full max-w-content">
     <span class="eyebrow text-lichen">{i18n.t("nav.contact")}</span>
-
     <h2 class="mt-5 max-w-[18ch] text-headline display-face text-balance">
       {i18n.t("contact.title")}
     </h2>
-
     <p class="mt-lead max-w-prose text-lead text-pretty text-reverse-mute">
       {i18n.t("contact.intro")}
     </p>
-
     <div class="mt-cta-lg flex flex-wrap items-center gap-3">
       <a
         href={`mailto:${email}`}
@@ -28,7 +22,6 @@ const email = i18n.t("contact.email");
       >
         <span class="text-lead-sm font-medium">{email}</span>
       </a>
-
       <a
         href={whatsappHref()}
         target="_blank"
@@ -39,7 +32,6 @@ const email = i18n.t("contact.email");
         <span class="text-lead-sm font-medium">{i18n.t("whatsapp.cta")}</span>
       </a>
     </div>
-
     <footer class="mt-footer border-t border-reverse-rule pt-8">
       <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-6">
         <img
@@ -49,7 +41,6 @@ const email = i18n.t("contact.email");
           height="209"
           class="h-5 w-auto invert"
         />
-
         <div class="flex flex-wrap items-center gap-x-7 gap-y-3">
           <a
             href="https://www.facebook.com/rsstudiodev/"

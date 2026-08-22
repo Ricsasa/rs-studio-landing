@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
 import Icon from "@/components/Icon.astro";
-import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
   benefits: string[];
@@ -12,11 +11,8 @@ const { benefits } = Astro.props;
 ---
 
 <section data-reveal class="relative isolate bg-paper px-gutter py-section">
-  <OrganicField variant="services" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("servicePage.benefitsLabel")} />
-
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         benefits.map((benefit) => (

@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import { tList } from "@/i18n/t";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
-import OrganicField from "./OrganicField.astro";
 import { whatsappHref } from "@/lib/whatsapp";
 import { projectScreenshots, projectScreenshotAlts } from "@/content/projects";
 import { readImageSize } from "@/lib/imageSize";
@@ -89,12 +88,9 @@ const phoneFrames = interleave(
   id="top"
   class="relative isolate grid min-h-[calc((100svh-var(--size-header))*(1+var(--hero-lag)))] content-start bg-paper px-gutter py-hero-top"
 >
-  <OrganicField variant="hero" />
-
   <div
     class="relative mx-auto grid w-full max-w-content min-h-[calc(100svh-var(--size-header)-var(--spacing-hero-top)*2)] content-center"
   >
-
     <div
       class="grid grid-cols-1 items-center gap-split wide:grid-cols-[1fr_1.05fr]"
     >
@@ -102,13 +98,11 @@ const phoneFrames = interleave(
         <h1 class="mt-5 max-w-[15ch] text-headline display-face text-balance">
           {i18n.t("hero.title")}
         </h1>
-
         <div class="mt-cta grid gap-4">
           <p class="text-lead text-pretty text-graphite">
             {i18n.t("hero.intro")}
           </p>
         </div>
-
         <div class="mt-cta flex flex-wrap items-center gap-3">
           <a
             href={whatsappHref()}
@@ -121,7 +115,6 @@ const phoneFrames = interleave(
               >{i18n.t("whatsapp.cta")}</span
             >
           </a>
-
           <a
             href="#work"
             class="group inline-flex min-h-12 items-center gap-2.5 border border-rule-strong px-6 py-3.5 transition-colors duration-200 hover:border-moss hover:text-moss"
@@ -138,13 +131,11 @@ const phoneFrames = interleave(
           </a>
         </div>
       </div>
-
       <div id="hero-devices" class="relative pb-[14%] wide:pb-[11%]">
         <div
           id="hero-screen"
           class="relative ml-auto w-[80%] border border-rule-strong bg-substrate p-2 wide:w-[82%]"
         >
-
           <div
             id="hero-screen-window"
             role="img"
@@ -180,7 +171,6 @@ const phoneFrames = interleave(
               aria-hidden="true"
               class="halftone-fine absolute inset-0 opacity-8"></span>
           </div>
-
           <span
             aria-hidden="true"
             class="absolute top-full left-1/2 h-[5%] w-[9%] -translate-x-1/2 bg-substrate"
@@ -190,7 +180,6 @@ const phoneFrames = interleave(
             class="absolute top-[105%] left-1/2 h-px w-[26%] -translate-x-1/2 bg-rule-strong"
           ></span>
         </div>
-
         <div
           id="hero-phone"
           class="absolute bottom-0 left-0 w-[21%] border border-rule-strong bg-substrate px-1.5 pt-2.5 pb-1.5 wide:w-[19%]"
@@ -199,7 +188,6 @@ const phoneFrames = interleave(
             aria-hidden="true"
             class="absolute top-1.25 left-1/2 h-px w-[22%] -translate-x-1/2 bg-rule-strong"
           ></span>
-
           <div
             id="hero-phone-window"
             role="img"
@@ -231,7 +219,6 @@ const phoneFrames = interleave(
     </div>
   </div>
 </section>
-
 <script>
   import { initHeroDevices } from "@/scripts/heroDevices";
 

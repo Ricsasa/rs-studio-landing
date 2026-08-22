@@ -1,38 +1,31 @@
 ---
 import i18n from "i18next";
 import { renderRichText } from "@/lib/markdown";
-import OrganicField from "@/components/OrganicField.astro";
 ---
 
 <section
   id="hero-mission-band"
-  class="relative isolate grid min-h-[60svh] content-center overflow-hidden bg-substrate px-gutter py-section"
+  class="relative isolate grid min-h-[44svh] content-center overflow-hidden bg-substrate px-gutter py-section"
 >
-  <OrganicField variant="heroMission" />
-
   <span
     aria-hidden="true"
     class="display-face pointer-events-none absolute top-[-6%] left-1/2 -translate-x-1/2 text-[clamp(220px,32vw,420px)] leading-none text-pine/5 select-none"
   >
     &rdquo;
   </span>
-
-  <div class="relative mx-auto grid w-full justify-items-center gap-8 text-center">
+  <div class="relative mx-auto grid w-full justify-items-center gap-6 text-center">
     <span class="eyebrow text-moss">{i18n.t("hero.missionEyebrow")}</span>
-
     <div
       id="hero-mission"
       class="max-w-[52ch] text-[clamp(21px,6vw,40px)] font-normal text-pretty leading-snug tracking-tight text-ink-soft [&_p+p]:mt-5 [&_strong]:text-[1.08em] [&_strong]:font-bold [&_strong]:text-pine sm:text-section"
       style="opacity:0"
       set:html={renderRichText(i18n.t("hero.introMission"))}
     />
-
     <div class="flex items-center gap-4" aria-hidden="true">
       <span class="h-px w-10 bg-rule-strong"></span>
       <span class="h-1.5 w-1.5 bg-moss"></span>
       <span class="h-px w-10 bg-rule-strong"></span>
     </div>
-
     <p
       id="hero-closing"
       class="max-w-[32ch] text-service text-pretty text-mute italic"
@@ -42,7 +35,6 @@ import OrganicField from "@/components/OrganicField.astro";
     </p>
   </div>
 </section>
-
 <script>
   import { initHeroCopyReveal } from "@/scripts/heroCopyReveal";
 

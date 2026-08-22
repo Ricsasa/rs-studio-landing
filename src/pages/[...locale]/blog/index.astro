@@ -7,7 +7,6 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Contact from "@/components/Contact.astro";
 import BackToHome from "@/components/BackToHome.astro";
 import SectionHead from "@/components/SectionHead.astro";
-import OrganicField from "@/components/OrganicField.astro";
 import { blogPath, blogPostPath } from "@/i18n/routing";
 import { postSlug } from "@/content.config";
 
@@ -30,8 +29,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
   <SiteHeader />
   <main id="main">
     <section data-reveal class="relative isolate bg-paper px-gutter pt-10 pb-hero-bottom">
-      <OrganicField variant="work" />
-
       <div class="relative mx-auto w-full max-w-content">
         <SectionHead title={i18n.t("blog.title")} meta={i18n.t("blog.head")} />
 
@@ -63,7 +60,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
         <p data-tag-filter-empty hidden class="mt-heading text-lead-sm text-mute">
           {i18n.t("blog.filter-empty-label")}
         </p>
-
         <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-3">
           {
             posts.map((post) => (
@@ -94,13 +90,11 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
                     post.data.pubDate,
                   )}
                 </span>
-
                 <h3 class="mt-2 text-subhead display-face">
                   <a href={blogPostPath(postSlug(post.id))} class="static after:absolute after:inset-0">
                     <span class="rule-wipe group-hover:rule-wipe-on">{post.data.title}</span>
                   </a>
                 </h3>
-
                 <p class="mt-2.5 text-lead-sm text-pretty text-graphite">{post.data.description}</p>
 
                 {post.data.tags.length > 0 && (
@@ -135,7 +129,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort((a, b
   <BackToHome />
   <Contact />
 </Layout>
-
 <script>
   function initTagFilter() {
     const container = document.querySelector<HTMLElement>("[data-tag-filter]");

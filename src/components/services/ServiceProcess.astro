@@ -1,7 +1,6 @@
 ---
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
-import OrganicField from "@/components/OrganicField.astro";
 
 interface Props {
   process: { title: string; body: string }[];
@@ -13,17 +12,13 @@ const bgClass = background === "substrate" ? "bg-substrate" : "bg-paper";
 ---
 
 <section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
-  <OrganicField variant="hero" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("servicePage.processLabel")} meta={i18n.t("servicePage.processMeta")} />
-
     <ol class="m-0 mt-heading list-none p-0">
       {
         process.map((step, index) => (
           <li class="grid grid-cols-[auto_1fr] gap-x-[clamp(20px,3vw,48px)] border-t border-rule py-7 last:border-b last:border-rule">
             <span class="label pt-1 text-moss">{String(index + 1).padStart(2, "0")}</span>
-
             <div>
               <h3 class="text-step display-face">{step.title}</h3>
               <p class="mt-2 max-w-[52ch] text-lead-sm text-pretty text-graphite">{step.body}</p>

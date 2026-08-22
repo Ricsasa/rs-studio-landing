@@ -2,7 +2,6 @@
 import i18n from "i18next";
 import { projectPath } from "@/i18n/routing";
 import SectionHead from "./SectionHead.astro";
-import OrganicField from "./OrganicField.astro";
 import {
   projectSlugs,
   projectScreenshots,
@@ -31,11 +30,8 @@ const total = String(projects.length).padStart(2, "0");
 ---
 
 <section id="work" data-reveal class="relative isolate bg-paper px-gutter parallax-plate">
-  <OrganicField variant="work" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("work.title")} meta={i18n.t("work.head")} />
-
     <div class="mt-heading grid grid-cols-1 gap-x-grid gap-y-flow md:grid-cols-2 wide:grid-cols-2">
       {
         cards.map(({ project, href, external, label, thumbnail, thumbnailAlt }) => (
@@ -65,15 +61,12 @@ const total = String(projects.length).padStart(2, "0");
             <span class="label mt-5 text-mute">
               {project.category} · {project.year}
             </span>
-
             <h3 class="mt-2 text-subhead display-face">
               <span class="rule-wipe group-hover:rule-wipe-on">{project.title}</span>
             </h3>
-
             <p class="mt-2.5 text-lead-sm text-pretty text-graphite">
               {project.brief_description}
             </p>
-
             <span class="mt-auto flex items-center gap-2 pt-5 text-lead-sm font-medium">
               {label}
               <span

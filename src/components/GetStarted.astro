@@ -1,7 +1,6 @@
 ---
 import i18n from "i18next";
 import SectionHead from "./SectionHead.astro";
-import OrganicField from "./OrganicField.astro";
 import Quoter from "./Quoter.astro";
 import { WHATSAPP_PHONE } from "@/lib/whatsapp";
 
@@ -13,11 +12,8 @@ const secondaryCta = {
 ---
 
 <section id="get-started" data-reveal class="relative isolate bg-paper px-gutter py-section parallax-plate">
-  <OrganicField variant="getStarted" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("getStarted.title")} meta={i18n.t("getStarted.meta")} />
-
     <div class="mt-heading max-w-5xl">
       <Quoter
         instanceId={quoter.instanceId}

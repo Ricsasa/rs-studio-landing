@@ -1,7 +1,6 @@
 ---
 import i18n from "i18next";
 import SectionHead from "@/components/SectionHead.astro";
-import OrganicField from "@/components/OrganicField.astro";
 import FAQSchema from "@/components/FAQSchema.astro";
 
 interface Props {
@@ -14,13 +13,9 @@ const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
 ---
 
 <FAQSchema faq={faq} />
-
 <section data-reveal class={`relative isolate ${bgClass} px-gutter py-section`}>
-  <OrganicField variant="work" />
-
   <div class="relative mx-auto w-full max-w-content">
     <SectionHead title={i18n.t("servicePage.faqLabel")} />
-
     <div class="mt-heading">
       {
         faq.map((item) => (
@@ -32,7 +27,6 @@ const bgClass = background === "paper" ? "bg-paper" : "bg-substrate";
                 <span class="absolute top-1/2 left-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-current group-open:hidden" />
               </span>
             </summary>
-
             <p class="mt-4 max-w-prose text-lead-sm text-pretty text-graphite">{item.answer}</p>
           </details>
         ))
