@@ -207,14 +207,6 @@
   --size-header: 77px;
 
   /*
-   * How far the hero lags the scroll, as a fraction of its own height. One
-   * number for two things: the parallax distance, and the run-out the section
-   * grows to travel into. Raising it here strengthens the effect and buys the
-   * room for it in the same move.
-   */
-  --hero-lag: 0.3;
-
-  /*
    * One z-index scale, so nothing has to guess a magic number. Anything that
    * stacks reads from here rather than inventing its own 9999.
    */

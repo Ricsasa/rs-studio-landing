@@ -1,7 +1,4 @@
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const DWELL = 4.6;
 
@@ -67,28 +64,6 @@ export function initHeroDevices() {
     });
   };
 
-  const parallax = () => {
-    const section = root.closest("section");
-    if (!section) return;
-
-    const targets = [root, section.querySelector("#hero-copy")].filter(Boolean);
-
-    const lag = () =>
-      parseFloat(getComputedStyle(section).getPropertyValue("--hero-lag")) || 0;
-
-    gsap.to(targets, {
-      y: () => section.offsetHeight * lag(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        scrub: 0.5,
-        invalidateOnRefresh: true,
-      },
-    });
-  };
-
   let started = false;
 
   const start = () => {
@@ -96,7 +71,6 @@ export function initHeroDevices() {
     started = true;
 
     assemble();
-    parallax();
 
     cycle(gsap.utils.toArray<HTMLElement>(root.querySelectorAll("[data-screen-frame]")), 1.1);
     cycle(gsap.utils.toArray<HTMLElement>(root.querySelectorAll("[data-phone-frame]")), 3.4);
