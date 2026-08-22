@@ -74,10 +74,6 @@ const total = String(projects.length).padStart(2, "0");
               {project.brief_description}
             </p>
 
-            {project.technologies && (
-              <p class="label mt-4 text-mute">{project.technologies.join(" · ")}</p>
-            )}
-
             <span class="mt-auto flex items-center gap-2 pt-5 text-lead-sm font-medium">
               {label}
               <span

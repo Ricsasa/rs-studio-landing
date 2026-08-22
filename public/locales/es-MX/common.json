@@ -44,7 +44,6 @@
     "back": "Todo el trabajo",
     "titleTemplate": "{{name}} — RS Studio",
     "overviewLabel": "Resumen",
-    "stackLabel": "Construido con",
     "galleryLabel": "Pantallas",
     "categoryLabel": "Categoría",
     "yearLabel": "Año",

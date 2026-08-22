@@ -34,7 +34,6 @@ const projects = defineCollection({
     lang: z.enum(["es-MX", "en-US"]),
     href: z.string().optional(),
     cta: z.string().optional(),
-    technologies: z.array(z.string()).optional(),
     "screenshots-prefix": z.string().optional(),
     "screenshot-alts": z.array(z.string()).optional(),
   }),
